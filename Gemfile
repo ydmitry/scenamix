@@ -39,3 +39,4 @@ gem 'jquery-rails'
 
 gem 'haml-rails', '= 0.3.4'
 gem 'devise'
+gem 'backbone-on-rails'
