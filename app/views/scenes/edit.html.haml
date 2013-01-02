@@ -8,6 +8,6 @@
   = text_field :scene, 'title'
 
   = label :scene, :description, 'Description'
-  = text_area_tag {:scene, :description}
+  = text_area_tag 'scene[description]', @scene.description
 
   = submit_tag 'Update scene Info'
