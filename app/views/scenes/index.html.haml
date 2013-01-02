@@ -1,0 +1,14 @@
+%h1 All Scenes
+
+%table#scenes
+  %thead
+    %tr
+      %th Scene Title
+      %th More Info
+  %tbody
+    - @scenes.each do |scene|
+      %tr
+        %td= scene.description 
+        %td= link_to "More about #{scene.title}", scene_path(scene)
+
+= link_to 'Add new scene', new_scene_path

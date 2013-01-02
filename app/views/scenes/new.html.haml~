@@ -1,0 +1,11 @@
+%h1 Create New Scene
+
+= form_tag scenes_path do
+
+  = label :scene, :title, 'Title'
+  = text_field :scene, 'title'
+
+  = label :scene, :description, 'Description'
+  = text_area_tag :scene[description]
+
+  = submit_tag 'Save Changes'
