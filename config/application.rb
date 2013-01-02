@@ -58,5 +58,15 @@ module Scenamix
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Devise:
+    # 4. If you are deploying Rails 3.1 on Heroku, you may want to set:
+    # config.assets.initialize_on_precompile = false
+
+
+    config.generators do |g|
+      g.template_engine :haml
+    end
+
   end
 end

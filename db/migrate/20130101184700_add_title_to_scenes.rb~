@@ -1,0 +1,4 @@
+class AddTitleToScenes < ActiveRecord::Migration
+  def change
+  end
+end

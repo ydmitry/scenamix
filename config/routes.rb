@@ -1,4 +1,6 @@
 Scenamix::Application.routes.draw do
+  devise_for :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -13,6 +15,14 @@ Scenamix::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
+  resources :scenes
+  
+  devise_for :users, :controllers => { :sessions => "users/sessions" }
+
+  devise_scope :user do
+    get "sign_in", :to => "devise/sessions#new"
+  end
+  
   # Sample resource route with options:
   #   resources :products do
   #     member do
