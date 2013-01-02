@@ -1,0 +1,13 @@
+-# edit.html.haml using partial
+
+%h1 Edit Existing Scene
+
+= form_tag scene_path(@scene), :method => :put do
+
+  = label :scene, :title, 'Title'
+  = text_field :scene, 'title'
+
+  = label :scene, :description, 'Description'
+  = text_area_tag {:scene, :description}
+
+  = submit_tag 'Update scene Info'

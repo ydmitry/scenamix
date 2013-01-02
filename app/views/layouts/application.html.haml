@@ -29,13 +29,17 @@
           .container.nav-collapse
             %ul.nav
               %li= link_to "Scenes", "/scenes"
-              %li= link_to "Sign up", "/signup"
+              %li= link_to "Sign in", "/sign_in"
 
     .container-fluid
-      .notice
-        = notice
-      .alert
-        = alert
+
+      - if notice      
+        .alert
+          = notice
+
+      - if alert
+        .alert
+          = alert
 
 
       = yield

@@ -1,0 +1,11 @@
+-# in app/views/scenes/show.html.haml
+
+%h2 Details about #{@scene.title}
+
+%h3 Description:
+
+%p#description= @scene.description
+
+= link_to 'Edit', edit_scene_path(@scene)
+= button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Back to scene list', scenes_path
