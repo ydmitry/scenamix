@@ -1,11 +1,15 @@
 %h1 Create New Scene
 
-= form_tag scenes_path do
+= form_tag scenes_path, {:class => 'form-horizontal'} do
 
-  = label :scene, :title, 'Title'
-  = text_field :scene, 'title'
+  .control-group  
+    = label :scene, :title, 'Title', :class => 'control-label'
+    .controls
+      = text_field :scene, 'title'
 
-  = label :scene, :description, 'Description'
-  = text_area_tag 'scene[description]'
-
-  = submit_tag 'Save Changes'
+  .control-group
+    = label :scene, :description, 'Description', :class => 'control-label'
+    .controls
+      = text_area_tag 'scene[description]', '', :class => 'input-xxlarge'
+  .form-actions
+    = submit_tag 'Save Changes', :class => 'btn btn-primary'
