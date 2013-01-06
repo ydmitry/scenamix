@@ -2,6 +2,7 @@ class ScenesController < ApplicationController
   def show
     id = params[:id] # retrieve movie ID from URI route
     @scene = Scene.find(id) # look up movie by unique ID
+    @responses = Response.find_all_by_scene_id(id)
     # will render app/views/scenes/show.<extension> by default
   end
 

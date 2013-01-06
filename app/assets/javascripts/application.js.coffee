@@ -11,7 +11,7 @@ requirejs.config
       deps: ['jquery']
 
 
-require ['backbone', 'bootstrap'], (Backbone, Bootstrap) ->
+require ['underscore', 'backbone', 'bootstrap'], (_, Backbone, Bootstrap) ->
 
   # Start up the app once the DOM is ready
   $ -> 

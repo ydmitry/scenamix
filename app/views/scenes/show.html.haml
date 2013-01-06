@@ -1,11 +1,31 @@
 -# in app/views/scenes/show.html.haml
 
-%h2 Details about #{@scene.title}
+%h2
+  = @scene.title
 
-%h3 Description:
+.well.alert-success
+  %p#description= @scene.description
 
-%p#description= @scene.description
+/= link_to 'Edit', edit_scene_path(@scene)
+/= button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?'
 
-= link_to 'Edit', edit_scene_path(@scene)
-= button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?'
+- if @responses
+  %hr
+  - @responses.each do |response|
+    .well
+      = response.response
+
+%hr
+
+= form_tag scene_responses_path(@scene) do
+  .control-group
+    = label :response, :response, 'Response', :class => 'control-label'
+    .controls
+      = text_area_tag 'response[response]', '', :class => 'input-xxlarge'
+  .form-actions
+    = submit_tag 'Post response to scene', :class => 'btn btn-primary'
+
+
 = link_to 'Back to scene list', scenes_path
+
+

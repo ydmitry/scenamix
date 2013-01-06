@@ -1,14 +1,9 @@
 %h1 All Scenes
 
-%table#scenes.table
-  %thead
-    %tr
-      %th Scene Title
-      %th More Info
-  %tbody
-    - @scenes.each do |scene|
-      %tr
-        %td= scene.description 
-        %td= link_to "More about #{scene.title}", scene_path(scene)
+- @scenes.each do |scene|
+  .well
+    %h5= scene.title
+    %div= scene.description 
+    %p= link_to "View scene", scene_path(scene)
 
-= link_to 'Add new scene', new_scene_path
+%p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'

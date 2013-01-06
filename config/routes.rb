@@ -15,8 +15,10 @@ Scenamix::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :scenes
-  
+  resources :scenes do
+    resources :responses
+  end
+
   devise_for :users, :controllers => { :sessions => "users/sessions" }
 
   devise_scope :user do

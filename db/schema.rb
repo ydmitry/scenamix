@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102140551) do
+ActiveRecord::Schema.define(:version => 20130105204629) do
+
+  create_table "responses", :force => true do |t|
+    t.integer  "scene_id"
+    t.text     "response"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "responses", ["scene_id"], :name => "index_responses_on_scene_id"
 
   create_table "scenes", :force => true do |t|
     t.datetime "created_at",  :null => false
