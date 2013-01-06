@@ -58,6 +58,7 @@ end
 # To use debugger
 # gem 'debugger'
 
+gem 'underscore-rails'
 gem 'jquery-rails'
 gem 'haml-rails', '= 0.3.4'
 gem 'devise'
