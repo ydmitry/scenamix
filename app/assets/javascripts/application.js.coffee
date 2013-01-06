@@ -11,9 +11,8 @@ requirejs.config
       deps: ['jquery']
 
 
-require ['underscore', 'backbone', 'bootstrap'], (_, Backbone, Bootstrap) ->
-
-  # Start up the app once the DOM is ready
+require ['jquery', 'underscore', 'backbone', 'bootstrap'], ($, _, Backbone, Bootstrap) ->
+#  Start up the app once the DOM is ready
   $ -> 
     Backbone.history.start
       pushState: true
