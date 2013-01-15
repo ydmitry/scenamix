@@ -1,5 +1,7 @@
 %h1 All Scenes
 
+%p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'
+
 - @scenes.each do |scene|
   .well
     %h5= scene.title

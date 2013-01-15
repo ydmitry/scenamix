@@ -6,14 +6,18 @@
 .well.alert-success
   %p#description= @scene.description
 
-/= link_to 'Edit', edit_scene_path(@scene)
-/= button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
+= link_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
 
-- if @responses
+- if !@responses.empty?
   %hr
   - @responses.each do |response|
     .well
-      = response.response
+      %p     
+        = response.response
+      %p      
+        = link_to 'Edit', edit_scene_response_path(response), :class => 'btn btn-mini'
+        = link_to 'Delete', scene_response_path(response), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
 
 %hr
 

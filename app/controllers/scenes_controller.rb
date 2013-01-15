@@ -16,7 +16,7 @@ class ScenesController < ApplicationController
   def create
     @scene = Scene.create!(params[:scene])
     flash[:notice] = "#{@scene.title} was successfully created."
-    redirect_to scenes_path
+    redirect_to scene_path(@scene)
   end
 
   def edit
