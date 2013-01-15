@@ -27,8 +27,9 @@ class ResponsesController < ApplicationController
 
   def destroy
     @response = Response.find(params[:id])
+    @scene = Scene.find(@response.scene_id)
     @response.destroy
     flash[:notice] = "Response deleted."
-    redirect_to responses_path
+    redirect_to scene_path(@scene)
   end
 end

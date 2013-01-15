@@ -16,8 +16,8 @@
       %p     
         = response.response
            
-      = link_to 'Edit', edit_scene_response_path(response), :class => 'btn btn-mini'
-      = button_to 'Delete', scene_response_path(response), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+      = link_to 'Edit', edit_scene_response_path(:scene_id => response.scene_id, :id => response.id), :class => 'btn btn-mini'
+      = button_to 'Delete', scene_response_path(:scene_id => response.scene_id, :id => response.id), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
 
 %hr
 
