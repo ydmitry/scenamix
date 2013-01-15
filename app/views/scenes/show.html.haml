@@ -7,7 +7,7 @@
   %p#description= @scene.description
 
 = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
-= link_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
+= button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
 
 - if !@responses.empty?
   %hr
@@ -15,9 +15,9 @@
     .well
       %p     
         = response.response
-      %p      
-        = link_to 'Edit', edit_scene_response_path(response), :class => 'btn btn-mini'
-        = link_to 'Delete', scene_response_path(response), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+           
+      = link_to 'Edit', edit_scene_response_path(response), :class => 'btn btn-mini'
+      = button_to 'Delete', scene_response_path(response), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
 
 %hr
 
