@@ -5,7 +5,7 @@
 - @scenes.each do |scene|
   .well
     %h5= scene.title
-    %div= scene.description 
+    %div= simple_format(scene.description)
     %p= link_to "View scene", scene_path(scene)
 
 %p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'

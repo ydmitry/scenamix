@@ -1,10 +1,14 @@
 -# in app/views/scenes/show.html.haml
+%h1
+  Scenamix
+  
+%p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'
 
 %h2
   = @scene.title
 
 .well.alert-success
-  %p#description= @scene.description
+  %p#description= simple_format(@scene.description)
 
 = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
 = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
@@ -14,7 +18,7 @@
   - @responses.each do |response|
     .well
       %p     
-        = response.response
+        = simple_format(response.response)
            
       = link_to 'Edit', edit_scene_response_path(:scene_id => response.scene_id, :id => response.id), :class => 'btn btn-mini'
       = button_to 'Delete', scene_response_path(:scene_id => response.scene_id, :id => response.id), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
@@ -29,7 +33,7 @@
   .form-actions
     = submit_tag 'Post response to scene', :class => 'btn btn-primary'
 
-
-= link_to 'Back to scene list', scenes_path
+/
+  = link_to 'Back to scene list', scenes_path
 
 
