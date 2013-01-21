@@ -1,9 +1,11 @@
 Feature: Create scenes
 
-Scenario: create a scene
-  Given I am created a scene with content "test test test"
-  Then I should be redirected to this scene page
-  And I see "test test test"
+  Scenario: Successful scene creation
+    Given I am on the scene creation page
+    When I create a scene with:
+      | Title       | You shall not pass |
+      | Description | Breathtaking       |
+    Then I should see "You shall not pass was successfully created."
 
 Scenario: text formatting in scenes creation
   Given I am created a scene with content "first line\n\nsecond line"
