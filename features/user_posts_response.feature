@@ -1,8 +1,9 @@
 Feature: User posts a response
 
   Scenario: Successful response post
-    Given I am on the scene page with:
+    Given a scene exists with:
       | title       | Job interview |
       | description | At a startup. |
+    And I am on the scene page
     When I post a response "Tell me about yourself."
     Then I should see "Response to Job interview was successfully posted."

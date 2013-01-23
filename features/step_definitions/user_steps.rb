@@ -14,9 +14,12 @@ Then /^I should see "(.*?)"$/ do |text|
   page.should have_content(text)
 end
 
-Given /^I am on the scene page with:$/ do |table|
-  scene = Scene.create table.rows_hash
-  visit scene_path(scene)
+Given /^a scene exists with:$/ do |table|
+  @scene = Scene.create(table.rows_hash)
+end
+
+Given /^I am on the scene page$/ do
+  visit scene_path(@scene)
 end
 
 When /^I post a response "(.*?)"$/ do |text|
