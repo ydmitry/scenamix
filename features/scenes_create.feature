@@ -6,12 +6,3 @@ Feature: Create scenes
       | Title       | You shall not pass |
       | Description | Breathtaking       |
     Then I should see "You shall not pass was successfully created."
-
-Scenario: text formatting in scenes creation
-  Given I am created a scene with content "first line\n\nsecond line"
-  Then I should see "first line" in a separate paragraph
-  And I should see "second line" in a separate paragraph
-
-Scenario: text formatting in scenes creation (br)
-  Given I am created a scene with content "first line\nsecond line"
-  Then I should see "first line" and "second line" separated by break line

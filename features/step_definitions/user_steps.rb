@@ -13,3 +13,14 @@ end
 Then /^I should see "(.*?)"$/ do |text|
   page.should have_content(text)
 end
+
+Given /^I am on the scene page with:$/ do |table|
+  scene = Scene.create table.rows_hash
+  visit scene_path(scene)
+end
+
+When /^I post a response "(.*?)"$/ do |text|
+  fill_in 'Response', with: text
+
+  click_button 'Post response to scene'
+end
