@@ -1,7 +1,4 @@
 class ResponsesController < ApplicationController
-  def new
-  end
-
   def create
     @scene = Scene.find(params[:scene_id])
     params_response = params[:response]
@@ -11,7 +8,6 @@ class ResponsesController < ApplicationController
     flash[:notice] = "Response to #{@scene.title} was successfully posted."
     redirect_to scene_path(@scene)
   end
-
 
   def edit
     @response = Response.find params[:id]
