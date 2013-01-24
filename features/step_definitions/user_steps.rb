@@ -44,3 +44,7 @@ When /^I post a response "(.*?)"$/ do |text|
 
   click_button 'Post response to scene'
 end
+
+When /^I go to the scenes page$/ do
+  visit scenes_path
+end
