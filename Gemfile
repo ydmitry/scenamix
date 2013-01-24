@@ -27,13 +27,13 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails', "~> 2.0"
-  gem 'simplecov'
 end
 
 group :test do
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
+  gem 'simplecov'
 end
 
 
