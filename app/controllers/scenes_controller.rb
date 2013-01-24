@@ -10,9 +10,6 @@ class ScenesController < ApplicationController
     @scenes = Scene.all
   end
 
-  def new
-  end
-
   def create
     @scene = Scene.create!(params[:scene])
     flash[:notice] = "#{@scene.title} was successfully created."
