@@ -39,3 +39,11 @@ end
 When /^I go to the scenes page$/ do
   visit scenes_path
 end
+
+When /^I press "(.*?)"$/ do |button|
+  click_button button
+end
+
+Then /^I should not see "(.*?)"$/ do |text|
+  page.should have_no_content text
+end
