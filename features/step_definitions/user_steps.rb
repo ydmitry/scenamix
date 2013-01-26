@@ -58,3 +58,17 @@ When /^I edit a scene$/ do
 
   click_button 'Update scene Info'
 end
+
+Given /^a scene has a response "(.*?)"$/ do |text|
+  @response = @scene.responses.create(response: text)
+end
+
+Given /^I am on the edit response page$/ do
+  visit edit_scene_response_path(@scene, @response)
+end
+
+When /^I edit a response$/ do
+  fill_in 'Response', with: 'My favorite movie of all times'
+
+  click_button 'Update response'
+end
