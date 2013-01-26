@@ -47,3 +47,14 @@ end
 Then /^I should not see "(.*?)"$/ do |text|
   page.should have_no_content text
 end
+
+Given /^I am on the edit scene page$/ do
+  visit edit_scene_path(@scene)
+end
+
+When /^I edit a scene$/ do
+  fill_in 'Title', with: 'Date with Sarah'
+  fill_in 'Description', with: 'Awesome date'
+
+  click_button 'Update scene Info'
+end
