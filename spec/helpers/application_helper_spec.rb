@@ -13,7 +13,7 @@ describe ApplicationHelper do
     end
 
     it "transforms html entities" do
-      helper.post_format("<b>bold</b>").should eql("<p>&lt;b&rt;bold&lt;/b&rt;</p>")
+      helper.post_format("<b>bold</b>").should eql("<p>&lt;b&gt;bold&lt;/b&gt;</p>")
     end
   end
 end
