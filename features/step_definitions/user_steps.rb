@@ -44,6 +44,12 @@ When /^I press "(.*?)"$/ do |button|
   click_button button
 end
 
+When /^I press "(.*?)" response$/ do |button|
+    within(:css, ".response") do
+      click_button button
+    end
+end
+
 Then /^I should not see "(.*?)"$/ do |text|
   page.should have_no_content text
 end

@@ -16,7 +16,7 @@
 - if !@responses.empty?
   %hr
   - @responses.each do |response|
-    .well
+    .well.response
       %p     
         = post_format(response.response)
            
