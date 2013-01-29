@@ -13,9 +13,9 @@
 = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
 = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
 
-- if !@responses.empty?
+- if !@scene.responses.empty?
   %hr
-  - @responses.each do |response|
+  - @scene.responses.each do |response|
     .well.response
       %p     
         = post_format(response.response)
