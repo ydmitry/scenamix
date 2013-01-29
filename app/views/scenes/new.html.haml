@@ -6,10 +6,13 @@
     = label :scene, :title, 'Title', :class => 'control-label'
     .controls
       = text_field :scene, 'title'
+      = @scene.errors[:title].join(", ")
 
   .control-group
     = label :scene, :description, 'Description', :class => 'control-label'
     .controls
       = text_area_tag 'scene[description]', '', :class => 'input-xxlarge'
+      = @scene.errors[:description].join(", ")
+
   .form-actions
     = submit_tag 'Create scene', :class => 'btn btn-primary'
