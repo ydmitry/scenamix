@@ -6,6 +6,6 @@
   .well
     %h5= h scene.title
     %div= post_format(scene.description)
-    %p= link_to "View scene", scene_path(scene)
+    %p= link_to "View scene", scene
 
 %p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'

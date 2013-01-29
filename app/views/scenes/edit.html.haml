@@ -2,12 +2,12 @@
 
 %h1 Edit Existing Scene
 
-= form_tag scene_path(@scene), :method => :put do
+= form_for @scene do |f|
 
-  = label :scene, :title, 'Title'
-  = text_field :scene, 'title'
+  = f.label :title
+  = f.text_field :title
 
-  = label :scene, :description, 'Description'
-  = text_area_tag 'scene[description]', @scene.description
+  = f.label :description
+  = f.text_area :description
 
-  = submit_tag 'Update scene Info'
+  = f.submit 'Update scene Info'

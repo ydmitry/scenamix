@@ -2,9 +2,9 @@
 
 %h1 Edit Existing Response
 
-= form_tag scene_response_path(@response), :method => :put do
+= form_for [:scene, @response] do |f|
 
-  = label :response, :response, 'Response'
-  = text_area_tag 'response[response]', @response.response
+  = f.label :response
+  = f.text_area :response
 
-  = submit_tag 'Update response', :class => 'btn btn-primary'
+  = f.submit 'Update response', :class => 'btn btn-primary'
