@@ -6,5 +6,6 @@
 
   = f.label :response
   = f.text_area :response
+  = @response.errors[:response].join(', ')
 
   = f.submit 'Update response', :class => 'btn btn-primary'

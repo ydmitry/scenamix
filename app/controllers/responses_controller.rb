@@ -1,8 +1,13 @@
 class ResponsesController < ApplicationController
   def create
     scene = Scene.find(params[:scene_id])
-    scene.responses.create!(params[:response])
-    redirect_to scene, notice: "Response to #{scene.title} was successfully posted."
+    @response = scene.responses.new(params[:response])
+
+    if @response.save
+      redirect_to scene, notice: "Response to #{scene.title} was successfully posted."
+    else
+      render :edit
+    end
   end
 
   def edit
