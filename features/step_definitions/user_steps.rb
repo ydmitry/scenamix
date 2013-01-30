@@ -58,9 +58,10 @@ Given /^I am on the edit scene page$/ do
   visit edit_scene_path(@scene)
 end
 
-When /^I edit a scene$/ do
-  fill_in 'Title', with: 'Date with Sarah'
-  fill_in 'Description', with: 'Awesome date'
+When /^I update a scene with:$/ do |table|
+  table.rows_hash.each do |key, value|
+    fill_in key, with: value
+  end
 
   click_button 'Update scene Info'
 end

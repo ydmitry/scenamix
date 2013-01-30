@@ -27,8 +27,12 @@ class ScenesController < ApplicationController
 
   def update
     @scene = Scene.find(params[:id])
-    @scene.update_attributes!(params[:scene])
-    redirect_to @scene, notice: "#{@scene.title} was successfully updated."
+
+    if @scene.update_attributes(params[:scene])
+      redirect_to @scene, notice: "#{@scene.title} was successfully updated."
+    else
+      render :edit
+    end
   end
 
   def destroy

@@ -6,8 +6,10 @@
 
   = f.label :title
   = f.text_field :title
+  = @scene.errors[:title].join(', ')
 
   = f.label :description
   = f.text_area :description
+  = @scene.errors[:description].join(', ')
 
   = f.submit 'Update scene Info'
