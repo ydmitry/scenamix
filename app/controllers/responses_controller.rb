@@ -15,9 +15,13 @@ class ResponsesController < ApplicationController
   end
 
   def update
-    response = Response.find(params[:id])
-    response.update_attributes!(params[:response])
-    redirect_to response.scene, notice: "#Response was successfully updated."
+    @response = Response.find(params[:id])
+
+    if @response.update_attributes(params[:response])
+      redirect_to @response.scene, notice: "#Response was successfully updated."
+    else
+      render :edit
+    end
   end
 
   def destroy

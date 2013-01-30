@@ -74,8 +74,8 @@ Given /^I am on the edit response page$/ do
   visit edit_scene_response_path(@scene, @response)
 end
 
-When /^I edit a response$/ do
-  fill_in 'Response', with: 'My favorite movie of all times'
+When /^I edit a response with "(.*?)"$/ do |text|
+  fill_in 'Response', with: text
 
   click_button 'Update response'
 end
