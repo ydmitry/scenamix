@@ -79,3 +79,15 @@ When /^I edit a response with "(.*?)"$/ do |text|
 
   click_button 'Update response'
 end
+
+Given /^I am on the sign up page$/ do
+  visit '/users/sign_up'
+end
+
+When /^I sign up$/ do
+  fill_in 'Email', with: 'andrii.ponomarov@gmail.com'
+  fill_in 'user_password', with: '111111'
+  fill_in 'user_password_confirmation', with: '111111'
+
+  click_button 'Sign up'
+end
