@@ -6,6 +6,6 @@ class Response < ActiveRecord::Base
   validates :response, presence: true
 
   def alternative
-    Response.where("parent_id = ? AND id != ?", self.previous.id.to_i, self.id)
+    Response.where("scene_id = ? AND parent_id = ? AND id != ?", self.scene_id, self.parent_id, self.id)
   end
 end

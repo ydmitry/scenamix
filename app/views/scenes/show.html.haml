@@ -22,13 +22,14 @@
           %p     
             = post_format(response.response)
           
-          = link_to 'Alternative posts', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
+          = link_to 'Alternative posts', alternative_scene_response_path(@scene, response), :class => 'btn btn-mini response-alternative'
           = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
           = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
 
     %hr
 
     = form_tag scene_responses_path(@scene) do
+      = hidden_field :response, :parent_id, value: @scene.responses.last.id
       .control-group
         = label :response, :response, 'Response', :class => 'control-label'
         .controls

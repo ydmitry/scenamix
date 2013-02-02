@@ -17,7 +17,7 @@ Scenamix::Application.routes.draw do
 
   resources :scenes do
     resources :responses, only: [:create, :edit, :update, :destroy] do
-      get 'alternative'
+      get 'alternative', :on => :member
     end
   end
 
