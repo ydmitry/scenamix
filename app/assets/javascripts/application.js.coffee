@@ -1,6 +1,5 @@
-require ['jquery', 'underscore', 'backbone', 'bootstrap'], ($, _, Backbone, Bootstrap) ->
+require ['jquery', 'underscore', 'backbone', 'bootstrap', 'routers/scenes_router'], ($, _, Backbone, Bootstrap, Router) ->
 #  Start up the app once the DOM is ready
   $ -> 
-    Backbone.history.start
-      pushState: true
     
+    router = new Router
