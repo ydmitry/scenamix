@@ -25,18 +25,18 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          /
+          
             %a.brand(href="/") Scenamix
-          /
+          
             .container.nav-collapse
               %ul.nav
                 %li= link_to "Scenes", scenes_path
-          %ul.nav.pull-right
-            - if user_signed_in?
-              %li= link_to 'Sign out', destroy_user_session_path, method: :delete
-            - else
-              %li= link_to 'Sign in', sign_in_path
-              %li= link_to 'Sign up', new_user_registration_path
+              %ul.nav.pull-right
+                - if user_signed_in?
+                  %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+                - else
+                  %li= link_to 'Sign in', sign_in_path
+                  %li= link_to 'Sign up', new_user_registration_path
 
     .container
 
@@ -50,7 +50,7 @@
 
 
       = yield
-    /
+    
       %footer
         %p &copy; Scenamix 2013
     /
