@@ -29,4 +29,13 @@ class ResponsesController < ApplicationController
     response.destroy
     redirect_to response.scene, notice: "Response deleted."
   end
+
+  def alternative
+    @response = Response.find(params[:id])
+
+    respond_to do |format|
+      format.json { render :json => @response.alternative }
+    end
+  end
+  
 end

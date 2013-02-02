@@ -7,33 +7,38 @@
 %h2
   = h @scene.title
 
-.well.alert-success
-  %p#description= post_format(@scene.description)
+.row-fluid
+  .span6#scenario-current
+    .well.alert-success
+      %p#description= post_format(@scene.description)
 
-= link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
-= button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
+    = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
+    = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
 
-- if @scene.responses.present?
-  %hr
-  - @scene.responses.each do |response|
-    .well.response
-      %p     
-        = post_format(response.response)
-           
-      = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
-      = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
+    - if @scene.responses.present?
+      %hr
+      - @scene.responses.each do |response|
+        .well.response
+          %p     
+            = post_format(response.response)
+          
+          = link_to 'Alternative posts', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
+          = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
+          = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
 
-%hr
+    %hr
 
-= form_tag scene_responses_path(@scene) do
-  .control-group
-    = label :response, :response, 'Response', :class => 'control-label'
-    .controls
-      = text_area_tag 'response[response]', '', :class => 'input-xxlarge', :placeholder => "What you imagine?"
-  .form-actions
-    = submit_tag 'Post response to scene', :class => 'btn btn-primary'
+    = form_tag scene_responses_path(@scene) do
+      .control-group
+        = label :response, :response, 'Response', :class => 'control-label'
+        .controls
+          = text_area_tag 'response[response]', '', :class => 'input-xxlarge', :placeholder => "What you imagine?"
+      .form-actions
+        = submit_tag 'Post response to scene', :class => 'btn btn-primary'
 
+  .span6#scenario-branches
+    Alternative branches of scenario
 
-  = link_to 'Back to scene list', scenes_path
+= link_to 'Back to scene list', scenes_path
 
 

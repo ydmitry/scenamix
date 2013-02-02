@@ -16,7 +16,9 @@ Scenamix::Application.routes.draw do
   #   resources :products
 
   resources :scenes do
-    resources :responses, only: [:create, :edit, :update, :destroy]
+    resources :responses, only: [:create, :edit, :update, :destroy] do
+      get 'alternative'
+    end
   end
 
   devise_for :users, :controllers => { :sessions => "users/sessions" }
