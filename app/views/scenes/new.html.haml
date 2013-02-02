@@ -11,7 +11,7 @@
   .control-group
     = label :scene, :description, 'Description', :class => 'control-label'
     .controls
-      = text_area_tag 'scene[description]', '', :class => 'input-xxlarge'
+      = text_area_tag 'scene[description]', '', :class => 'input-xxlarge', :placeholder => "What you need to imagine?"
       = @scene.errors[:description].join(", ")
 
   .form-actions

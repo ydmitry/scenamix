@@ -21,7 +21,7 @@
         = post_format(response.response)
            
       = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
-      = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+      = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
 
 %hr
 
@@ -29,11 +29,11 @@
   .control-group
     = label :response, :response, 'Response', :class => 'control-label'
     .controls
-      = text_area_tag 'response[response]', '', :class => 'input-xxlarge'
+      = text_area_tag 'response[response]', '', :class => 'input-xxlarge', :placeholder => "What you imagine?"
   .form-actions
     = submit_tag 'Post response to scene', :class => 'btn btn-primary'
 
-/
+
   = link_to 'Back to scene list', scenes_path
 
 
