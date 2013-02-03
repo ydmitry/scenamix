@@ -11,9 +11,9 @@
   .span6#scenario-current
     .well.alert-success
       #description= post_format(@scene.description)
-
-    = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
-    = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
+    - if current_user.try(:admin?)
+      = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
+      = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
 
     - if @scene.responses.present?
       %hr
@@ -22,8 +22,9 @@
           = post_format(response.response)
           
           = link_to 'Alternative posts', alternative_scene_response_path(@scene, response), :class => 'btn btn-mini response-alternative'
-          = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
-          = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
+          - if current_user.try(:admin?)
+            = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
+            = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
 
     %hr
 
