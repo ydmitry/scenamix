@@ -3,6 +3,9 @@ define (require) ->
   $           = require 'jquery'
   _           = require 'underscore'
   Backbone    = require 'backbone'
+  
+  ResponseAlternativeView    = require 'views/responses/response_alternative'
+  ResponseCollection    = require 'collections/responses'
 
   ->
 
@@ -23,14 +26,16 @@ define (require) ->
       
     onResponseAlternative: (e) ->
       $el = $(e.currentTarget)
-      $.ajax $el.attr('href'),
-        dataType: 'json'
-        success: this.onResponseAlternativeLoad
-          
-      false
 
-    onResponseAlternativeLoad: (data) ->
-      false
+      responseCollection = new ResponseCollection
+        url: $el.attr('href')
+        
 
+      responseAlternativeView = new ResponseAlternativeView
+        collection: responseCollection
+      
+      responseCollection.fetch()
+      
+      false
 
     SceneShow
