@@ -63,7 +63,7 @@
   display: inline-block;
   height: 20px;
   padding: 5px 6px;
-
+  margin: 0;
   font-size: 14px;
   line-height: 20px;
   color: #555555;
@@ -109,7 +109,7 @@
 
   *zoom: 1;
   padding: 5px 12px 4px 12px;
-  margin-bottom: 0;
+  margin: 0;
   font-size: 14px;
   line-height: 20px;
   text-align: center;
@@ -164,4 +164,18 @@
   background: -ms-linear-gradient(top, rgba(0,57,102,1) 0%,rgba(0,95,168,1) 100%); /* IE10+ */
   background: linear-gradient(to bottom, rgba(0,57,102,1) 0%,rgba(0,95,168,1) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003966', endColorstr='#005fa8',GradientType=0 ); /* IE6-9 */
-} 
+}
+
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #555555;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #555555;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #555555;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #555555;
+}
