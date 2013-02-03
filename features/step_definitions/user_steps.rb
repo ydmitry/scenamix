@@ -91,3 +91,18 @@ When /^I sign up$/ do
 
   click_button 'Sign up'
 end
+
+Given /^I am logged in as an admin$/ do
+  User.create! do |user|
+    user.email = 'andrii.ponomarov@gmail.com'
+    user.password = '111111'
+    user.password_confirmation = '111111'
+    user.admin = true
+  end
+
+  visit sign_in_path
+
+  fill_in 'Email', with: 'andrii.ponomarov@gmail.com'
+  fill_in 'Password', with: '111111'
+  click_button 'Sign in'
+end

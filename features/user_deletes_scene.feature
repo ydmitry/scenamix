@@ -1,5 +1,8 @@
 Feature: User deletes a scene
 
+  Background:
+    Given I am logged in as an admin
+
   Scenario: Successful deletion
     Given a scene exists with:
       | title       | Dirty talk      |
