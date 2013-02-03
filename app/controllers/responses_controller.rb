@@ -38,4 +38,25 @@ class ResponsesController < ApplicationController
     end
   end
   
+  def post_alternative
+    
+    response = Response.find(params[:id])
+    scene = Scene.find(response.scene_id)
+
+    @alternative_response = scene.responses.new({
+      :parent_id => response.parent_id,
+      :response => params[:response]
+    })
+
+    if @alternative_response.save
+      respond_to do |format|
+        format.json { render :json => {:ok => 1} }
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => {:ok => 0} }
+      end
+    end
+  end
+
 end

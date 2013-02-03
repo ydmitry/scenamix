@@ -57,8 +57,25 @@
     %script#response-alternative-item-template{:type => 'text/html'}
       .well.response
         <%= response %>
-        
-        
+
+    %script#responses-alternative-template{:type => 'text/html'}
+      <div>
+      <h4>Alternative responses</h4>
+      
+      <form action='' method='post' accept-charset="UTF-8">      
+      <div class="control-group">
+      <label for="alternative_response" class="control-label">Response</label>
+      <div class="controls">
+      <textarea placeholder="Do you have another image in your mind?" name="response[response]" id="alternative_response" class="input-xxlarge"></textarea>
+      </div>
+      </div>
+      <div class="form-actions">
+      <input type="submit" value="Post alternative response" name="commit" class="btn btn-primary">
+      </div>
+      </form>
+
+      <div id="responses-alternative"></div>
+      </div>
 
     /
       Javascripts

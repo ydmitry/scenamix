@@ -18,6 +18,7 @@ Scenamix::Application.routes.draw do
   resources :scenes do
     resources :responses, only: [:create, :edit, :update, :destroy] do
       get 'alternative', :on => :member
+      post 'alternative', :on => :member, :action => :post_alternative
     end
   end
 
