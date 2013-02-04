@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201190551) do
+ActiveRecord::Schema.define(:version => 20130204190813) do
 
   create_table "responses", :force => true do |t|
     t.integer  "scene_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20130201190551) do
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "parent_id",  :default => 0
+    t.integer  "weight",     :default => 0
   end
 
   add_index "responses", ["scene_id"], :name => "index_responses_on_scene_id"

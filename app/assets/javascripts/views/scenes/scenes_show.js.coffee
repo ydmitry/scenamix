@@ -17,6 +17,7 @@ define (require) ->
       
       'submit .response-delete': 'onResponseDelete'
       'click .response-alternative': 'onResponseAlternative'
+      'click .response-weight': 'onResponseWeight'
   
     render: ->
       
@@ -25,10 +26,10 @@ define (require) ->
     onResponseDelete: (e) -> confirm($(e.target).find('.btn').data('confirm'))
       
     onResponseAlternative: (e) ->
-      $el = $(e.currentTarget)
+      $el = $ e.currentTarget
 
       responseCollection = new ResponseCollection
-        url: $el.attr('href')
+        url: $el.attr 'href'
         
 
       responseAlternativeView = new ResponseAlternativeView
@@ -36,6 +37,16 @@ define (require) ->
       
       responseCollection.fetch()
       
+      false
+
+    onResponseWeight: (e) ->
+      $el = $ e.currentTarget
+      url = $el.attr('href')
+      $.ajax url,
+        type: 'put'
+        success: (data) ->          
+          $el.siblings('.response-weight-value').html data.weight       
+
       false
 
     SceneShow

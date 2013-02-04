@@ -8,4 +8,16 @@ class Response < ActiveRecord::Base
   def alternative
     Response.where("scene_id = ? AND parent_id = ? AND id != ?", self.scene_id, self.parent_id, self.id)
   end
+
+  def weightup
+    weight = self.weight + 1
+    self.update_attribute :weight, weight
+    weight
+  end
+
+  def weightdown
+    weight = self.weight - 1
+    self.update_attribute :weight, weight
+    weight
+  end
 end

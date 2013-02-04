@@ -59,4 +59,24 @@ class ResponsesController < ApplicationController
     end
   end
 
+  def weightup
+    response = Response.find(params[:id])
+
+    weight = response.weightup
+    
+    respond_to do |format|
+      format.json { render :json => {:weight => weight} }
+    end
+  end
+
+  def weightdown
+    response = Response.find(params[:id])
+
+    weight = response.weightdown
+    
+    respond_to do |format|
+      format.json { render :json => {:weight => weight} }
+    end
+  end
+
 end

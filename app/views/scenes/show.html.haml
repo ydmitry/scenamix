@@ -25,7 +25,10 @@
           - if current_user.try(:admin?)
             = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
             = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
-
+          = link_to "", weightup_scene_response_path(@scene, response), :class => 'icon-plus-sign response-weight'
+          = link_to "", weightdown_scene_response_path(@scene, response), :class => 'icon-minus-sign response-weight'
+          (<span class="response-weight-value">#{response.weight}</span>)
+          
     %hr
 
     = form_tag scene_responses_path(@scene) do
@@ -34,7 +37,7 @@
       .control-group
         = label :response, :response, 'Response', :class => 'control-label'
         .controls
-          = text_area_tag 'response[response]', '', :class => 'input-xxlarge', :placeholder => "What you imagine?"
+          = text_area_tag 'response[response]', '', :class => 'input-xxlarge', :placeholder => "What do you imagine?"
       .form-actions
         = submit_tag 'Post response to scene', :class => 'btn btn-primary'
 
