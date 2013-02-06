@@ -25,8 +25,8 @@
           - if current_user.try(:admin?)
             = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
             = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
-          = link_to "", weightup_scene_response_path(@scene, response), :class => 'icon-plus-sign response-weight'
-          = link_to "", weightdown_scene_response_path(@scene, response), :class => 'icon-minus-sign response-weight'
+          = link_to "", upvote_scene_response_path(@scene, response), :class => 'icon-plus-sign response-weight'
+          = link_to "", downvote_scene_response_path(@scene, response), :class => 'icon-minus-sign response-weight'
           (<span class="response-weight-value">#{response.weight}</span>)
           
     %hr

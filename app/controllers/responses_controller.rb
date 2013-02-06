@@ -59,23 +59,23 @@ class ResponsesController < ApplicationController
     end
   end
 
-  def weightup
+  def upvote
     response = Response.find(params[:id])
 
-    response.increment! :weight
+    response.increment! :upvotes
     
     respond_to do |format|
-      format.json { render json: { weight: response.weight } }
+      format.json { render json: { upvotes: response.upvotes, downvotes: response.downvotes } }
     end
   end
 
-  def weightdown
+  def downvote
     response = Response.find(params[:id])
 
-    response.decrement! :weight
+    response.increment! :downvotes
     
     respond_to do |format|
-      format.json { render json: { weight: response.weight } }
+      format.json { render json: { upvotes: response.upvotes, downvotes: response.downvotes } }
     end
   end
 

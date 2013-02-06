@@ -19,8 +19,8 @@ Scenamix::Application.routes.draw do
     resources :responses, only: [:create, :edit, :update, :destroy] do
       get 'alternative', :on => :member
       post 'alternative', :on => :member, :action => :post_alternative
-      put 'weightup', :on => :member
-      put 'weightdown', :on => :member
+      put 'upvote', :on => :member
+      put 'downvote', :on => :member
     end
   end
 

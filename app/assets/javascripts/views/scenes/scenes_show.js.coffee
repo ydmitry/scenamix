@@ -45,7 +45,7 @@ define (require) ->
       $.ajax url,
         type: 'put'
         success: (data) ->          
-          $el.siblings('.response-weight-value').html data.weight       
+          $el.siblings('.response-weight-value').html '+'+data.upvotes+'-'+data.downvotes
 
       false
 
