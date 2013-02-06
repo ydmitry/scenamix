@@ -4,6 +4,6 @@ class Scene < ActiveRecord::Base
   validates :title, :description, presence: true
 
   def best_scenario
-   Response.where('scene_id = ?', self.id).select('id, scene_id, parent_id, response, upvotes, downvotes, MAX(upvotes - downvotes) as votes').group(:parent_id)
+   Response.where('scene_id = ?', self.id).where('id = (SELECT id FROM responses AS r WHERE r.parent_id = responses.parent_id  ORDER BY upvotes - downvotes DESC LIMIT 1)').order('id ASC')
   end
 end

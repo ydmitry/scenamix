@@ -27,7 +27,7 @@
             = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
           = link_to "", upvote_scene_response_path(@scene, response), :class => 'icon-plus-sign response-weight'
           = link_to "", downvote_scene_response_path(@scene, response), :class => 'icon-minus-sign response-weight'
-          (<span class="response-weight-value">+#{response.upvotes}-#{response.downvotes}=#{response.votes}</span>)
+          (<span class="response-weight-value">+#{response.upvotes}-#{response.downvotes}</span>)
           
     %hr
 
