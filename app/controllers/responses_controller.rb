@@ -62,20 +62,20 @@ class ResponsesController < ApplicationController
   def weightup
     response = Response.find(params[:id])
 
-    weight = response.weightup
+    response.increment! :weight
     
     respond_to do |format|
-      format.json { render :json => {:weight => weight} }
+      format.json { render json: { weight: response.weight } }
     end
   end
 
   def weightdown
     response = Response.find(params[:id])
 
-    weight = response.weightdown
+    response.decrement! :weight
     
     respond_to do |format|
-      format.json { render :json => {:weight => weight} }
+      format.json { render json: { weight: response.weight } }
     end
   end
 

@@ -10,16 +10,4 @@ describe Response do
 
     turnright.alternative.should include turnleft
   end
-
-  it 'should weight up' do
-    response = Response.create!(response: 'Chuck Norris count to infinity')
-
-    response.weightup.should eq 1
-  end
-
-  it 'should weight down' do
-    response = Response.create!(response: 'Chuck Norris count to minus infinity')
-
-    response.weightdown.should eq -1
-  end
 end
