@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Scene do
 
   it 'should return best scenario' do
+    pending
     scene = Scene.create!(title: 'Good physical form', description: 'How to get good physical form?')
     
     response_sport = Response.create!(response: 'Engage in sports', scene_id: scene.id, parent_id: 0)
