@@ -34,6 +34,7 @@ group :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'simplecov'
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 
