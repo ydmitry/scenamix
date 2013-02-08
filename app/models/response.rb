@@ -8,4 +8,8 @@ class Response < ActiveRecord::Base
   def alternative
     Response.where("scene_id = ? AND parent_id = ? AND id != ?", self.scene_id, self.parent_id, self.id)
   end
+
+  def ancestors
+    [self.parent, self.parent.try(:ancestors)].compact.flatten
+  end
 end
