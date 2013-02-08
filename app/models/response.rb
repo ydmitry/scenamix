@@ -12,4 +12,10 @@ class Response < ActiveRecord::Base
   def ancestors
     [self.parent, self.parent.try(:ancestors)].compact.flatten
   end
+
+  def best_scenario
+    prev_scenario = self.ancestors
+    best_subscenario = Response.where('scene_id = ?', self.scene_id).where('parent_id >= ?', self.id).where('id = (SELECT id FROM responses AS r WHERE r.parent_id = responses.parent_id  ORDER BY upvotes - downvotes DESC LIMIT 1)').order('id ASC')
+    prev_scenario + [self] + best_subscenario
+  end
 end
