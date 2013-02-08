@@ -7,7 +7,8 @@ define (require) ->
     el: '#scenario-branches'
     
     events: 
-      'submit form': 'onFormSubmit'
+      'submit form': 'onFormSubmit',
+      'click .btn': 'switchScenario'
 
     initialize: (options) ->
       @collection.bind "reset", @render, @
@@ -42,6 +43,11 @@ define (require) ->
       @collection.create
         response: $el.find('textarea').val()
       
+      false
+
+    switchScenario: (e) ->
+      $el = $(e.currentTarget)
+      $(window).trigger 'scenario:change', $el.attr 'href'
       false
 
     ResponseAlternative

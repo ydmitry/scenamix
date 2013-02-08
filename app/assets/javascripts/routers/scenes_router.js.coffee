@@ -31,8 +31,6 @@ define (require) ->
 
       sceneView = new SceneView
 
-      sceneView.render()
-
       console.log "sceneShow"
 
     initialize: ->

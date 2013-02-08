@@ -55,9 +55,20 @@
         %p &copy; Scenamix 2013
 
     %script#response-alternative-item-template{:type => 'text/html'}
-      .well.response
-        <%= response %>
-        
+      <div class='well response'>
+      <%= response %>
+      <a href='/scenes/<%= scene_id %>/responses/<%= id %>' class='btn btn-mini'>Switch scenario</a>
+      </div>
+
+    %script#response-item-template{:type => 'text/html'}
+      <div class='well response'>
+      <%= response %>
+      <a class="btn btn-mini response-alternative" href="/scenes/<%= scene_id %>/responses/<%= id %>/alternative">Alternative responses</a>
+      <a class="icon-plus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/upvote"></a>
+      <a class="icon-minus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/downvote"></a>
+      (<span class="response-weight-value"><%= upvotes %>-<%= response.downvotes %></span>)
+      </div>
+
     %script#responses-alternative-template{:type => 'text/html'}
       <div>
       <h4>Alternative responses</h4>
@@ -75,6 +86,26 @@
       </form>
 
       <div id="responses-alternative"></div>
+      </div>
+
+
+    %script#responses-template{:type => 'text/html'}
+      <div>
+      <div id="scenario-current-responses">
+      </div>
+      <hr>
+      <form method="post" action="" accept-charset="UTF-8"><div style="margin:0;padding:0;display:inline"><input type="hidden" value="✓" name="utf8"><input type="hidden" value="59jRL15i6ofrNpzRpzxsdQgMnzbFkPXalM3GyHf2fg8=" name="authenticity_token"></div>
+      <input type="hidden" value="<%= parent_id %>" name="response[parent_id]" id="response_parent_id">
+      <div class="control-group">
+      <label for="response_response" class="control-label">Response</label>
+      <div class="controls">
+      <textarea placeholder="What do you imagine?" name="response[response]" id="response_response" class="input-xxlarge"></textarea>
+      </div>
+      </div>
+      <div class="form-actions">
+      <input type="submit" value="Post response to scene" name="commit" class="btn btn-primary">
+      </div>
+      </form>
       </div>
 
     /

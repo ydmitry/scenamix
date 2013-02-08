@@ -10,6 +10,13 @@ class ResponsesController < ApplicationController
     end
   end
 
+  def show
+    @response = Response.find(params[:id])
+    respond_to do |format|
+      format.json { render :json => @response.best_scenario }
+    end
+  end
+
   def edit
     @response = Response.find(params[:id])
   end
