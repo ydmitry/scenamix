@@ -17,6 +17,11 @@ FactoryGirl.define do
     response 'Drink alcohol'
   end
 
+  factory :response_smoke, class: Response do
+    association :scene, factory: :scene_physical_form    
+    response 'And smoke cigarettes'
+  end
+
   factory :response_sport_gym, class: Response do
     association :scene, factory: :scene_physical_form
     association :parent, factory: :response_sport
