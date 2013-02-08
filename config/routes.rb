@@ -17,10 +17,12 @@ Scenamix::Application.routes.draw do
 
   resources :scenes do
     resources :responses, only: [:show, :create, :edit, :update, :destroy] do
-      get 'alternative', :on => :member
-      post 'alternative', :on => :member, :action => :post_alternative
-      put 'upvote', :on => :member
-      put 'downvote', :on => :member
+      member do
+        get 'alternative'
+        post 'alternative', action: :post_alternative
+        put 'upvote'
+        put 'downvote'
+      end
     end
   end
 
