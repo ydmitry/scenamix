@@ -19,6 +19,7 @@ class ScenesController < ApplicationController
 
   def show
     @scene = Scene.find(params[:id])
+    @best_scenario = @scene.best_scenario
   end
 
   def edit

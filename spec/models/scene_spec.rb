@@ -16,4 +16,12 @@ describe Scene do
     scenario.should_not include response_sport_chess
   end
 
+  it 'should return best scenario if there is only one response in the scene' do
+    scene = FactoryGirl.create(:scene_physical_form)
+    response_sport = FactoryGirl.create(:response_sport, scene: scene)
+
+    scenario = scene.best_scenario
+    scenario.should include response_sport
+  end
+
 end

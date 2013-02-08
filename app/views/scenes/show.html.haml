@@ -16,10 +16,10 @@
       = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
     
     #scenario-responses-wrap
-      - if @scene.responses.present?
+      - if @best_scenario.present?
         #scenario-current-responses
           %hr
-          - @scene.best_scenario.each do |response|
+          - @best_scenario.each do |response|
             .well.response
               = post_format(response.response)
               
@@ -34,8 +34,10 @@
       %hr
 
       = form_tag scene_responses_path(@scene) do
-        - if @scene.responses.present?
-          = hidden_field :response, :parent_id, value: @scene.responses.last.id
+        - if @best_scenario.present?
+          = hidden_field :response, :parent_id, value: @best_scenario.last.id
+        - else
+          = hidden_field :response, :parent_id, value: 0
         .control-group
           = label :response, :response, 'Response', :class => 'control-label'
           .controls
