@@ -17,10 +17,16 @@ class Response < ActiveRecord::Base
     self.responses.map(&:descendants).flatten
   end
 
+  def best_descendants
+    response = Response.best_child_by_parent_id(self.scene_id, self.id)
+    [response, response.try(:best_descendants)].compact.flatten
+  end
+
+  def self.best_child_by_parent_id(scene_id, parent_id)
+    Response.where('scene_id = ?', scene_id).where('parent_id = ?', parent_id).order('upvotes - downvotes DESC').first
+  end
+
   def best_scenario
-    prev_scenario = self.ancestors
-    descendands_ids = self.descendants.map {|r| r.id }
-    next_best_scenario = Response.where('scene_id = ?', self.scene_id).where('id IN(?)', descendands_ids).where('id = (SELECT id FROM responses AS r WHERE r.parent_id = responses.parent_id  ORDER BY upvotes - downvotes DESC LIMIT 1)').order('id ASC')
-    prev_scenario + [self] + next_best_scenario
+    self.ancestors + [self] + self.best_descendants
   end
 end

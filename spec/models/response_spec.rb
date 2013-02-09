@@ -27,5 +27,13 @@ describe Response do
     scenario.should_not include response_sport
     scenario.should_not include response_sport_chess
     scenario.should_not include response_sport_gym
+
+    scenario = response_sport_chess.best_scenario
+    
+    scenario.should include response_sport_chess
+    scenario.should include response_sport
+    scenario.should_not include response_alcohol
+    scenario.should_not include response_smoke
+    scenario.should_not include response_sport_gym
   end
 end

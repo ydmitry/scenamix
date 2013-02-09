@@ -4,6 +4,7 @@ class Scene < ActiveRecord::Base
   validates :title, :description, presence: true
 
   def best_scenario
-    Response.where('scene_id = ?', self.id).where('id = (SELECT id FROM responses AS r WHERE r.parent_id = responses.parent_id  ORDER BY upvotes - downvotes DESC LIMIT 1)').order('id ASC')
+    best_first_response = Response.best_child_by_parent_id(self.id, 0)
+    best_first_response.best_scenario
   end
 end
