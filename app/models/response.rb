@@ -10,7 +10,7 @@ class Response < ActiveRecord::Base
   end
 
   def ancestors
-    [self.parent, self.parent.try(:ancestors)].compact.flatten
+    [self.parent.try(:ancestors), self.parent].compact.flatten
   end
 
   def descendants

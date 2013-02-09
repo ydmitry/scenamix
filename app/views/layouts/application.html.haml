@@ -94,7 +94,7 @@
       <div id="scenario-current-responses">
       </div>
       <hr>
-      <form method="post" action="/scenes/<%= scene_id %>/responses" accept-charset="UTF-8">
+      <form method="post" action="/scenes/<%= scene_id %>/responses" accept-charset="UTF-8" id="response-post-form">
       <input type="hidden" value="<%= parent_id %>" name="response[parent_id]" id="response_parent_id">
       <div class="control-group">
       <label for="response_response" class="control-label">Response</label>

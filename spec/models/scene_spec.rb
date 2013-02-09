@@ -11,21 +11,14 @@ describe Scene do
     response_alcohol_smoke = create(:response, scene: scene, parent: response_alcohol)
     response_alcohol_fastfood = create(:response, scene: scene, parent: response_alcohol)
 
-    scenario = scene.best_scenario
-    scenario.should include response_sport_gym
-    scenario.should include response_sport
-    scenario.should_not include response_alcohol
-    scenario.should_not include response_sport_chess
-    scenario.should_not include response_alcohol_smoke
-    scenario.should_not include response_alcohol_fastfood
+    scene.best_scenario.should == [response_sport, response_sport_gym]
   end
 
   it 'does return best scenario if there is only one response in the scene' do
     scene = create(:scene, title: 'Good physical form', description: 'One man wants to improve his physical form.')
     response_sport = create(:response, scene: scene, response: 'He engages in sports')
 
-    scenario = scene.best_scenario
-    scenario.should include response_sport
+    scene.best_scenario.should include response_sport
   end
 
   it 'does return empty if there is no response in the scene' do

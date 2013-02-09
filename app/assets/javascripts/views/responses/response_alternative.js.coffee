@@ -40,7 +40,11 @@ define (require) ->
 
       @collection.create
         response: $el.find('textarea').val()
-      
+      ,
+        success: _.bind ->
+          @collection.fetch()
+        , @
+
       false
 
     switchScenario: (e) ->

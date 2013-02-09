@@ -9,6 +9,7 @@ describe Response do
     turnleft = create(:response, scene: scene, parent: fork)
 
     turnright.alternative.should include turnleft
+    turnright.alternative.should_not include turnright
   end
 
 
@@ -19,21 +20,14 @@ describe Response do
     response_sport_gym = create(:response, scene: scene, parent: response_sport, upvotes: 1)
     response_sport_chess = create(:response, scene: scene, parent: response_sport)
     response_alcohol_smoke = create(:response, scene: scene, parent: response_alcohol)
+    response_alcohol_smoke_fastfood = create(:response, scene: scene, parent: response_alcohol_smoke)
 
-    scenario = response_alcohol.best_scenario
-    
-    scenario.should include response_alcohol
-    scenario.should include response_alcohol_smoke
-    scenario.should_not include response_sport
-    scenario.should_not include response_sport_chess
-    scenario.should_not include response_sport_gym
+    response_alcohol.best_scenario.should == [response_alcohol, response_alcohol_smoke, response_alcohol_smoke_fastfood]
 
-    scenario = response_sport_chess.best_scenario
-    
-    scenario.should include response_sport_chess
-    scenario.should include response_sport
-    scenario.should_not include response_alcohol
-    scenario.should_not include response_alcohol_smoke
-    scenario.should_not include response_sport_gym
+    response_sport_chess.best_scenario.should == [response_sport, response_sport_chess]
+
+    response_alcohol_smoke_fastfood.best_scenario.should == [
+      response_alcohol, response_alcohol_smoke, response_alcohol_smoke_fastfood
+    ]
   end
 end

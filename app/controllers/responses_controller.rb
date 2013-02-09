@@ -3,10 +3,14 @@ class ResponsesController < ApplicationController
     scene = Scene.find(params[:scene_id])
     @response = scene.responses.new(params[:response])
 
-    if @response.save
-      redirect_to scene, notice: "Response to #{scene.title} was successfully posted."
-    else
-      render :edit
+    respond_to do |format|
+      if @response.save
+        format.html { redirect_to scene, notice: "Response to #{scene.title} was successfully posted." }
+        format.json { render :json => @response }     
+      else
+        format.html { render :edit }
+        format.json { render :json => false }     
+      end
     end
   end
 

@@ -12,6 +12,7 @@ define (require) ->
     events:
       
       'submit .response-delete': 'onResponseDelete'
+      'submit #response-post-form': 'onResponsePost'
       'click .response-alternative': 'onResponseAlternative'
       'click .response-weight': 'onResponseWeight'
     
@@ -36,20 +37,20 @@ define (require) ->
     onResponseAlternative: (e) ->
       $el = $ e.currentTarget
       
-      @responseCollection = null
+      @responseAlternativeCollection = null
       
       if !@responseAlternativeView
         @responseAlternativeView = null
       else 
         @responseAlternativeView.undelegateEvents()
       
-      @responseCollection = new ResponseCollection
+      @responseAlternativeCollection = new ResponseCollection
         url: $el.attr 'href'
         
       @responseAlternativeView = new ResponseAlternativeView
-        collection: @responseCollection
+        collection: @responseAlternativeCollection
       
-      @responseCollection.fetch()
+      @responseAlternativeCollection.fetch()
       
 
       false
@@ -68,11 +69,10 @@ define (require) ->
       
       responseCollection = new ResponseCollection
         url: url 
-    
+      
       responseCollection.fetch
         success: _.bind @onScenarioChangeLoad, @
       
-
       false
     
     onScenarioChangeLoad: (responseCollection) ->
@@ -84,12 +84,44 @@ define (require) ->
       
       responseCollection.each _.bind @addRow, this
 
-      $rendered = $ @template responseCollection.last().toJSON()
+      responseLast = responseCollection.last()
+
+      $rendered = $ @template
+        parent_id: responseLast.get('id')
+        scene_id: responseLast.get('scene_id')
       
       $rendered.find("#scenario-current-responses").append @$responses
       
       @$responsesWrap.append $rendered
+      
+      @responseAlternativeCollection = null
+
+      if !!@responseAlternativeView
+        @responseAlternativeView.$el.empty()
 
       false
+
+    onResponsePost: (e) ->
+      $form = $(e.target)
+      url = $form.attr 'action'
+
+      responseCollection = new ResponseCollection
+        url: url
+
+      responseCollection.create
+        response:
+          response: $form.find('textarea').val()
+          parent_id: $form.find('#response_parent_id').val()
+      ,
+        success: _.bind (response) ->
+          responseCollection = new ResponseCollection
+            url: '/scenes/' + response.get('scene_id') + '/responses/' + response.get('id')
+          responseCollection.fetch
+            success: _.bind @onScenarioChangeLoad, @
+        , @
+
+
+      false
+
 
     SceneShow
