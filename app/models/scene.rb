@@ -5,6 +5,10 @@ class Scene < ActiveRecord::Base
 
   def best_scenario
     best_first_response = Response.best_child_by_parent_id(self.id, 0)
-    best_first_response.best_scenario
+    if best_first_response then
+      best_first_response.best_scenario
+    else
+      []
+    end
   end
 end

@@ -28,4 +28,10 @@ describe Scene do
     scenario.should include response_sport
   end
 
+  it 'should return empty if there is no response in the scene' do
+    scene = create(:scene, title: 'Good physical form', description: 'One man wants to improve his physical form.')
+
+    scene.best_scenario.should be_empty
+  end
+
 end
