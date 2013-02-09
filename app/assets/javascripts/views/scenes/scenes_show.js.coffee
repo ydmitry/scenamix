@@ -36,7 +36,13 @@ define (require) ->
       
     onResponseAlternative: (e) ->
       $el = $ e.currentTarget
+
+      $response = $el.parents '.response'
       
+      @$el.find('.response').addClass 'alert-info'      
+      
+      $response.removeClass 'alert-info'
+
       @responseAlternativeCollection = null
       
       if !@responseAlternativeView

@@ -20,7 +20,7 @@
         #scenario-current-responses
           %hr
           - @best_scenario.each do |response|
-            .well.response
+            .well.response.alert-info
               = post_format(response.response)
               
               = link_to 'Alternative responses', alternative_scene_response_path(@scene, response), :class => 'btn btn-mini response-alternative'

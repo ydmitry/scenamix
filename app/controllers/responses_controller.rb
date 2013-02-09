@@ -1,4 +1,6 @@
 class ResponsesController < ApplicationController
+
+  
   def create
     scene = Scene.find(params[:scene_id])
     @response = scene.responses.new(params[:response])
