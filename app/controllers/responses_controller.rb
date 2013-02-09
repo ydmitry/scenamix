@@ -55,7 +55,7 @@ class ResponsesController < ApplicationController
 
     respond_to do |format|
       if alternative_response.save
-        format.json { render json: { ok: 1 } }
+        format.json { render json: alternative_response }
       else
         format.json { render json: { ok: 0 } }
       end

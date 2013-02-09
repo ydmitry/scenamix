@@ -19,7 +19,7 @@ define (require) ->
 
     render: ->
       @$el.empty()
-
+      
       @$responses = $ '<div />'
       
       @collection.each _.bind @addRow, this
@@ -29,11 +29,9 @@ define (require) ->
       $rendered.find("#responses-alternative").append @$responses
       
       @$el.append $rendered
-      
+
       @
-        
-        
-    
+
     addRow: (response) ->
       @$responses.append @templateItem response.toJSON()
 

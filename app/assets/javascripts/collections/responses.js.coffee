@@ -11,6 +11,7 @@ define (require) ->
     model: ResponseModel
 
     initialize: (options) ->
-      @url = options.url
+      if !!options.url      
+        @url = options.url
 
     ResponseCollection

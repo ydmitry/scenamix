@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Scene do
 
-  it 'should return best scenario' do
+  it 'does return best scenario' do
     scene = create(:scene)
     response_sport = create(:response, scene: scene, upvotes: 1)
     response_alcohol = create(:response, scene: scene, upvotes: -1)
@@ -20,7 +20,7 @@ describe Scene do
     scenario.should_not include response_alcohol_fastfood
   end
 
-  it 'should return best scenario if there is only one response in the scene' do
+  it 'does return best scenario if there is only one response in the scene' do
     scene = create(:scene, title: 'Good physical form', description: 'One man wants to improve his physical form.')
     response_sport = create(:response, scene: scene, response: 'He engages in sports')
 
@@ -28,7 +28,7 @@ describe Scene do
     scenario.should include response_sport
   end
 
-  it 'should return empty if there is no response in the scene' do
+  it 'does return empty if there is no response in the scene' do
     scene = create(:scene, title: 'Good physical form', description: 'One man wants to improve his physical form.')
 
     scene.best_scenario.should be_empty

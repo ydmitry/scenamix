@@ -7,6 +7,5 @@ define (require) ->
   ->
 
   class ResponseModel extends Backbone.Model
-    
 
     ResponseModel

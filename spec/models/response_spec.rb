@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Response do
   
-  it 'should return alternative responses' do
+  it 'does return alternative responses' do
     scene = create(:scene)
     fork = create(:response, scene: scene)
     turnright = create(:response, scene: scene, parent: fork)
@@ -12,7 +12,7 @@ describe Response do
   end
 
 
-  it 'should return best scenario for one response' do
+  it 'does return best scenario for one response' do
     scene = create(:scene)
     response_sport = create(:response, scene: scene, upvotes: 1)
     response_alcohol = create(:response, scene: scene)

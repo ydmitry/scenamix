@@ -35,15 +35,23 @@ define (require) ->
       
     onResponseAlternative: (e) ->
       $el = $ e.currentTarget
-
-      responseCollection = new ResponseCollection
+      
+      @responseCollection = null
+      
+      if !@responseAlternativeView
+        @responseAlternativeView = null
+      else 
+        @responseAlternativeView.undelegateEvents()
+      
+      @responseCollection = new ResponseCollection
         url: $el.attr 'href'
         
-      responseAlternativeView = new ResponseAlternativeView
-        collection: responseCollection
+      @responseAlternativeView = new ResponseAlternativeView
+        collection: @responseCollection
       
-      responseCollection.fetch()
+      @responseCollection.fetch()
       
+
       false
 
     onResponseWeight: (e) ->
@@ -76,8 +84,7 @@ define (require) ->
       
       responseCollection.each _.bind @addRow, this
 
-      $rendered = $ @template
-        parent_id: responseCollection.last().get 'parent_id'
+      $rendered = $ @template responseCollection.last().toJSON()
       
       $rendered.find("#scenario-current-responses").append @$responses
       
