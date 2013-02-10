@@ -1,17 +1,17 @@
 %h1 Create New Scene
 
-= form_tag scenes_path, :class => 'form-horizontal' do
+= form_for @scene, :class => 'form-horizontal' do |f|
 
   .control-group  
-    = label :scene, :title, 'Title', :class => 'control-label'
+    = f.label :title, :class => 'control-label'
     .controls
-      = text_field :scene, 'title'
+      = f.text_field :title
       = @scene.errors[:title].join(", ")
 
   .control-group
-    = label :scene, :description, 'Description', :class => 'control-label'
+    = f.label :description, :class => 'control-label'
     .controls
-      = text_area_tag 'scene[description]', '', :class => 'input-xxlarge', :placeholder => "What you need to imagine?"
+      = f.text_area :description, :class => 'input-xxlarge', :placeholder => "What you need to imagine?"
       = @scene.errors[:description].join(", ")
 
   .form-actions
