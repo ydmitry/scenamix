@@ -18,12 +18,12 @@ Scenamix::Application.routes.draw do
   resources :scenes do
     resources :responses, only: [:show, :create, :edit, :update, :destroy] do
       member do
-        get 'alternative' => 'alternative_responses#show'
         post 'alternative' => 'alternative_responses#create'
         put 'upvote'
         put 'downvote'
       end
     end
+    resources :alternative_responses, only: :show
   end
 
   devise_for :users, :controllers => { :sessions => "users/sessions" }

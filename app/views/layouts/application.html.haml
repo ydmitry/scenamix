@@ -63,7 +63,7 @@
     %script#response-item-template{:type => 'text/html'}
       <div class='well alert-info response'>
       <%= response %>
-      <a class="btn btn-mini response-alternative" href="/scenes/<%= scene_id %>/responses/<%= id %>/alternative">Alternative responses</a>
+      <a class="btn btn-mini response-alternative" href="/scenes/<%= scene_id %>/alternative_responses/<%= id %>">Alternative responses</a>
       <a class="icon-plus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/upvote"></a>
       <a class="icon-minus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/downvote"></a>
       (<span class="response-weight-value"><%= upvotes %>-<%= response.downvotes %></span>)
