@@ -9,6 +9,12 @@ class Response < ActiveRecord::Base
     Response.where("scene_id = ? AND parent_id = ? AND id != ?", self.scene_id, self.parent_id, self.id)
   end
 
+  def best_scenario
+    ancestors + [self] + best_descendants
+  end
+
+  private
+
   def ancestors
     [self.parent.try(:ancestors), self.parent].compact.flatten
   end
@@ -24,9 +30,5 @@ class Response < ActiveRecord::Base
 
   def self.best_child_by_parent_id(scene_id, parent_id)
     Response.where('scene_id = ?', scene_id).where('parent_id = ?', parent_id).order('upvotes - downvotes DESC').first
-  end
-
-  def best_scenario
-    self.ancestors + [self] + self.best_descendants
   end
 end
