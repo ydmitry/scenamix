@@ -39,9 +39,9 @@
         - else
           = hidden_field :response, :parent_id, value: 0
         .control-group
-          = label :response, :response, 'Response', :class => 'control-label'
+          = label :response, :response, :class => 'control-label'
           .controls
-            = text_area_tag 'response[response]', '', :class => 'input-xxlarge', :placeholder => "What do you imagine?"
+            = text_area :response, :response, :class => 'input-xxlarge', :placeholder => "What do you imagine?"
         .form-actions
           = submit_tag 'Post response to scene', :class => 'btn btn-primary'
 
