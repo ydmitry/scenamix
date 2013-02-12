@@ -5,7 +5,7 @@ Feature: User deletes a response
 
 	Scenario: Successful deletion
 		Given a scene exists with:
-			| title 			| Mortal Combat |
+			| title 			| Mortal Kombat |
 			| description | Finish him    |
 		And I am on the scene page
 		When I post a response "Raiden is the best"
