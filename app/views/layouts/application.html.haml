@@ -25,9 +25,9 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          
+
             %a.brand(href="/") Scenamix
-          
+
             .container.nav-collapse
               %ul.nav
                 %li= link_to "Scenes", scenes_path
@@ -40,7 +40,7 @@
 
     .container#layout-content-container
 
-      - if notice      
+      - if notice
         %div.alert.alert-success
           = notice
 
@@ -50,7 +50,7 @@
 
 
       = yield
-    
+
       %footer
         %p &copy; Scenamix 2013
 
@@ -72,8 +72,8 @@
     %script#responses-alternative-template{:type => 'text/html'}
       <div>
       <h4>Alternative responses</h4>
-      
-      <form action='' method='post' accept-charset="UTF-8">      
+
+      <form action='' method='post' accept-charset="UTF-8">
       <div class="control-group">
       <label for="alternative_response" class="control-label">Response</label>
       <div class="controls">

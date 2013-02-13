@@ -31,7 +31,7 @@ Scenamix::Application.routes.draw do
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"
   end
-  
+
   # Sample resource route with options:
   #   resources :products do
   #     member do

@@ -1,6 +1,4 @@
 class ResponsesController < ApplicationController
-
-  
   def create
     scene = Scene.find(params[:scene_id])
     @response = scene.responses.new(params[:response])
@@ -8,10 +6,10 @@ class ResponsesController < ApplicationController
     respond_to do |format|
       if @response.save
         format.html { redirect_to scene, notice: "Response to #{scene.title} was successfully posted." }
-        format.json { render :json => @response, :root => false }     
+        format.json { render :json => @response, :root => false }
       else
         format.html { render :edit }
-        format.json { render :json => false }     
+        format.json { render :json => false }
       end
     end
   end
@@ -50,7 +48,7 @@ class ResponsesController < ApplicationController
       format.json { render :json => @response.alternative }
     end
   end
-  
+
   def post_alternative
     response = Response.find(params[:id])
 
@@ -72,7 +70,7 @@ class ResponsesController < ApplicationController
     response = Response.find(params[:id])
 
     response.increment! :upvotes
-    
+
     respond_to do |format|
       format.json { render json: { upvotes: response.upvotes, downvotes: response.downvotes } }
     end
@@ -82,10 +80,9 @@ class ResponsesController < ApplicationController
     response = Response.find(params[:id])
 
     response.increment! :downvotes
-    
+
     respond_to do |format|
       format.json { render json: { upvotes: response.upvotes, downvotes: response.downvotes } }
     end
   end
-
 end

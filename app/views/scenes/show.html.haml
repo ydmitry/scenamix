@@ -1,7 +1,7 @@
 -# in app/views/scenes/show.html.haml
 %h1
   Scenamix
-  
+
 %p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'
 
 %h2
@@ -14,7 +14,7 @@
     - if current_user.try(:admin?)
       = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
       = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
-    
+
     #scenario-responses-wrap
       - if @best_scenario.present?
         #scenario-current-responses
@@ -22,7 +22,7 @@
           - @best_scenario.each do |response|
             .well.response.alert-info
               = post_format(response.response)
-              
+
               = link_to 'Alternative responses', scene_alternative_response_path(@scene, response), :class => 'btn btn-mini response-alternative'
               - if current_user.try(:admin?)
                 = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
@@ -30,7 +30,7 @@
               = link_to "", upvote_scene_response_path(@scene, response), :class => 'icon-plus-sign response-weight'
               = link_to "", downvote_scene_response_path(@scene, response), :class => 'icon-minus-sign response-weight'
               (<span class="response-weight-value">+#{response.upvotes}-#{response.downvotes}</span>)
-              
+
       %hr
 
       = form_tag scene_responses_path(@scene), :id => 'response-post-form' do
