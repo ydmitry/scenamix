@@ -8,7 +8,7 @@ class ResponsesController < ApplicationController
     respond_to do |format|
       if @response.save
         format.html { redirect_to scene, notice: "Response to #{scene.title} was successfully posted." }
-        format.json { render :json => @response }     
+        format.json { render :json => @response, :root => false }     
       else
         format.html { render :edit }
         format.json { render :json => false }     
@@ -19,7 +19,7 @@ class ResponsesController < ApplicationController
   def show
     @response = Response.find(params[:id])
     respond_to do |format|
-      format.json { render :json => @response.best_scenario }
+      format.json { render :json => @response.best_scenario, :root => false }
     end
   end
 
