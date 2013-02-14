@@ -1,11 +1,5 @@
-define (require) ->
-
-  require ['jquery', 'underscore', 'backbone'], ($, _, Backbone) ->  
-  
-  ResponseAlternativeView    = require 'views/responses/response_alternative'
-  ResponseCollection    = require 'collections/responses'
-
-  class SceneShow extends Backbone.View
+define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternative', 'collections/responses'], ($, _, Backbone, ResponsesAlternativeView, ResponseCollection) ->
+  ScenesShow = Backbone.View.extend
     
     el: '#layout-content-container'
 
@@ -29,7 +23,7 @@ define (require) ->
       
       @
     
-    addRow: (response) ->
+    renderResponse: (response) ->
       @$responses.append @templateItem response.toJSON()
 
     onResponseDelete: (e) -> confirm($(e.target).find('.btn').data('confirm'))
@@ -53,7 +47,7 @@ define (require) ->
       @responseAlternativeCollection = new ResponseCollection
         url: $el.attr 'href'
         
-      @responseAlternativeView = new ResponseAlternativeView
+      @responseAlternativeView = new ResponsesAlternativeView
         collection: @responseAlternativeCollection
       
       @responseAlternativeCollection.fetch()
@@ -88,7 +82,7 @@ define (require) ->
 
       @$responses = $ '<div />'
       
-      responseCollection.each _.bind @addRow, this
+      responseCollection.each @renderResponse, this
 
       responseLast = responseCollection.last()
 
@@ -129,5 +123,3 @@ define (require) ->
 
       false
 
-
-    SceneShow

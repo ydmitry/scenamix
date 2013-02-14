@@ -1,14 +1,6 @@
-define (require) ->
+define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, Backbone, ScenesShowView) ->
+  Router = Backbone.Router.extend
 
-  $           = require 'jquery'
-  _           = require 'underscore'
-  Backbone    = require 'backbone'
-  ->
-
-  # The main router for the whole app
-  class Router extends Backbone.Router
-      
-    # All of your Backbone Routes (add more)
     routes:
         # When there is no url, the home method is called
         "": "home"
@@ -27,9 +19,7 @@ define (require) ->
 
     sceneShow: (scene) ->
       
-      SceneView   = require 'views/scenes/scenes_show'
-
-      sceneView = new SceneView
+      sceneView = new ScenesShowView
 
       console.log "sceneShow"
 
@@ -45,4 +35,4 @@ define (require) ->
       Backbone.history.start({pushState: pushState})
   
     # Returns the Router class
-    Router
+

@@ -1,1 +1,2 @@
-class Scenamix.Models.Scene extends Backbone.Model
+define ['backbone'], (Backbone) ->
+  SceneModel = Backbone.Model.extend()
