@@ -15,9 +15,12 @@ class ResponsesController < ApplicationController
   end
 
   def show
+    @scene = Scene.find(params[:scene_id])    
     @response = Response.find(params[:id])
+    @scenario = @response.best_scenario
     respond_to do |format|
-      format.json { render :json => @response.best_scenario, :root => false }
+      format.html { render :template => "scenes/show" }
+      format.json { render :json => @scenario, :root => false }
     end
   end
 

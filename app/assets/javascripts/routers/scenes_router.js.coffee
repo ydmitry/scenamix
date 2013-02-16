@@ -4,21 +4,21 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
     routes:
         # When there is no url, the home method is called
         "": "home"
-        
+
         "scenes": "scenes"
 
         "scenes/:scene": "sceneShow"
 
     home: ->
-      
+
       console.log "home"    
 
     scenes: ->
-      
+
       console.log "scenes"
 
     sceneShow: (scene) ->
-      
+
       sceneView = new ScenesShowView
 
       console.log "sceneShow"
@@ -33,6 +33,11 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
 
       # Tells Backbone to start watching for hashchange events
       Backbone.history.start({pushState: pushState})
-  
+
+      $(window).on 'scenario:changed', _.bind @onScenarioChanged, @
+
+    onScenarioChanged: (e, url)->
+      @navigate url
+
     # Returns the Router class
 

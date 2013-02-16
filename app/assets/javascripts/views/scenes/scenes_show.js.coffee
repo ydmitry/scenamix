@@ -73,6 +73,8 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       responseCollection.fetch
         success: _.bind @onScenarioChangeLoad, @
       
+      $(window).trigger 'scenario:changed', url
+
       false
     
     onScenarioChangeLoad: (responseCollection) ->
