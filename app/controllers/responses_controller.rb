@@ -41,31 +41,6 @@ class ResponsesController < ApplicationController
     redirect_to response.scene, notice: "Response deleted."
   end
 
-  def alternative
-    @response = Response.find(params[:id])
-
-    respond_to do |format|
-      format.json { render :json => @response.alternative }
-    end
-  end
-
-  def post_alternative
-    response = Response.find(params[:id])
-
-    alternative_response = response.scene.responses.new do |alternative|
-      alternative.parent_id = response.parent_id
-      alternative.response = params[:response]
-    end
-
-    respond_to do |format|
-      if alternative_response.save
-        format.json { render json: alternative_response }
-      else
-        format.json { render json: { ok: 0 } }
-      end
-    end
-  end
-
   def upvote
     response = Response.find(params[:id])
 
