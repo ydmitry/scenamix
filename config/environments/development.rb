@@ -37,4 +37,6 @@ Scenamix::Application.configure do
 
   # for devise gem
   config.action_mailer.default_url_options = { :host => '0.0.0.0:3000' }
+
+  config.assets.paths << Rails.root.join('spec', 'javascripts')
 end

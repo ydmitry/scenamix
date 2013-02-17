@@ -27,7 +27,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails', '~> 2.0'
-  gem 'jasmine'
+  gem 'jasmine', '~> 1.2.1'
 end
 
 group :test do
