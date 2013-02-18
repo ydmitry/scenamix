@@ -1,7 +1,7 @@
 define (require) ->
 
-  Router = require('routers/scenes_router')
-  
+  Router = require 'routers/scenes_router'
+
   MockRouter = Router.extend
     navigate: (fragment, options) ->
       @fragment = fragment
@@ -14,5 +14,4 @@ define (require) ->
       uri = '/scenes/1/responses/2'
       $(window).trigger 'scenario:changed', uri
       expect(mockRouter.fragment).toEqual uri;
-      
 
