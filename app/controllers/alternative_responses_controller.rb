@@ -13,6 +13,8 @@ class AlternativeResponsesController < ApplicationController
     alternative_response = response.scene.responses.new do |alternative|
       alternative.parent_id = response.parent_id
       alternative.response = params[:response]
+      alternative.user_id = current_user.try(:id) ? current_user.id : 0;
+      alternative.ip_address = request.remote_ip
     end
 
     respond_to do |format|

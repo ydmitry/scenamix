@@ -1,7 +1,14 @@
 class ResponsesController < ApplicationController
   def create
     scene = Scene.find(params[:scene_id])
-    @response = scene.responses.new(params[:response])
+
+    @response = scene.responses.new do |response|
+      response.scene_id = params[:scene_id]
+      response.parent_id = params[:response][:parent_id]
+      response.response = params[:response][:response]
+      response.user_id = current_user.try(:id) ? current_user.id : 0
+      response.ip_address = request.remote_ip
+    end
 
     respond_to do |format|
       if @response.save

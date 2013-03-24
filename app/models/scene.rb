@@ -1,5 +1,5 @@
 class Scene < ActiveRecord::Base
-  attr_accessible :title, :description
+  attr_accessible :title, :description, :user_id, :ip_address
   has_many :responses, :dependent => :destroy
   belongs_to :user
   validates :title, :description, presence: true
@@ -13,8 +13,8 @@ class Scene < ActiveRecord::Base
     end
   end
 
-  def scenarios
+  def scenarios_response_ids
     best_first_responses = Response.best_children_by_parent_id(self.id, 0)
-    best_first_responses.map(&:scenarios).flatten
+    best_first_responses.map(&:scenarios_response_ids).flatten
   end
 end

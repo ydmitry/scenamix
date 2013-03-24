@@ -1,5 +1,5 @@
 class Response < ActiveRecord::Base
-  attr_accessible :scene_id, :response, :parent_id
+  attr_accessible :scene_id, :response, :parent_id, :user_id, :ip_address
   belongs_to :scene
   belongs_to :user
   has_many :responses, foreign_key: 'parent_id'
@@ -18,7 +18,7 @@ class Response < ActiveRecord::Base
     ancestors + [self] + best_descendants
   end
 
-  def scenarios
+  def scenarios_response_ids
     stack = [self]
     result = []
     while stack.present?
