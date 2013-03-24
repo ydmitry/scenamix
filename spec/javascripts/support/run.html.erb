@@ -45,7 +45,7 @@
   <script>
     require(<%= @config.spec_files.map { |s| s.sub(/\.js$/,'') }.to_json %>, function(){execJasmine()});
   </script>
-
+  <%= Haml::Engine.new(File.new("./app/views/index/_templates_js.html.haml").read).render %>
 </head>
 <body>
 <div id="jasmine_content"></div>
