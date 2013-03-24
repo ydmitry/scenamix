@@ -9,12 +9,13 @@ define (require) ->
         id: 10
         scene_id: 11
         parent_id: 9
-        response: "Some response"
+        response: "Some response",
+        upvotes: 1,
+        downvotes: 0
 
       responseView = new ResponseView
         model: model
 
       responseView.render()
 
-      expect(responseView.$el).toHaveClass 'response'
-
+      expect(responseView.$el.hasClass('response')).toBeTruthy()

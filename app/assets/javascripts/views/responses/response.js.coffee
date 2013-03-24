@@ -4,6 +4,6 @@ define ['jquery', 'underscore', 'backbone'], ($, _, Backbone) ->
       @template = _.template $("#response-item-template").html()
 
     render: ->
-      
+      @setElement @template @model.toJSON()
       @
 
