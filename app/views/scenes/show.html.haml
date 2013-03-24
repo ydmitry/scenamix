@@ -22,8 +22,13 @@
           - @scenario.each do |response|
             .well.response.alert-info
               = post_format(response.response)
-
-              = link_to 'Alternative responses', scene_alternative_response_path(@scene, response), :class => 'btn btn-mini response-alternative'
+              %p
+                - if response.user.present?
+                  = response.user.id
+                = response.created_at
+              - if response.alternative.present?
+                = link_to 'Alternative responses', scene_alternative_response_path(@scene, response), :class => 'btn btn-mini response-alternative'
+                (#{response.alternative.size})
               - if current_user.try(:admin?)
                 = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
                 = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'

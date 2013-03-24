@@ -27,4 +27,18 @@ describe Scene do
       scene.best_scenario.should be_empty
     end
   end
+
+  describe '#scenarios' do
+    it 'returns scenarios' do
+      scene = create(:scene)
+      response_sport = create(:response, scene: scene, upvotes: 1)
+      response_alcohol = create(:response, scene: scene, upvotes: -1)
+      response_sport_gym = create(:response, scene: scene, parent: response_sport, upvotes: 1)
+      response_sport_chess = create(:response, scene: scene, parent: response_sport)
+      response_alcohol_smoke = create(:response, scene: scene, parent: response_alcohol)
+      response_alcohol_fastfood = create(:response, scene: scene, parent: response_alcohol, upvotes: 1)
+
+      scene.scenarios.should == [response_sport_gym, response_sport_chess, response_alcohol_fastfood, response_alcohol_smoke].map(&:id)
+    end
+  end
 end

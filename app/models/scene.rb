@@ -1,6 +1,7 @@
 class Scene < ActiveRecord::Base
   attr_accessible :title, :description
   has_many :responses, :dependent => :destroy
+  belongs_to :user
   validates :title, :description, presence: true
 
   def best_scenario
@@ -10,5 +11,10 @@ class Scene < ActiveRecord::Base
     else
       []
     end
+  end
+
+  def scenarios
+    best_first_responses = Response.best_children_by_parent_id(self.id, 0)
+    best_first_responses.map(&:scenarios).flatten
   end
 end
