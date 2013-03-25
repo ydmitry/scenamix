@@ -45,9 +45,13 @@ end
 
 gem 'underscore-rails'
 gem 'jquery-rails'
-gem 'haml-rails', '= 0.3.4'
-gem 'devise'
 gem 'backbone-on-rails'
 gem 'requirejs-rails'
-gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 
+gem 'haml-rails', '= 0.3.4'
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+
+gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
