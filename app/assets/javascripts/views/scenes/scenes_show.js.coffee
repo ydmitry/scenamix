@@ -1,4 +1,4 @@
-define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternative', 'collections/responses'], ($, _, Backbone, ResponsesAlternativeView, ResponseCollection) ->
+define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternative', 'collections/responses', 'views/responses/response'], ($, _, Backbone, ResponsesAlternativeView, ResponseCollection, ReponseView) ->
   ScenesShow = Backbone.View.extend
     
     el: '#layout-content-container'
@@ -24,7 +24,9 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       @
     
     renderResponse: (response) ->
-      @$responses.append @templateItem response.toJSON()
+      responseView = new ReponseView
+        model: response
+      @$responses.append responseView.render().el
 
     onResponseDelete: (e) -> confirm($(e.target).find('.btn').data('confirm'))
       
