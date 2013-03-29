@@ -1,4 +1,4 @@
-define ['jquery', 'underscore', 'backbone'], ($, _, Backbone) ->
+define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternative'], ($, _, Backbone, ResponseAlternativeView) ->
   ResponsesAlternative = Backbone.View.extend
     
     el: '#scenario-branches'
@@ -10,7 +10,6 @@ define ['jquery', 'underscore', 'backbone'], ($, _, Backbone) ->
     initialize: (options) ->
       @collection.bind "reset", @render, @
       @template = _.template $("#responses-alternative-template").html()
-      @templateItem = _.template $("#response-alternative-item-template").html()
       @options = options
       @
 
@@ -30,7 +29,9 @@ define ['jquery', 'underscore', 'backbone'], ($, _, Backbone) ->
       @
 
     renderResponse: (response) ->
-      @$responses.append @templateItem response.toJSON()
+      responseAlternativeView = new ResponseAlternativeView
+        model: response
+      @$responses.append responseAlternativeView.render().el
 
     onFormSubmit: (e) ->
       $el = $(e.target)
