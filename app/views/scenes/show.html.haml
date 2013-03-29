@@ -11,6 +11,8 @@
   .span6#scenario-current
     .well.alert-success
       #description= post_format(@scene.description)
+      .response-user-name= @scene.user_name
+      .response-created-at= @scene.created_at
     - if current_user.try(:admin?)
       = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
       = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
@@ -22,10 +24,8 @@
           - @scenario.each do |response|
             .well.response.alert-info
               = post_format(response.response)
-              %p
-                - if response.user.present?
-                  = response.user.id
-                = response.created_at
+              .response-user-name= response.user_name
+              .response-created-at= response.created_at
               - if response.alternative.present?
                 = link_to 'Alternative responses', scene_alternative_response_path(@scene, response), :class => 'btn btn-mini response-alternative'
                 (#{response.alternative.size})

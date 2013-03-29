@@ -6,6 +6,14 @@ class Response < ActiveRecord::Base
   belongs_to :parent, class_name: 'Response'
   validates :response, presence: true
 
+  def user_name
+    if self.user.present?
+      'User' + self.user.id
+    else
+      'Guest'
+    end
+  end
+
   def alternative
     Response.where("scene_id = ? AND parent_id = ? AND id != ?", self.scene_id, self.parent_id, self.id)
   end

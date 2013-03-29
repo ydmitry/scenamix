@@ -4,6 +4,14 @@ class Scene < ActiveRecord::Base
   belongs_to :user
   validates :title, :description, presence: true
 
+  def user_name
+    if self.user.present?
+      'User' + self.user.id
+    else
+      'Guest'
+    end
+  end
+
   def best_scenario
     best_first_response = Response.best_child_by_parent_id(self.id, 0)
     if best_first_response then
