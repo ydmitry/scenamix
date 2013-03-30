@@ -1,10 +1,7 @@
 -# in app/views/scenes/show.html.haml
+.add-new-scene-wrap= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'
+
 %h1
-  Scenamix
-
-%p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'
-
-%h2
   = h @scene.title
 
 .row-fluid
@@ -22,37 +19,26 @@
         #scenario-current-responses
           %hr
           - @scenario.each do |response|
+            .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => response.parent_id
             .well.response.alert-info
               = post_format(response.response)
               .response-user-name= response.user_name
               .response-created-at= datetime_format(response.created_at)
               - if response.alternative.present?
-                = link_to 'Alternative responses', scene_alternative_response_path(@scene, response), :class => 'btn btn-mini response-alternative'
-                (#{response.alternative.size})
+                = link_to 'Show alternative scenarios (' + response.alternative_size.to_s + ')' , scene_alternative_response_path(@scene, response), :class => 'btn btn-mini response-alternative'
               - if current_user.try(:admin?)
                 = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
                 = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
-              = link_to "", upvote_scene_response_path(@scene, response), :class => 'icon-plus-sign response-weight'
-              = link_to "", downvote_scene_response_path(@scene, response), :class => 'icon-minus-sign response-weight'
-              (<span class="response-weight-value">+#{response.upvotes} -#{response.downvotes}</span>)
+              = link_to '', upvote_scene_response_path(@scene, response), :class => 'icon-plus-sign response-weight'
+              <span class="response-weight-value">#{response.votes}</span>
+              = link_to '', downvote_scene_response_path(@scene, response), :class => 'icon-minus-sign response-weight'
+        .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => @scenario.last.parent_id
 
-      %hr
+        = link_to "Previous scenario", prev_scene_response_path(@scene, @scenario.last), :class => 'btn btn-info'
+        = link_to "Next scenario", next_scene_response_path(@scene, @scenario.last), :class => 'btn btn-info'
+      - else
+        .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => 0
 
-      = form_tag scene_responses_path(@scene), :id => 'response-post-form' do
-        - if @scenario.present?
-          = hidden_field :response, :parent_id, value: @scenario.last.id
-        - else
-          = hidden_field :response, :parent_id, value: 0
-        .control-group
-          = label :response, :response, :class => 'control-label'
-          .controls
-            = text_area :response, :response, :class => 'input-xxlarge', :placeholder => "What do you imagine?", :rows => 5
-        .form-actions
-          = submit_tag 'Post response to scene', :class => 'btn btn-primary'
+  .span6#scenario-branches= ""
 
-  .span6#scenario-branches
-    Alternative branches of scenario
-
-= link_to 'Back to scene list', scenes_path
-
-
+.back-to-scene-list-wrap= link_to 'Back to scene list', scenes_path

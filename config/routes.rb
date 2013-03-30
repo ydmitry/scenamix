@@ -21,9 +21,13 @@ Scenamix::Application.routes.draw do
         post 'alternative' => 'alternative_responses#create'
         put 'upvote'
         put 'downvote'
+        get 'next' => 'scenarios#next'
+        get 'prev' => 'scenarios#prev'
       end
     end
-    resources :alternative_responses, only: :show
+    resources :alternative_responses, :member, only: [:show] do
+
+    end
   end
 
   devise_for :users, :controllers => { :sessions => "users/sessions" }

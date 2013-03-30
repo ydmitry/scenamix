@@ -14,8 +14,16 @@ class Response < ActiveRecord::Base
     end
   end
 
+  def votes
+    self.upvotes - self.downvotes
+  end
+
   def alternative
     Response.where("scene_id = ? AND parent_id = ? AND id != ?", self.scene_id, self.parent_id, self.id)
+  end
+
+  def alternative_size
+    self.alternative.size
   end
 
   def sequels
@@ -23,7 +31,11 @@ class Response < ActiveRecord::Base
   end
 
   def best_scenario
-    ancestors + [self] + best_descendants
+    self.ancestors + [self] + self.best_descendants
+  end
+
+  def best_scenario_last_id
+    self.best_scenario.last.id
   end
 
   def scenarios_response_ids

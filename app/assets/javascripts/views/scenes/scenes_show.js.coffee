@@ -1,54 +1,53 @@
 define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternative', 'collections/responses', 'views/responses/response'], ($, _, Backbone, ResponsesAlternativeView, ResponseCollection, ReponseView) ->
   ScenesShow = Backbone.View.extend
-    
+
     el: '#layout-content-container'
 
     events:
-      
+
       'submit .response-delete': 'onResponseDelete'
       'submit #response-post-form': 'onResponsePost'
       'click .response-alternative': 'onResponseAlternative'
       'click .response-weight': 'onResponseWeight'
-    
+
     initialize: (options) ->
       $(window).on 'scenario:change', _.bind @onScenarioChange, @
       @template = _.template $("#responses-template").html()
-      @templateItem = _.template $("#response-item-template").html()
       @options = options
       @
 
     render: ->
-      
+
       console.log "SceneShow rendered"
-      
+
       @
-    
+
     renderResponse: (response) ->
       responseView = new ReponseView
         model: response
       @$responses.append responseView.render().el
 
     onResponseDelete: (e) -> confirm($(e.target).find('.btn').data('confirm'))
-      
+
     onResponseAlternative: (e) ->
       $el = $ e.currentTarget
 
       $response = $el.parents '.response'
-      
+
       @$el.find('.response').addClass 'alert-info'      
-      
+
       $response.removeClass 'alert-info'
 
       @responseAlternativeCollection = null
-      
+
       if !@responseAlternativeView
         @responseAlternativeView = null
       else 
         @responseAlternativeView.undelegateEvents()
-      
+
       @responseAlternativeCollection = new ResponseCollection
         url: $el.attr 'href'
-        
+
       @responseAlternativeView = new ResponsesAlternativeView
         collection: @responseAlternativeCollection
       
@@ -68,24 +67,24 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       false
 
     onScenarioChange: (e, url) ->
-      
+
       responseCollection = new ResponseCollection
         url: url 
       
       responseCollection.fetch
         success: _.bind @onScenarioChangeLoad, @
-      
+
       $(window).trigger 'scenario:changed', url
 
       false
-    
+
     onScenarioChangeLoad: (responseCollection) ->
       @$responsesWrap = @.$ '#scenario-responses-wrap'
 
       @$responsesWrap.empty()
 
       @$responses = $ '<div />'
-      
+
       responseCollection.each @renderResponse, this
 
       responseLast = responseCollection.last()
@@ -93,11 +92,11 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       $rendered = $ @template
         parent_id: responseLast.get('id')
         scene_id: responseLast.get('scene_id')
-      
+
       $rendered.find("#scenario-current-responses").append @$responses
-      
+
       @$responsesWrap.append $rendered
-      
+
       @responseAlternativeCollection = null
 
       if !!@responseAlternativeView

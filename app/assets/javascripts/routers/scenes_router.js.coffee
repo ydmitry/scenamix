@@ -9,9 +9,11 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
 
         "scenes/:scene": "sceneShow"
 
+        "scenes/:scene/responses/:response": "sceneShow"
+
     home: ->
 
-      console.log "home"    
+      false
 
     scenes: ->
 
@@ -21,10 +23,9 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
 
       sceneView = new ScenesShowView
 
-      console.log "sceneShow"
 
     initialize: ->
-      
+
       # Enable pushState for compatible browsers
       enablePushState = true
 

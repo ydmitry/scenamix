@@ -49,4 +49,3 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
       $el = $(e.currentTarget)
       $(window).trigger 'scenario:change', $el.attr 'href'
       false
-
