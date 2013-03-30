@@ -21,7 +21,7 @@ describe ResponsesController do
 
         put :upvote, scene_id: 1, id: reply.id
 
-        response.body.should == { upvotes: 1, downvotes: 0 }.to_json
+        response.body.should == { votes: -1 }.to_json
       end
     end
 
@@ -39,7 +39,7 @@ describe ResponsesController do
 
         put :downvote, scene_id: 1, id: reply.id
 
-        response.body.should == { upvotes: 0, downvotes: 1 }.to_json
+        response.body.should == { votes: -1 }.to_json
       end
     end
 

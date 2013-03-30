@@ -31,7 +31,7 @@ class Response < ActiveRecord::Base
   end
 
   def best_scenario
-    self.ancestors + [self] + self.best_descendants
+    ancestors + [self] + best_descendants
   end
 
   def best_scenario_last_id

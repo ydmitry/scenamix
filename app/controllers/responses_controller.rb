@@ -57,7 +57,7 @@ class ResponsesController < ApplicationController
     response.increment! :upvotes
 
     respond_to do |format|
-      format.json { render json: { upvotes: response.upvotes, downvotes: response.downvotes } }
+      format.json { render json: { votes: response.votes } }
     end
   end
 
@@ -67,7 +67,7 @@ class ResponsesController < ApplicationController
     response.increment! :downvotes
 
     respond_to do |format|
-      format.json { render json: { upvotes: response.upvotes, downvotes: response.downvotes } }
+      format.json { render json: { votes: response.votes } }
     end
   end
 end

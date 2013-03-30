@@ -1,16 +1,39 @@
 %script#response-alternative-item-template{:type => 'text/html'}
   <div class='well response'>
   <%= response %>
+  <div class='response-votes-wrap'>
+  <a class="icon-plus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/upvote"></a>
+  <span class="response-weight-value"><%= votes %></span>
+  <a class="icon-minus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/downvote"></a>
+  </div>
+
+  <div class="response-user-name"><%= user_name %></div>
+  <div class="response-created-at"><%= created_at %></div>
+  
   <a href='/scenes/<%= scene_id %>/responses/<%= id %>' class='btn btn-mini'>Switch scenario</a>
   </div>
 
 %script#response-item-template{:type => 'text/html'}
-  <div class='well alert-info response'>
+  <div>
+  <div class="scenario-sequel-wrap"><a data-parent_id="0" class="btn btn-info btn-mini scenario-sequel" href="#">New sequel of scenario</a></div>
+  <div class="well response alert-info">
   <%= response %>
-  <a class="btn btn-mini response-alternative" href="/scenes/<%= scene_id %>/alternative_responses/<%= id %>">Alternative responses</a>
+
+  <div class='response-votes-wrap'>
   <a class="icon-plus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/upvote"></a>
+  <span class="response-weight-value"><%= votes %></span>
   <a class="icon-minus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/downvote"></a>
-  (<span class="response-weight-value">+<%= upvotes %> -<%= response.downvotes %></span>)
+  </div>
+
+  <div class="response-user-name"><%= user_name %></div>
+  <div class="response-created-at"><%= created_at %></div>
+
+  <% if (!!alternative_size) { %>
+  <div><a class="btn btn-mini response-alternative" href="/scenes/<%= scene_id %>/alternative_responses/<%= id %>">Show alternative scenarios (<%= alternative_size %>)</a></div>
+  <% } %>
+
+  </div>
+  </div>
   </div>
 
 %script#responses-alternative-template{:type => 'text/html'}

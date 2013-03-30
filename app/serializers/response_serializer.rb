@@ -8,4 +8,8 @@ class ResponseSerializer < ActiveModel::Serializer
   def response
     post_format(object.response)
   end
+
+  def created_at
+    datetime_format(object.created_at)
+  end
 end
