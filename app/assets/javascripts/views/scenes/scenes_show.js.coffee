@@ -9,6 +9,8 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       'submit #response-post-form': 'onResponsePost'
       'click .response-alternative': 'onResponseAlternative'
       'click .response-weight': 'onResponseWeight'
+      'click .scenario-sequel': 'onScenarioSequel'
+      'mouseover #scenario-current-responses .response': 'onResponseMouseover'
 
     initialize: (options) ->
       $(window).on 'scenario:change', _.bind @onScenarioChange, @
@@ -17,8 +19,6 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       @
 
     render: ->
-
-      console.log "SceneShow rendered"
 
       @
 
@@ -29,14 +29,24 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
     onResponseDelete: (e) -> confirm($(e.target).find('.btn').data('confirm'))
 
+    onResponseMouseover: (e) -> 
+      $response = $ e.currentTarget
+      $el = $response.find '.response-alternative'
+      @responseAlternative $el if $el.length > 0
+
     onResponseAlternative: (e) ->
       $el = $ e.currentTarget
 
+      @responseAlternative $el
+
+      false
+
+    responseAlternative: ($el) ->
       $response = $el.parents '.response'
 
-      @$el.find('.response').addClass 'alert-info'      
+      @$el.find('#scenario-current-responses').find('.response').removeClass 'alert-info'      
 
-      $response.removeClass 'alert-info'
+      $response.addClass 'alert-info'
 
       @responseAlternativeCollection = null
 
@@ -52,9 +62,6 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
         collection: @responseAlternativeCollection
       
       @responseAlternativeCollection.fetch()
-      
-
-      false
 
     onResponseWeight: (e) ->
       $el = $ e.currentTarget
@@ -62,7 +69,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       $.ajax url,
         type: 'put'
         success: (data) ->          
-          $el.siblings('.response-weight-value').html '+'+data.upvotes+'-'+data.downvotes
+          $el.siblings('.response-weight-value').html data.votes
 
       false
 
@@ -79,7 +86,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       false
 
     onScenarioChangeLoad: (responseCollection) ->
-      @$responsesWrap = @.$ '#scenario-responses-wrap'
+      @$responsesWrap = @$ '#scenario-responses-wrap'
 
       @$responsesWrap.empty()
 
@@ -90,7 +97,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       responseLast = responseCollection.last()
 
       $rendered = $ @template
-        parent_id: responseLast.get('id')
+        response_id: responseLast.get('id')
         scene_id: responseLast.get('scene_id')
 
       $rendered.find("#scenario-current-responses").append @$responses
@@ -104,17 +111,32 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       false
 
+    onScenarioSequel: (e) ->
+      $el = $ e.currentTarget
+
+      templateCreateForm = _.template $('#responses-create-form-template').html()
+
+      $form = $ templateCreateForm
+        parent_id: $el.data 'parent_id'
+        scene_id: $el.data 'scene_id'
+
+      $el.parent().empty().append $form
+
+      $form.on 'submit', _.bind @onResponsePost, @
+
+      false
+    ,
+
     onResponsePost: (e) ->
-      $form = $(e.target)
+      $form = $ e.target
       url = $form.attr 'action'
 
       responseCollection = new ResponseCollection
         url: url
 
       responseCollection.create
-        response:
-          response: $form.find('textarea').val()
-          parent_id: $form.find('#response_parent_id').val()
+        response: $form.find('textarea').val()
+        parent_id: $form.find('[name="parent_id"]').val()
       ,
         success: _.bind (response) ->
           responseCollection = new ResponseCollection
