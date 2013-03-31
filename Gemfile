@@ -26,7 +26,8 @@ group :development, :test do
   gem 'cucumber-rails-training-wheels'
   gem 'capybara'
   gem 'launchy'
-  gem 'rspec-rails', "~> 2.0"
+  gem 'rspec-rails', '~> 2.0'
+  gem 'jasmine', '~> 1.2.1'
 end
 
 group :test do
@@ -34,6 +35,7 @@ group :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'simplecov'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 
@@ -41,26 +43,15 @@ group :production do
   gem 'pg'
 end
 
-
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
-
 gem 'underscore-rails'
 gem 'jquery-rails'
-gem 'haml-rails', '= 0.3.4'
-gem 'devise'
 gem 'backbone-on-rails'
 gem 'requirejs-rails'
+
+gem 'haml-rails', '= 0.3.4'
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+
+gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'

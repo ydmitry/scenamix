@@ -1,1 +1,0 @@
-(function(){require(["jquery","underscore","backbone","bootstrap"],function(e,t,n,r){return e(function(){return n.history.start({pushState:!0})})})}).call(this);

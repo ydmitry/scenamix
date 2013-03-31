@@ -3,15 +3,23 @@ class ScenesController < ApplicationController
     @scenes = Scene.all
   end
 
-  def new; end
+  def new
+    @scene = Scene.new
+  end
 
   def create
-    @scene = Scene.create!(params[:scene])
-    redirect_to @scene, notice: "#{@scene.title} was successfully created."
+    @scene = Scene.new(params[:scene])
+
+    if @scene.save
+      redirect_to @scene, notice: "#{@scene.title} was successfully created."
+    else
+      render :new
+    end
   end
 
   def show
     @scene = Scene.find(params[:id])
+    @scenario = @scene.best_scenario
   end
 
   def edit
@@ -20,8 +28,12 @@ class ScenesController < ApplicationController
 
   def update
     @scene = Scene.find(params[:id])
-    @scene.update_attributes!(params[:scene])
-    redirect_to @scene, notice: "#{@scene.title} was successfully updated."
+
+    if @scene.update_attributes(params[:scene])
+      redirect_to @scene, notice: "#{@scene.title} was successfully updated."
+    else
+      render :edit
+    end
   end
 
   def destroy

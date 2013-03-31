@@ -58,9 +58,10 @@ Given /^I am on the edit scene page$/ do
   visit edit_scene_path(@scene)
 end
 
-When /^I edit a scene$/ do
-  fill_in 'Title', with: 'Date with Sarah'
-  fill_in 'Description', with: 'Awesome date'
+When /^I update a scene with:$/ do |table|
+  table.rows_hash.each do |key, value|
+    fill_in key, with: value
+  end
 
   click_button 'Update scene Info'
 end
@@ -73,8 +74,34 @@ Given /^I am on the edit response page$/ do
   visit edit_scene_response_path(@scene, @response)
 end
 
-When /^I edit a response$/ do
-  fill_in 'Response', with: 'My favorite movie of all times'
+When /^I edit a response with "(.*?)"$/ do |text|
+  fill_in 'Response', with: text
 
   click_button 'Update response'
+end
+
+Given /^I am on the sign up page$/ do
+  visit '/users/sign_up'
+end
+
+When /^I sign up$/ do
+  fill_in 'Email', with: 'andrii.ponomarov@gmail.com'
+  fill_in 'user_password', with: '111111'
+
+  click_button 'Sign up'
+end
+
+Given /^I am logged in as an admin$/ do
+  User.create! do |user|
+    user.email = 'andrii.ponomarov@gmail.com'
+    user.password = '111111'
+    user.password_confirmation = '111111'
+    user.admin = true
+  end
+
+  visit sign_in_path
+
+  fill_in 'Email', with: 'andrii.ponomarov@gmail.com'
+  fill_in 'Password', with: '111111'
+  click_button 'Sign in'
 end

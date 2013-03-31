@@ -1,39 +1,50 @@
 -# in app/views/scenes/show.html.haml
-%h1
-  Scenamix
-  
-%p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'
+.add-new-scene-wrap= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'
 
-%h2
+%h1
   = h @scene.title
 
-.well.alert-success
-  %p#description= post_format(@scene.description)
+.row-fluid
+  .span6#scenario-current
+    .well.alert-success
+      #description= post_format(@scene.description)
+      .response-created-at= datetime_format(@scene.created_at)
+      .response-user-name= @scene.user_name
+    - if current_user.try(:admin?)
+      = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
+      = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
 
-= link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
-= button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger'
+    #scenario-responses-wrap
+      - if @scenario.present?
+        #scenario-current-responses
+          %hr
+          - @scenario.each do |response|
+            .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => response.parent_id, 'data-scene_id' => response.scene_id
+            .well.response
+              = post_format(response.response)
+              .response-votes-wrap
+                = link_to '', upvote_scene_response_path(@scene, response), :class => 'icon-plus-sign response-weight'
+                <span class="response-weight-value">#{response.votes}</span>
+                = link_to '', downvote_scene_response_path(@scene, response), :class => 'icon-minus-sign response-weight'
 
-- if @scene.responses.present?
-  %hr
-  - @scene.responses.each do |response|
-    .well.response
-      %p     
-        = post_format(response.response)
-           
-      = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
-      = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+              .response-created-at= datetime_format(response.created_at)
+              .response-user-name= response.user_name
 
-%hr
+              - if current_user.try(:admin?)
+                = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
+                = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
+              - if response.alternative.present?
+                .response-alternative-wrap= link_to 'Show alternative scenarios (' + response.alternative_size.to_s + ')' , scene_alternative_response_path(@scene, response), :class => 'btn btn-mini response-alternative'
+        .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => @scenario.last.id, 'data-scene_id' => @scene.id
 
-= form_tag scene_responses_path(@scene) do
-  .control-group
-    = label :response, :response, 'Response', :class => 'control-label'
-    .controls
-      = text_area_tag 'response[response]', '', :class => 'input-xxlarge'
-  .form-actions
-    = submit_tag 'Post response to scene', :class => 'btn btn-primary'
+        = link_to "Previous scenario", prev_scene_response_path(@scene, @scenario.last), :class => 'btn btn-info scenario-prev'
+        = link_to "Next scenario", next_scene_response_path(@scene, @scenario.last), :class => 'btn btn-info scenario-next'
+      - else
+        .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => 0, 'data-scene_id' => @scene.id
 
-/
-  = link_to 'Back to scene list', scenes_path
+  #scenario-branches-wrap
+    .container
+      .span6
+      .span6#scenario-branches= ""
 
-
+.back-to-scene-list-wrap= link_to 'Back to scene list', scenes_path

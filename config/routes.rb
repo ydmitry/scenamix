@@ -16,15 +16,27 @@ Scenamix::Application.routes.draw do
   #   resources :products
 
   resources :scenes do
-    resources :responses, only: [:create, :edit, :update, :destroy]
+    resources :responses, only: [:show, :create, :edit, :update, :destroy] do
+      member do
+        post 'alternative' => 'alternative_responses#create'
+        put 'upvote'
+        put 'downvote'
+        get 'next' => 'scenarios#next'
+        get 'prev' => 'scenarios#prev'
+      end
+    end
+    resources :alternative_responses, :member, only: [:show] do
+
+    end
   end
 
   devise_for :users, :controllers => { :sessions => "users/sessions" }
-
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"
   end
-  
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
