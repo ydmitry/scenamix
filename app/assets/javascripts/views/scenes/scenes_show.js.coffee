@@ -10,7 +10,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       'click .response-alternative': 'onResponseAlternative'
       'click .response-weight': 'onResponseWeight'
       'click .scenario-sequel': 'onScenarioSequel'
-      'mouseover #scenario-current-responses .response': 'onResponseMouseover'
+      'mouseenter #scenario-current-responses .response': 'onResponseHover'
 
     initialize: (options) ->
       $(window).on 'scenario:change', _.bind @onScenarioChange, @
@@ -29,10 +29,10 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
     onResponseDelete: (e) -> confirm($(e.target).find('.btn').data('confirm'))
 
-    onResponseMouseover: (e) -> 
+    onResponseHover: (e) -> 
       $response = $ e.currentTarget
       $el = $response.find '.response-alternative'
-      @responseAlternative $el if $el.length > 0
+      @responseAlternative $el if $el.length > 0 && !$response.hasClass 'alert-info'
 
     onResponseAlternative: (e) ->
       $el = $ e.currentTarget
@@ -117,7 +117,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       templateCreateForm = _.template $('#responses-create-form-template').html()
 
       $form = $ templateCreateForm
-        parent_id: $el.data 'parent_id'
+        parent_id: 0 || $el.data 'parent_id'
         scene_id: $el.data 'scene_id'
 
       $el.parent().empty().append $form
