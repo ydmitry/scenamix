@@ -27,7 +27,7 @@ class Response < ActiveRecord::Base
   end
 
   def sequels
-    Response.where("scene_id = ? AND parent_id = ?", self.scene_id, self.id)
+    self.responses
   end
 
   def best_scenario
@@ -54,6 +54,42 @@ class Response < ActiveRecord::Base
     result
   end
 
+  def scenarios_next?
+    id = self.best_scenario_last_id
+
+    scenarios_response_ids = self.scene.scenarios_response_ids
+
+    scenarios_response_ids.index(id.to_i) + 1 > scenarios_response_ids.size - 1
+  end
+
+  def scenarios_next_id
+    id = self.best_scenario_last_id
+
+    scenarios_response_ids = self.scene.scenarios_response_ids
+
+    idx = (scenarios_response_ids.index(id.to_i) + 1) % scenarios_response_ids.size
+
+    scenarios_response_ids[idx]
+  end
+
+  def scenarios_prev?
+    id = self.best_scenario_last_id
+
+    scenarios_response_ids = self.scene.scenarios_response_ids
+
+    scenarios_response_ids.index(id.to_i) - 1 < 0
+  end
+
+  def scenarios_prev_id
+    id = self.best_scenario_last_id
+
+    scenarios_response_ids = self.scene.scenarios_response_ids
+
+    idx = (scenarios_response_ids.index(id.to_i) - 1) % scenarios_response_ids.size
+
+    scenarios_response_ids[idx]
+  end
+
   def self.best_child_by_parent_id(scene_id, parent_id)
     Response.best_children_by_parent_id(scene_id, parent_id).first
   end
@@ -76,4 +112,5 @@ class Response < ActiveRecord::Base
     response = Response.best_child_by_parent_id(self.scene_id, self.id)
     [response, response.try(:best_descendants)].compact.flatten
   end
+
 end
