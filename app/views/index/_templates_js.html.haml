@@ -30,7 +30,7 @@
 
 
   <% if (!!alternative_size) { %>
-  <div class="response-alternative-wrap"><a class="btn btn-mini response-alternative" href="/scenes/<%= scene_id %>/alternative_responses/<%= id %>">Show alternative scenarios (<%= alternative_size %>)</a></div>
+  <div class="response-alternative-wrap"><a class="response-alternative" href="/scenes/<%= scene_id %>/alternative_responses/<%= id %>"><%= alternative_size %> alternative scenario(s)</a></div>
   <% } %>
 
   </div>
@@ -54,7 +54,7 @@
 
 %script#responses-alternative-template{:type => 'text/html'}
   <div>
-  <h4>Alternative responses</h4>
+  <h4>Alternative scenarios</h4>
   <div id="responses-alternative"></div>
   </div>
 
