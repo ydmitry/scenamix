@@ -16,6 +16,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       $(window).on 'scenario:change', _.bind @onScenarioChange, @
       @template = _.template $("#responses-template").html()
       @options = options
+      @scrollScenarioBranchesFollowFrom()
       @
 
     render: ->
@@ -148,3 +149,21 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       false
 
+    scrollScenarioBranchesFollowFrom: ->
+        $el = @$('#scenario-branches-wrap')
+        pos = @$('#scenario-current').find('.response:first').position().top - 40
+        $window = $ window
+
+        $el.css
+          position: 'absolute'
+          top: pos
+        
+        $window.scroll (e) ->
+          if $window.scrollTop() < pos
+            $el.css
+              position: 'absolute'
+              top: pos
+          else
+            $el.css
+              position: 'fixed'
+              top: 0
