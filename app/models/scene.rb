@@ -3,14 +3,9 @@ class Scene < ActiveRecord::Base
   has_many :responses, :dependent => :destroy
   belongs_to :user
   validates :title, :description, presence: true
+  delegate :name, :to => :user, :allow_nil => true, :prefix => true
 
-  def user_name
-    if self.user.present?
-      'User' + self.user.id
-    else
-      'Guest'
-    end
-  end
+  
 
   def best_scenario
     best_first_response = responses.best_child_by_parent_id(self.id, 0)

@@ -5,14 +5,7 @@ class Response < ActiveRecord::Base
   has_many :responses, foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Response'
   validates :response, presence: true
-
-  def user_name
-    if self.user.present?
-      'User' + self.user.id
-    else
-      'Guest'
-    end
-  end
+  delegate :name, :to => :user, :allow_nil => true, :prefix => true
 
   def votes
     self.upvotes - self.downvotes
@@ -24,10 +17,6 @@ class Response < ActiveRecord::Base
 
   def alternative_size
     self.alternative.size
-  end
-
-  def sequels
-    self.responses
   end
 
   def best_scenario
