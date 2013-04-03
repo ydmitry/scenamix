@@ -54,12 +54,8 @@
   opacity: 1;
 }
 
-.footer {
-  background-color: #FAFAFA;
+#footer {
   color: #999999;
-}
-
-.footer {
   background-color: #F5F5F5;
   border-top: 1px solid #E5E5E5;
   margin-top: 70px;
@@ -83,4 +79,12 @@
 
 #scene_description {
   height: 200px;
+}
+
+#scenario-branches {
+  overflow: hidden;
+}
+
+#scenario-branches {
+  overflow: auto;
 }
