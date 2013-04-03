@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325175624) do
+ActiveRecord::Schema.define(:version => 20130402035458) do
 
   create_table "responses", :force => true do |t|
     t.integer  "scene_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130325175624) do
     t.string   "ip_address", :limit => 15, :default => ""
   end
 
+  add_index "responses", ["parent_id"], :name => "index_responses_on_parent_id"
   add_index "responses", ["scene_id"], :name => "index_responses_on_scene_id"
 
   create_table "scenes", :force => true do |t|

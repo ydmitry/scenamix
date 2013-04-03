@@ -14,8 +14,10 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
     initialize: (options) ->
       $(window).on 'scenario:change', _.bind @onScenarioChange, @
+
       @template = _.template $("#responses-template").html()
       @options = options
+      @scrollScenarioBranchesFollowFrom()
       @
 
     render: ->
@@ -31,22 +33,22 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
     onResponseHover: (e) -> 
       $response = $ e.currentTarget
-      $el = $response.find '.response-alternative'
-      @responseAlternative $el if $el.length > 0 && !$response.hasClass 'alert-info'
+      
+      @responseAlternative $response if !$response.hasClass 'response-active'
 
     onResponseAlternative: (e) ->
       $el = $ e.currentTarget
-
-      @responseAlternative $el
+      $response = $el.parents '.response'
+      @responseAlternative $response
 
       false
 
-    responseAlternative: ($el) ->
-      $response = $el.parents '.response'
+    responseAlternative: ($response) ->
+      $el = $response.find '.response-alternative'
 
-      @$el.find('#scenario-current-responses').find('.response').removeClass 'alert-info'      
+      @removeResponseHightlight()      
 
-      $response.addClass 'alert-info'
+      $response.addClass 'response-active'
 
       @responseAlternativeCollection = null
 
@@ -55,13 +57,22 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       else 
         @responseAlternativeView.undelegateEvents()
 
-      @responseAlternativeCollection = new ResponseCollection
-        url: $el.attr 'href'
+      if $el.length !=0
+        @responseAlternativeCollection = new ResponseCollection
+          url: $el.attr 'href'
+          success: ->
+            $(window).trigger 'scenario-branches:updated'
 
-      @responseAlternativeView = new ResponsesAlternativeView
-        collection: @responseAlternativeCollection
-      
-      @responseAlternativeCollection.fetch()
+        @responseAlternativeView = new ResponsesAlternativeView
+          collection: @responseAlternativeCollection
+
+        @responseAlternativeCollection.fetch()
+
+      else if !!@responseAlternativeView
+        @responseAlternativeView.$el.hide().empty()
+
+    removeResponseHightlight: ->
+      @$el.find('#scenario-current-responses').find('.response').removeClass 'response-active'
 
     onResponseWeight: (e) ->
       $el = $ e.currentTarget
@@ -145,6 +156,55 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
             success: _.bind @onScenarioChangeLoad, @
         , @
 
-
       false
 
+    scrollScenarioBranchesFollowFrom: ->
+        $el = @$('#scenario-branches-wrap')
+        pos = @responseListPosition()
+        $window = $ window
+
+        $wrap = @$ '#responses-alternative-wrap'
+
+        $el.css
+          position: 'absolute'
+          top: pos
+
+        @responsesAlternativeWrapUpdate()
+
+        $window.scroll _.bind (e) ->
+          if $window.scrollTop() < pos
+            $el.css
+              position: 'absolute'
+              top: pos
+          else
+            $el.css
+              position: 'fixed'
+              top: 0
+          @responsesAlternativeWrapUpdate()
+        , @
+        
+        @
+
+
+    responseListPosition: ->
+      @$('#scenario-current').find('.response:first').position().top - 40
+
+    responsesAlternativeWrapUpdate: ->
+      $window = $ window
+      pos = @responseListPosition()
+      $wrap = @$ '#scenario-branches'
+      $footer = $ '#footer'
+      footerPosition = $footer.position().top
+      scrollTop = $window.scrollTop()
+      height = $window.height()
+
+      if footerPosition < height + scrollTop
+        height = height - (height + scrollTop - footerPosition)
+
+      if pos > scrollTop
+        height = height - (pos - scrollTop)
+
+      $wrap.css
+        height: height
+
+      @

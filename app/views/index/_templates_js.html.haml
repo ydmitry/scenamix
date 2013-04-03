@@ -1,5 +1,5 @@
 %script#response-alternative-item-template{:type => 'text/html'}
-  <div class="well response alert-info">
+  <div class="response-alternative">
   <%= response %>
   <div class='response-votes-wrap'>
   <a class="icon-plus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/upvote"></a>
@@ -16,7 +16,7 @@
 %script#response-item-template{:type => 'text/html'}
   <div>
   <div class="scenario-sequel-wrap"><a data-parent_id="<%= parent_id %>" data-scene_id="<%= scene_id %>" class="btn btn-info btn-mini scenario-sequel" href="#">New sequel of scenario</a></div>
-  <div class="well response">
+  <div class="response">
   <%= response %>
 
   <div class='response-votes-wrap'>
@@ -30,7 +30,7 @@
 
 
   <% if (!!alternative_size) { %>
-  <div class="response-alternative-wrap"><a class="btn btn-mini response-alternative" href="/scenes/<%= scene_id %>/alternative_responses/<%= id %>">Show alternative scenarios (<%= alternative_size %>)</a></div>
+  <div class="response-alternative-wrap"><a class="response-alternative" href="/scenes/<%= scene_id %>/alternative_responses/<%= id %>"><%= alternative_size %> alternative scenario(s)</a></div>
   <% } %>
 
   </div>
@@ -53,8 +53,8 @@
 
 
 %script#responses-alternative-template{:type => 'text/html'}
-  <div>
-  <h4>Alternative responses</h4>
+  <div id="responses-alternative-wrap">
+  <h4>Alternative scenarios</h4>
   <div id="responses-alternative"></div>
   </div>
 

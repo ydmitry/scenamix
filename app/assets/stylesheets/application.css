@@ -19,7 +19,7 @@
 }
 
 .scenario-sequel-wrap {
-  margin: 0 0 30px 0;
+  margin: 10px;
 }
 
 .add-new-scene-wrap {
@@ -54,12 +54,8 @@
   opacity: 1;
 }
 
-.footer {
-  background-color: #FAFAFA;
+#footer {
   color: #999999;
-}
-
-.footer {
   background-color: #F5F5F5;
   border-top: 1px solid #E5E5E5;
   margin-top: 70px;
@@ -79,4 +75,31 @@
   margin-right: 20px;
   display: inline-block;
   font-size: 0.8em;
+}
+
+#scene_description {
+  height: 200px;
+}
+
+#scenario-branches {
+  overflow: hidden;
+}
+
+#scenario-branches:hover {
+  overflow: auto;
+}
+
+.response {
+  padding: 10px;
+}
+
+.response-active {
+  background: #EFEFEF;
+  border-radius: 10px;
+}
+
+#scenario-branches {
+  padding: 10px;
+  background: #EFEFEF;
+  border-radius: 10px;
 }

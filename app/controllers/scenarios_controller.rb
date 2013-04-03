@@ -3,15 +3,7 @@ class ScenariosController < ApplicationController
     scene = Scene.find(params[:scene_id])
     response = Response.find(params[:id])
 
-    id = response.best_scenario_last_id
-
-    scenarios_response_ids = scene.scenarios_response_ids
-    
-    idx = (scenarios_response_ids.index(id.to_i) + 1) % scenarios_response_ids.size
-
-    next_id = scenarios_response_ids[idx]
-
-    response_next = Response.find(next_id)
+    response_next = Response.find(response.scenarios_next_id)
 
     @scenario = response_next.best_scenario
     respond_to do |format|
@@ -24,15 +16,7 @@ class ScenariosController < ApplicationController
     scene = Scene.find(params[:scene_id])
     response = Response.find(params[:id])
 
-    id = response.best_scenario_last_id
-
-    scenarios_response_ids = scene.scenarios_response_ids
-    
-    idx = (scenarios_response_ids.index(id.to_i) - 1) % scenarios_response_ids.size
-
-    prev_id = scenarios_response_ids[idx]
-
-    response_prev = Response.find(prev_id)
+    response_prev = Response.find(response.scenarios_prev_id)
 
     @scenario = response_prev.best_scenario
     respond_to do |format|

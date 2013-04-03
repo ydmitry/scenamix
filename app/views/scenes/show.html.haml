@@ -17,10 +17,9 @@
     #scenario-responses-wrap
       - if @scenario.present?
         #scenario-current-responses
-          %hr
           - @scenario.each do |response|
             .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => response.parent_id, 'data-scene_id' => response.scene_id
-            .well.response
+            .response
               = post_format(response.response)
               .response-votes-wrap
                 = link_to '', upvote_scene_response_path(@scene, response), :class => 'icon-plus-sign response-weight'
@@ -34,11 +33,13 @@
                 = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
                 = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
               - if response.alternative.present?
-                .response-alternative-wrap= link_to 'Show alternative scenarios (' + response.alternative_size.to_s + ')' , scene_alternative_response_path(@scene, response), :class => 'btn btn-mini response-alternative'
+                .response-alternative-wrap= link_to response.alternative_size.to_s + ' alternative scenario(s)' , scene_alternative_response_path(@scene, response), :class => 'response-alternative'
         .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => @scenario.last.id, 'data-scene_id' => @scene.id
 
-        = link_to "Previous scenario", prev_scene_response_path(@scene, @scenario.last), :class => 'btn btn-info scenario-prev'
-        = link_to "Next scenario", next_scene_response_path(@scene, @scenario.last), :class => 'btn btn-info scenario-next'
+        - if @scenario.last.scenarios_prev?
+          = link_to "Previous scenario", prev_scene_response_path(@scene, @scenario.last), :class => 'btn btn-info scenario-prev'
+        - if @scenario.last.scenarios_next?
+          = link_to "Next scenario", next_scene_response_path(@scene, @scenario.last), :class => 'btn btn-info scenario-next'
       - else
         .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => 0, 'data-scene_id' => @scene.id
 
