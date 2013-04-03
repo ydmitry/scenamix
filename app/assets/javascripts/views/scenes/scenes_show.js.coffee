@@ -65,13 +65,14 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
         @responseAlternativeView = new ResponsesAlternativeView
           collection: @responseAlternativeCollection
-        
+
         @responseAlternativeCollection.fetch()
+
       else if !!@responseAlternativeView
-        @responseAlternativeView.$el.empty()
+        @responseAlternativeView.$el.hide().empty()
 
     removeResponseHightlight: ->
-      @$el.find('#scenario-current-responses').find('.response').removeClass 'alert-info'
+      @$el.find('#scenario-current-responses').find('.response').removeClass 'response-active'
 
     onResponseWeight: (e) ->
       $el = $ e.currentTarget
@@ -167,6 +168,8 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
         $el.css
           position: 'absolute'
           top: pos
+
+        @responsesAlternativeWrapUpdate()
 
         $window.scroll _.bind (e) ->
           if $window.scrollTop() < pos

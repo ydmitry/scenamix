@@ -19,7 +19,7 @@
 }
 
 .scenario-sequel-wrap {
-  margin: 0 0 30px 0;
+  margin: 10px;
 }
 
 .add-new-scene-wrap {
@@ -83,9 +83,6 @@
 
 #scenario-branches {
   overflow: hidden;
-  padding: 5px 0;
-  background: #EEE;
-  border-radius: 10px;
 }
 
 #scenario-branches:hover {
@@ -93,10 +90,16 @@
 }
 
 .response {
-  padding: 5px;
+  padding: 10px;
 }
 
 .response-active {
-  background: #EEE;
+  background: #EFEFEF;
+  border-radius: 10px;
+}
+
+#scenario-branches {
+  padding: 10px;
+  background: #EFEFEF;
   border-radius: 10px;
 }

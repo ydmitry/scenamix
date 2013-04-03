@@ -26,6 +26,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
       
       @$el.append $rendered
 
+      @$el.show()
       @
 
     renderResponse: (response) ->
