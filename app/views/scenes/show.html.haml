@@ -19,7 +19,7 @@
         #scenario-current-responses
           - @scenario.each do |response|
             .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => response.parent_id, 'data-scene_id' => response.scene_id
-            .well.response
+            .response
               = post_format(response.response)
               .response-votes-wrap
                 = link_to '', upvote_scene_response_path(@scene, response), :class => 'icon-plus-sign response-weight'

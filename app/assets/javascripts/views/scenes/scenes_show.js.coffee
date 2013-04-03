@@ -34,7 +34,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
     onResponseHover: (e) -> 
       $response = $ e.currentTarget
       
-      @responseAlternative $response if !$response.hasClass 'alert-info'
+      @responseAlternative $response if !$response.hasClass 'response-active'
 
     onResponseAlternative: (e) ->
       $el = $ e.currentTarget
@@ -48,7 +48,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       @removeResponseHightlight()      
 
-      $response.addClass 'alert-info'
+      $response.addClass 'response-active'
 
       @responseAlternativeCollection = null
 

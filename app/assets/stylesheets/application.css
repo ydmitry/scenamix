@@ -83,8 +83,20 @@
 
 #scenario-branches {
   overflow: hidden;
+  padding: 5px 0;
+  background: #EEE;
+  border-radius: 10px;
 }
 
-#scenario-branches {
+#scenario-branches:hover {
   overflow: auto;
+}
+
+.response {
+  padding: 5px;
+}
+
+.response-active {
+  background: #EEE;
+  border-radius: 10px;
 }
