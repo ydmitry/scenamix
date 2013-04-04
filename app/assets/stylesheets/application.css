@@ -20,6 +20,11 @@
 
 .scenario-sequel-wrap {
   margin: 10px;
+  opacity: 0.6;
+}
+
+.scenario-sequel-wrap:hover {
+  opacity: 0.8;
 }
 
 .add-new-scene-wrap {
@@ -75,6 +80,7 @@
   margin-right: 20px;
   display: inline-block;
   font-size: 0.8em;
+  float: right;
 }
 
 #scene_description {
@@ -93,13 +99,41 @@
   padding: 10px;
 }
 
+.response:after {
+  clear: right;
+  content: "";
+  display: inline-block;
+}
+
 .response-active {
+  background: #EFEFEF;
+  border-radius: 10px;
+  position: relative;
+}
+
+.response-active:before {
+  content: "";
+  border-bottom: 10px solid transparent;
+  border-left: 30px solid #EFEFEF;
+  border-top: 10px solid transparent;
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 10px;
+  right: -30px;
+}
+
+#scenario-branches {
+  padding: 15px;
   background: #EFEFEF;
   border-radius: 10px;
 }
 
-#scenario-branches {
-  padding: 10px;
-  background: #EFEFEF;
-  border-radius: 10px;
+.response-alternative {
+  margin: 15px 0;
+}
+
+.response-alternative-link-wrap {
+  text-align: right;
+  clear: right;
 }

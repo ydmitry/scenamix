@@ -33,7 +33,7 @@
                 = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini'
                 = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
               - if response.alternative.present?
-                .response-alternative-wrap= link_to response.alternative_size.to_s + ' alternative scenario(s)' , scene_alternative_response_path(@scene, response), :class => 'response-alternative'
+                .response-alternative-link-wrap= link_to response.alternative_size.to_s + ' alternative scenario(s)' , scene_alternative_response_path(@scene, response), :class => 'response-alternative-link'
         .scenario-sequel-wrap= link_to 'New sequel of scenario', '#', :class => 'btn btn-info btn-mini scenario-sequel', 'data-parent_id' => @scenario.last.id, 'data-scene_id' => @scene.id
 
         - if @scenario.last.scenarios_prev?
