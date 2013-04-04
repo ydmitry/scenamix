@@ -11,22 +11,19 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   def name
-    if self.present?
-      'User' + self.id
-    else
-      'Guest'
-    end
+    'User' + self.id
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
-      user = User.create(name:auth.extra.raw_info.name,
-                           provider:auth.provider,
-                           uid:auth.uid,
-                           email:auth.info.email,
-                           password:Devise.friendly_token[0,20]
-                           )
+      user = User.create(
+        name: auth.extra.raw_info.name,
+        provider: auth.provider,
+        uid: auth.uid,
+        email: auth.info.email,
+        password: Devise.friendly_token[0,20]
+      )
     end
     user
   end
