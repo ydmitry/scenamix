@@ -7,10 +7,10 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       'submit .response-delete': 'onResponseDelete'
       'submit #response-post-form': 'onResponsePost'
-      'click .response-alternative': 'onResponseAlternative'
+      'click .response-alternative-link': 'onResponseAlternative'
       'click .response-weight': 'onResponseWeight'
       'click .scenario-sequel': 'onScenarioSequel'
-      'mouseenter #scenario-current-responses .response': 'onResponseHover'
+      'mouseenter .response': 'onResponseHover'
 
     initialize: (options) ->
       $(window).on 'scenario:change', _.bind @onScenarioChange, @
@@ -44,7 +44,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       false
 
     responseAlternative: ($response) ->
-      $el = $response.find '.response-alternative'
+      $el = $response.find '.response-alternative-link'
 
       @removeResponseHightlight()      
 
