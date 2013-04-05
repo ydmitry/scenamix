@@ -16,7 +16,7 @@ Scenamix::Application.routes.draw do
   #   resources :products
 
   resources :scenes do
-    resources :responses, only: [:show, :create, :edit, :update, :destroy] do
+    resources :responses, only: [:show, :new, :create, :edit, :update, :destroy] do
       member do
         post 'alternative' => 'alternative_responses#create'
         put 'upvote'

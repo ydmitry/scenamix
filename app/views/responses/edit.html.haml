@@ -1,11 +1,12 @@
--# edit.html.haml using partial
-
 %h1 Edit Existing Response
 
-= form_for [:scene, @response] do |f|
+= form_for [:scene, @response], :class => 'form-horizontal' do |f|
 
-  = f.label :response
-  = f.text_area :response
-  = @response.errors[:response].join(', ')
+  .control-group
+    = f.label :response
+    .controls
+      = f.text_area :response
+      = @response.errors[:response].join(', ')
 
-  = f.submit 'Update response', :class => 'btn btn-primary'
+  .form-actions
+    = f.submit 'Update response', :class => 'btn btn-primary'

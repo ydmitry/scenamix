@@ -9,7 +9,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       'submit #response-post-form': 'onResponsePost'
       'click .response-alternative-link': 'onResponseAlternative'
       'click .response-weight': 'onResponseWeight'
-      'click .scenario-sequel': 'onScenarioSequel'
+      'click .response-new-button': 'onResponseNewButton'
       'mouseenter .response': 'onResponseHover'
 
     initialize: (options) ->
@@ -122,7 +122,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       false
 
-    onScenarioSequel: (e) ->
+    onResponseNewButton: (e) ->
       $el = $ e.currentTarget
 
       templateCreateForm = _.template $('#responses-create-form-template').html()

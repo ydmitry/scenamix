@@ -1,4 +1,9 @@
 class ResponsesController < ApplicationController
+  def new
+    @scene = Scene.find(params[:scene_id])
+    @response = Response.new
+  end
+
   def create
     scene = Scene.find(params[:scene_id])
 
@@ -15,7 +20,7 @@ class ResponsesController < ApplicationController
         format.html { redirect_to scene, notice: "Response to #{scene.title} was successfully posted." }
         format.json { render :json => @response, :root => false }
       else
-        format.html { render :edit }
+        format.html { render :new }
         format.json { render :json => false }
       end
     end

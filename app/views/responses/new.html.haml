@@ -1,0 +1,12 @@
+%h1 New Response
+
+= form_for [@scene, @response], :url => { :action => "create" } do |f|
+
+  .control-group
+    = f.label :response
+    .controls
+      = f.text_area :response, :size => "60x12"
+      = @response.errors[:response].join(', ')
+
+  .form-actions
+    = f.submit 'Post response to scene', :class => 'btn btn-primary'
