@@ -9,10 +9,10 @@ class AlternativeResponsesController < ApplicationController
 
   def create
     response = Response.find(params[:id])
-
+    params_response = params[:response]
     alternative_response = response.scene.responses.new do |alternative|
       alternative.parent_id = response.parent_id
-      alternative.response = params[:response]
+      alternative.response = params_response[:response]
       alternative.user_id = current_user.try(:id) ? current_user.id : 0;
       alternative.ip_address = request.remote_ip
     end

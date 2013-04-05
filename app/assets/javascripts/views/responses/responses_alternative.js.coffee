@@ -38,7 +38,8 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
       $el = $(e.target)
 
       @collection.create
-        response: $el.find('textarea').val()
+        response:
+          response: $el.find('textarea').val()
       ,
         success: _.bind ->
           @collection.fetch()

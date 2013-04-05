@@ -146,8 +146,9 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
         url: url
 
       responseCollection.create
-        response: $form.find('textarea').val()
-        parent_id: $form.find('[name="parent_id"]').val()
+        response:
+          response: $form.find('textarea').val()
+          parent_id: $form.find('[name="parent_id"]').val()
       ,
         success: _.bind (response) ->
           responseCollection = new ResponseCollection
