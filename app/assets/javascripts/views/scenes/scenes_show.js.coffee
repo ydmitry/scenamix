@@ -17,7 +17,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       @template = _.template $("#responses-template").html()
       @options = options
-      @scrollScenarioBranchesFollowFrom()
+      @recalculateScenarioBranchesInit()
       @
 
     render: ->
@@ -159,48 +159,40 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       false
 
-    scrollScenarioBranchesFollowFrom: ->
-        $el = @$('#scenario-branches-wrap')
-        pos = @responseListPosition()
-        $window = $ window
-
-        $wrap = @$ '#responses-alternative-wrap'
-
-        $el.css
-          position: 'absolute'
-          top: pos
-
-        @responsesAlternativeWrapUpdate()
-
-        $window.scroll _.bind (e) ->
-          if $window.scrollTop() < pos
-            $el.css
-              position: 'absolute'
-              top: pos
-          else
-            $el.css
-              position: 'fixed'
-              top: 0
-          @responsesAlternativeWrapUpdate()
-        , @
-        
-        @
-
-
-    responseListPosition: ->
-      @$('#scenario-current').find('.response:first').position().top - 40
-
-    responsesAlternativeWrapUpdate: ->
+    recalculateScenarioBranchesInit: ->
       $window = $ window
-      pos = @responseListPosition()
+      $el = @$('#scenario-branches-wrap')
+      pos = @getScenarioBranchesPosition()
+
+      $el.css
+        position: 'absolute'
+        top: pos
+
+      setInterval _.bind(@recalculateScenarioBranches, @), 100
+
+      @
+
+    recalculateScenarioBranches: (e) ->
+      $window = $ window
+      $el = @$ '#scenario-branches-wrap'
       $wrap = @$ '#scenario-branches'
       $footer = $ '#footer'
+      pos = @getScenarioBranchesPosition()
       footerPosition = $footer.position().top
       scrollTop = $window.scrollTop()
       height = $window.height()
 
-      if footerPosition < height + scrollTop
-        height = height - (height + scrollTop - footerPosition)
+      if scrollTop < pos
+        $el.css
+          position: 'absolute'
+          top: pos
+      else
+        $el.css
+          position: 'fixed'
+          top: 0
+      
+      if footerPosition - scrollTop < height
+        height = footerPosition - scrollTop
 
       if pos > scrollTop
         height = height - (pos - scrollTop)
@@ -208,4 +200,9 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       $wrap.css
         height: height
 
-      @
+    getScenarioBranchesPosition: ->
+      $el = @$('#scenario-current')
+      if $el.length > 0
+        $el.position().top
+      else
+        0
