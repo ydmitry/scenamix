@@ -10,7 +10,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
 
     initialize: (options) ->
       @collection.bind "reset", @render, @
-      @template = _.template $("#responses-alternative-template").html()
+      @template = _.template $.trim($("#responses-alternative-template").html())
       @options = options
       @
 
@@ -56,7 +56,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
     newButton: (e) ->
       $el = $ e.currentTarget
 
-      templateCreateForm = _.template $('#responses-alternative-create-form-template').html()
+      templateCreateForm = _.template $.trim($('#responses-alternative-create-form-template').html())
 
       $form = $ templateCreateForm()
 
