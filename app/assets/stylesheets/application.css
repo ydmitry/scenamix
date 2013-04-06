@@ -61,7 +61,7 @@
 }
 
 #scenario-branches-wrap #scenario-branches {
-  opacity: 0.8;
+  opacity: 0.3;
   height: 100%;
 }
 
@@ -166,4 +166,8 @@
 
 .scenario-next {
   float: right;
+}
+
+#scenario-branches:empty {
+  display: none;
 }
