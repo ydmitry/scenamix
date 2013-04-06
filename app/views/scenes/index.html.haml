@@ -3,9 +3,17 @@
 %p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'
 
 - @scenes.each do |scene|
-  .well
+  .scene.well
     %h5= h scene.title
     %div= post_format(scene.description)
+    .scene-created-at
+      Created: 
+      = datetime_format(scene.created_at)
+    - if scene.last_response_at.present?
+      .scene-created-at
+        Last response:
+        = datetime_format(scene.last_response_at)
+    .scene-user-name= scene.user_name
     %p= link_to "View scene", scene
 
 %p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'

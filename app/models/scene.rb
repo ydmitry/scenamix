@@ -1,11 +1,15 @@
 class Scene < ActiveRecord::Base
-  attr_accessible :title, :description, :user_id, :ip_address
+
+  attr_accessible :title, :description, :user_id, :ip_address, :last_response_at
+
   has_many :responses, :dependent => :destroy
   belongs_to :user
+
   validates :title, :description, presence: true
+
   delegate :name, :to => :user, :allow_nil => true, :prefix => true
 
-  
+  scope :ordered, order("created_at DESC")
 
   def best_scenario
     best_first_response = responses.best_child_by_parent_id(self.id, 0)

@@ -45,7 +45,7 @@ class ResponsesController < ApplicationController
     @response = Response.find(params[:id])
 
     if !current_user.try(:admin?)
-      raise "#Response was successfully updated."
+      raise "Response can be edited only by admin."
     end
 
     if @response.update_attributes(params[:response])

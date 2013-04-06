@@ -29,6 +29,10 @@ class ScenesController < ApplicationController
   def update
     @scene = Scene.find(params[:id])
 
+    if !current_user.try(:admin?)
+      raise "Scene can be edited only by admin."
+    end
+
     if @scene.update_attributes(params[:scene])
       redirect_to @scene, notice: "#{@scene.title} was successfully updated."
     else
@@ -38,6 +42,11 @@ class ScenesController < ApplicationController
 
   def destroy
     @scene = Scene.find(params[:id])
+
+    if !current_user.try(:admin?)
+      raise "Response can be deleted only by admin."
+    end
+
     @scene.destroy
     redirect_to scenes_path, notice: "Scene '#{@scene.title}' deleted."
   end

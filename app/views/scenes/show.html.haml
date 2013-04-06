@@ -19,7 +19,7 @@
       - if @scenario.present?
         #scenario-current-responses
           - @scenario.each do |response|
-            .scenario-sequel-wrap= link_to 'New sequel of scenario', new_scene_response_path(@scene, response), :class => 'response-new-button', 'data-parent_id' => response.parent_id, 'data-scene_id' => response.scene_id
+            .scenario-sequel-wrap= link_to 'New sequel of scenario', new_scene_response_path(@scene) + '?parent_id=' + response.parent_id.to_s, :class => 'response-new-button', 'data-parent_id' => response.parent_id, 'data-scene_id' => response.scene_id
             .response{'data-alt-url' => alternative_scene_response_path(@scene, response)}
               = post_format(response.response)
               .response-votes-wrap
