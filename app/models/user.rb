@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   def name
-    'User' + self.id
+    'User' + self.id.to_s
   end
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
