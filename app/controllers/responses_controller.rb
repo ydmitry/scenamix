@@ -44,6 +44,10 @@ class ResponsesController < ApplicationController
   def update
     @response = Response.find(params[:id])
 
+    if !current_user.try(:admin?)
+      raise "#Response was successfully updated."
+    end
+
     if @response.update_attributes(params[:response])
       redirect_to @response.scene, notice: "#Response was successfully updated."
     else
@@ -53,8 +57,14 @@ class ResponsesController < ApplicationController
 
   def destroy
     response = Response.find(params[:id])
+
+    if !current_user.try(:admin?)
+      raise "Response can be deleted only by admin."
+    end
+
     response.destroy
     redirect_to response.scene, notice: "Response deleted."
+
   end
 
   def upvote

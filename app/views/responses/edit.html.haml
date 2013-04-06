@@ -5,7 +5,7 @@
   .control-group
     = f.label :response
     .controls
-      = f.text_area :response
+      = f.text_area :response, :size => "60x4"
       = @response.errors[:response].join(', ')
 
   .form-actions
