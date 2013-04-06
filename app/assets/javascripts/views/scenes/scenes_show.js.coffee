@@ -128,6 +128,8 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       $el.parent().empty().append $form
 
+      $form.find('textarea').focus()
+
       false
     ,
 

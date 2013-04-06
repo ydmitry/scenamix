@@ -61,4 +61,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
       $form = $ templateCreateForm()
 
       $el.parent().empty().append $form
+
+      $form.find('textarea').focus()
+
       false
