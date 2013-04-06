@@ -15,7 +15,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
     initialize: (options) ->
       $(window).on 'scenario:change', _.bind @onScenarioChange, @
 
-      @template = _.template $("#responses-template").html()
+      @template = _.template $.trim $("#responses-template").html()
       @options = options
       @recalculateScenarioBranchesInit()
       @
@@ -120,7 +120,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
     onResponseNewButton: (e) ->
       $el = $ e.currentTarget
 
-      templateCreateForm = _.template $('#responses-create-form-template').html()
+      templateCreateForm = _.template $.trim $('#responses-create-form-template').html()
 
       $form = $ templateCreateForm
         parent_id: 0 || $el.data 'parent_id'
