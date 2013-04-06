@@ -1,6 +1,6 @@
 class ScenesController < ApplicationController
   def index
-    @scenes = Scene.all
+    @scenes = Scene.ordered
   end
 
   def new
