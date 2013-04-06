@@ -10,13 +10,13 @@
   <div class="response-created-at"><%= created_at %></div>
   <div class="response-user-name"><%= user_name %></div>
 
-  <div><a href='/scenes/<%= scene_id %>/responses/<%= id %>' class='btn btn-mini'>Switch scenario</a></div>
+  <div><a href='/scenes/<%= scene_id %>/responses/<%= id %>' class='response-alternative-switch'>Switch scenario</a></div>
   </div>
 
 %script#response-item-template{:type => 'text/html'}
   <div>
-  <div class="scenario-sequel-wrap"><a data-parent_id="<%= parent_id %>" data-scene_id="<%= scene_id %>" class="btn btn-info btn-mini response-new-button" href="#">New sequel of scenario</a></div>
-  <div class="response">
+  <div class="scenario-sequel-wrap"><a data-parent_id="<%= parent_id %>" data-scene_id="<%= scene_id %>" class="response-new-button" href="/scenes/<%= scene_id %>/responses/new?parent_id=<%= parent_id %>">New sequel of scenario</a></div>
+  <div class="response" data-alt-url="/scenes/<%= scene_id %>/responses/<%= id %>/alternative">
   <%= response %>
 
   <div class='response-votes-wrap'>
@@ -30,7 +30,7 @@
 
 
   <% if (!!alternative_size) { %>
-  <div class="response-alternative-link-wrap"><a class="response-alternative-link" href="/scenes/<%= scene_id %>/alternative_responses/<%= id %>"><%= alternative_size %> alternative scenario(s)</a></div>
+  <div class="response-alternative-link-wrap"><a class="response-alternative-link" href="/scenes/<%= scene_id %>/responses/<%= id %>/alternative"><%= alternative_size %> alternative scenario(s)</a></div>
   <% } %>
 
   </div>
@@ -38,7 +38,7 @@
   </div>
 
 %script#responses-create-form-template{:type => 'text/html'}
-  <form method="post" action="/scenes/<%= scene_id %>/responses" accept-charset="UTF-8" id="response-post-form-<%= scene_id %>-<%= parent_id %>">
+  <form method="post" action="/scenes/<%= scene_id %>/responses" accept-charset="UTF-8" class="response-post-form">
   <input type="hidden" value="<%= parent_id %>" name="parent_id">
   <div class="control-group">
   <label for="response-textarea-<%= scene_id %>-<%= parent_id %>" class="control-label">Sequel of scenario</label>
@@ -51,11 +51,23 @@
   </div>
   </form>
 
+%script#responses-alternative-create-form-template{:type => 'text/html'}
+  <form action='' method='post' accept-charset="UTF-8">
+  <div class="control-group">
+  <label for="alternative_response" class="control-label">Response</label>
+  <div class="controls">
+  <textarea placeholder="Do you have another image in your mind?" name="response[response]" id="alternative_response" class="input-xxlarge"></textarea>
+  </div>
+  </div>
+  <input type="submit" value="Post alternative response" name="commit" class="btn btn-primary">
+  </form>
+
 
 %script#responses-alternative-template{:type => 'text/html'}
   <div id="responses-alternative-wrap">
   <h4>Alternative scenarios</h4>
   <div id="responses-alternative"></div>
+  <div class="scenario-alternative-new-wrap"><a class="btn btn-info response-alternative-new-button" href="#">New alternative response</a></div>
   </div>
 
 
@@ -63,7 +75,7 @@
   <div>
   <div id="scenario-current-responses">
   </div>
-  <div class="scenario-sequel-wrap"><a data-scene_id="<%= scene_id %>" data-parent_id="<%= response_id %>" class="btn btn-info btn-mini scenario-sequel" href="#">New sequel of scenario</a></div>
-  <a class="btn btn-info" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/prev">Previous scenario</a>
-  <a class="btn btn-info" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/next">Next scenario</a>
+  <div class="scenario-sequel-wrap"><a data-scene_id="<%= scene_id %>" data-parent_id="<%= response_id %>" class="response-new-button" href="/scenes/<%= scene_id %>/responses/new?parent_id=<%= response_id %>">New sequel of scenario</a></div>
+  <a class="btn btn-info scenario-prev" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/prev">Previous scenario</a>
+  <a class="btn btn-info scenario-next" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/next">Next scenario</a>
   </div>

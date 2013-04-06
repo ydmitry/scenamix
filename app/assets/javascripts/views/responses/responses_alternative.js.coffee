@@ -4,8 +4,9 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
     el: '#scenario-branches'
     
     events: 
-      'submit form': 'onFormSubmit',
-      'click .btn': 'switchScenario'
+      'submit form': 'onFormSubmit'
+      'click .response-alternative-switch': 'switchScenario'
+      'click .response-alternative-new-button': 'newButton'
 
     initialize: (options) ->
       @collection.bind "reset", @render, @
@@ -50,4 +51,14 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
     switchScenario: (e) ->
       $el = $(e.currentTarget)
       $(window).trigger 'scenario:change', $el.attr 'href'
+      false
+
+    newButton: (e) ->
+      $el = $ e.currentTarget
+
+      templateCreateForm = _.template $('#responses-alternative-create-form-template').html()
+
+      $form = $ templateCreateForm()
+
+      $el.parent().empty().append $form
       false

@@ -6,7 +6,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
     events:
 
       'submit .response-delete': 'onResponseDelete'
-      'submit #response-post-form': 'onResponsePost'
+      'submit .response-post-form': 'onResponsePost'
       'click .response-alternative-link': 'onResponseAlternative'
       'click .response-weight': 'onResponseWeight'
       'click .response-new-button': 'onResponseNewButton'
@@ -44,9 +44,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       false
 
     responseAlternative: ($response) ->
-      $el = $response.find '.response-alternative-link'
-
-      @removeResponseHightlight()      
+      @removeResponseHightlight()
 
       $response.addClass 'response-active'
 
@@ -57,19 +55,16 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       else 
         @responseAlternativeView.undelegateEvents()
 
-      if $el.length !=0
-        @responseAlternativeCollection = new ResponseCollection
-          url: $el.attr 'href'
-          success: ->
-            $(window).trigger 'scenario-branches:updated'
+      
+      @responseAlternativeCollection = new ResponseCollection
+        url: $response.data 'alt-url'
+        success: ->
+          $(window).trigger 'scenario-branches:updated'
 
-        @responseAlternativeView = new ResponsesAlternativeView
-          collection: @responseAlternativeCollection
+      @responseAlternativeView = new ResponsesAlternativeView
+        collection: @responseAlternativeCollection
 
-        @responseAlternativeCollection.fetch()
-
-      else if !!@responseAlternativeView
-        @responseAlternativeView.$el.hide().empty()
+      @responseAlternativeCollection.fetch()
 
     removeResponseHightlight: ->
       @$el.find('#scenario-current-responses').find('.response').removeClass 'response-active'
@@ -132,8 +127,6 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
         scene_id: $el.data 'scene_id'
 
       $el.parent().empty().append $form
-
-      $form.on 'submit', _.bind @onResponsePost, @
 
       false
     ,
