@@ -56,7 +56,7 @@
 
     = render :partial => "index/templates_js"
 
-    = hidden_field_tag 'user_is_admin', current_user.try(:admin?), :id => 'current-user-admin'
+    = hidden_field_tag 'user_is_admin', current_user.try(:admin) || 0, :id => 'current-user-admin'
     = hidden_field_tag 'user_id', current_user.try(:id), :id => 'current-user-id'
     /
       Javascripts

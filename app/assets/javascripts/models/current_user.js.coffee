@@ -3,7 +3,7 @@ define ['jquery', 'backbone'], ($, Backbone) ->
 
   currentUser = new CurrentUser
   currentUser.set
-    id: $('#current-user-id').val()
-    admin: $('#current-user-admin').val()
+    id: parseInt($('#current-user-id').val())
+    admin: parseInt($('#current-user-admin').val())
 
   currentUser
