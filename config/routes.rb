@@ -1,5 +1,4 @@
 Scenamix::Application.routes.draw do
-  devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -31,10 +30,6 @@ Scenamix::Application.routes.draw do
   devise_for :users, :controllers => { :sessions => "users/sessions" }
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  devise_scope :user do
-    get "sign_in", :to => "devise/sessions#new"
-    delete "sign_out", :to => "devise/sessions#destroy"
-  end
 
   # Sample resource route with options:
   #   resources :products do
@@ -73,6 +68,9 @@ Scenamix::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
   root :to => 'index#index'
+
+  match 'dashboard' => 'scenes#index', :as => 'user_root'
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

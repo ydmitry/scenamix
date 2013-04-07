@@ -53,7 +53,7 @@ class ResponsesController < ApplicationController
     end
 
     if @response.update_attributes(params[:response])
-      redirect_to @response, notice: "#Response was successfully updated."
+      redirect_to [@response.scene, @response], notice: "#Response was successfully updated."
     else
       render :edit
     end

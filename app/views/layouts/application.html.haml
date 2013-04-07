@@ -35,7 +35,7 @@
                 - if user_signed_in?
                   %li= link_to 'Sign out', '#', :id => 'current-user-sign-out'
                 - else
-                  %li= link_to 'Sign in', sign_in_path
+                  %li= link_to 'Sign in', new_user_session_path
                   %li= link_to 'Sign up', new_user_registration_path
 
     .container#layout-content-container

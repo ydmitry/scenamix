@@ -1,6 +1,6 @@
 %h1 Edit Existing Response
 
-= form_for [:scene, @response], :class => 'form-horizontal' do |f|
+= form_for [@response.scene, @response], :class => 'form-horizontal' do |f|
 
   .control-group
     = f.label :response
