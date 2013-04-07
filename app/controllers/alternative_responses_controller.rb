@@ -1,8 +1,10 @@
 class AlternativeResponsesController < ApplicationController
   def show
+    @scene = Scene.find(params[:scene_id])
     @response = Response.find(params[:id])
 
     respond_to do |format|
+      format.html
       format.json { render :json => @response.alternative, :root => false }
     end
   end
