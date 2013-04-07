@@ -6,6 +6,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
     events:
 
       'submit .response-delete': 'onResponseDelete'
+      'submit .scene-delete': 'onSceneDelete'
       'submit .response-post-form': 'onResponsePost'
       'click .response-alternative-link': 'onResponseAlternative'
       'click .response-weight': 'onResponseWeight'
@@ -28,6 +29,8 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       responseView = new ReponseView
         model: response
       @$responses.append responseView.render().el
+
+    onSceneDelete: (e) -> confirm($(e.target).find('.btn').data('confirm'))
 
     onResponseDelete: (e) -> confirm($(e.target).find('.btn').data('confirm'))
 

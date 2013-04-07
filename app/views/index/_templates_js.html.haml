@@ -15,22 +15,25 @@
 
 %script#response-item-template{:type => 'text/html'}
   <div>
-  <div class="scenario-sequel-wrap"><a data-parent_id="<%= parent_id %>" data-scene_id="<%= scene_id %>" class="response-new-button" href="/scenes/<%= scene_id %>/responses/new?parent_id=<%= parent_id %>">New sequel of scenario</a></div>
-  <div class="response" data-alt-url="/scenes/<%= scene_id %>/responses/<%= id %>/alternative">
-  <%= response %>
+  <div class="scenario-sequel-wrap"><a data-parent_id="<%= response.parent_id %>" data-scene_id="<%= response.scene_id %>" class="response-new-button" href="/scenes/<%= response.scene_id %>/responses/new?parent_id=<%= response.parent_id %>">New sequel of scenario</a></div>
+  <div class="response" data-alt-url="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative">
+  <%= response.response %>
 
   <div class='response-votes-wrap'>
-  <a class="icon-plus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/upvote"></a>
-  <span class="response-weight-value"><%= votes %></span>
-  <a class="icon-minus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/downvote"></a>
+  <a class="icon-plus-sign response-weight" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/upvote"></a>
+  <span class="response-weight-value"><%= response.votes %></span>
+  <a class="icon-minus-sign response-weight" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/downvote"></a>
   </div>
 
-  <div class="response-created-at"><%= created_at %></div>
-  <div class="response-user-name"><%= user_name %></div>
+  <div class="response-created-at"><%= response.created_at %></div>
+  <div class="response-user-name"><%= response.user_name %></div>
 
-
-  <% if (!!alternative_size) { %>
-  <div class="response-alternative-link-wrap"><a class="response-alternative-link" href="/scenes/<%= scene_id %>/responses/<%= id %>/alternative"><%= alternative_size %> alternative scenario(s)</a></div>
+  <% if (current_user.admin || current_user.id == response.user_id) { %>
+  <a href='/scenes/<%= response.scene_id %>/responses/<%= response.id %>/edit' class="btn btn-mini response-edit">Edit</a>
+  <form method="post" class="button_to response-delete" action="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/40"><div><input type="hidden" value="delete" name="_method"><input type="submit" value="Delete" data-confirm="Are you sure?" class="btn btn-mini btn-danger"></div></form>
+  <% } %>
+  <% if (!!response.alternative_size) { %>
+  <div class="response-alternative-link-wrap"><a class="response-alternative-link" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative"><%= response.alternative_size %> alternative scenario(s)</a></div>
   <% } %>
 
   </div>

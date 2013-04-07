@@ -12,7 +12,7 @@ class ResponsesController < ApplicationController
       response.scene_id = scene.id
       response.parent_id = params_response[:parent_id]
       response.response = params_response[:response]
-      response.user_id = current_user.try(:id) ? current_user.id : 0
+      response.user_id = current_user.try(:id)
       response.ip_address = request.remote_ip
     end
 
@@ -44,12 +44,12 @@ class ResponsesController < ApplicationController
   def update
     @response = Response.find(params[:id])
 
-    if !current_user.try(:admin?)
-      raise "Response can be edited only by admin."
+    if !current_user.try(:admin?) && current_user.try(:id) != @response.user_id
+      raise "Response can be edited only by owner or admin."
     end
 
     if @response.update_attributes(params[:response])
-      redirect_to @response.scene, notice: "#Response was successfully updated."
+      redirect_to @response, notice: "#Response was successfully updated."
     else
       render :edit
     end
@@ -58,8 +58,8 @@ class ResponsesController < ApplicationController
   def destroy
     response = Response.find(params[:id])
 
-    if !current_user.try(:admin?)
-      raise "Response can be deleted only by admin."
+    if !current_user.try(:admin?) && current_user.try(:id) != @response.user_id
+      raise "Response can be deleted only by owner or admin."
     end
 
     response.destroy

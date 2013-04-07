@@ -13,8 +13,8 @@
   .control-group
     = f.label :description
     .controls
-      = f.text_area :description
+      = f.text_area :description, :class => 'input-xxlarge'
       = @scene.errors[:description].join(', ')
 
   .form-actions
-    = f.submit 'Update scene Info'
+    = f.submit 'Update scene Info', :class => 'btn btn-primary'

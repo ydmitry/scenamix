@@ -33,7 +33,7 @@
                 %li= link_to "Scenes", scenes_path
               %ul.nav.pull-right
                 - if user_signed_in?
-                  %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+                  %li= link_to 'Sign out', '#', :id => 'current-user-sign-out'
                 - else
                   %li= link_to 'Sign in', sign_in_path
                   %li= link_to 'Sign up', new_user_registration_path
@@ -56,7 +56,8 @@
 
     = render :partial => "index/templates_js"
 
-    = hidden_field_tag 'user_is_admin', current_user.try(:admin?), :id => 'userdata-is-admin'
+    = hidden_field_tag 'user_is_admin', current_user.try(:admin?), :id => 'current-user-admin'
+    = hidden_field_tag 'user_id', current_user.try(:id), :id => 'current-user-id'
     /
       Javascripts
       \==================================================

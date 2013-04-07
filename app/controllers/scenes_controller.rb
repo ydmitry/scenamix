@@ -8,7 +8,14 @@ class ScenesController < ApplicationController
   end
 
   def create
-    @scene = Scene.new(params[:scene])
+    params_scene = params[:scene]
+
+    @scene = Scene.new do |scene|
+      scene.title = params_scene[:title]
+      scene.description = params_scene[:description]
+      scene.user_id = current_user.try(:id)
+      scene.ip_address = request.remote_ip
+    end
 
     if @scene.save
       redirect_to @scene, notice: "#{@scene.title} was successfully created."
@@ -29,8 +36,8 @@ class ScenesController < ApplicationController
   def update
     @scene = Scene.find(params[:id])
 
-    if !current_user.try(:admin?)
-      raise "Scene can be edited only by admin."
+    if !current_user.try(:admin?) && current_user.try(:id) != @scene.user_id
+      raise "Scene can be edited only by owner or admin."
     end
 
     if @scene.update_attributes(params[:scene])
@@ -43,8 +50,8 @@ class ScenesController < ApplicationController
   def destroy
     @scene = Scene.find(params[:id])
 
-    if !current_user.try(:admin?)
-      raise "Response can be deleted only by admin."
+    if !current_user.try(:admin?) && current_user.try(:id) != @scene.user_id
+      raise "Response can be deleted only by owner or admin."
     end
 
     @scene.destroy

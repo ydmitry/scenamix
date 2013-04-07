@@ -2,29 +2,17 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
   Router = Backbone.Router.extend
 
     routes:
-        # When there is no url, the home method is called
-        "": "home"
+      # When there is no url, the home method is called
+      "": "home"
 
-        "scenes": "scenes"
+      "scenes": "scenes"
 
-        "scenes/:scene": "sceneShow"
+      "scenes/:scene": "sceneShow"
 
-        "scenes/:scene/responses/:response": "sceneShow"
+      "scenes/:scene/responses/:response": "sceneShow"
 
-    home: ->
-
-      false
-
-    scenes: ->
-
-      console.log "scenes"
-
-    sceneShow: (scene) ->
-
-      sceneView = new ScenesShowView
-
-
-    initialize: ->
+    initialize: (options) ->
+      @options = options
 
       # Enable pushState for compatible browsers
       enablePushState = true
@@ -37,8 +25,17 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
 
       $(window).on 'scenario:changed', _.bind @onScenarioChanged, @
 
+    home: ->
+      false
+
+    scenes: ->
+      false
+
+    sceneShow: (scene) ->
+      sceneView = new ScenesShowView
+        sceneId: scene
+
     onScenarioChanged: (e, url)->
       @navigate url
 
     # Returns the Router class
-

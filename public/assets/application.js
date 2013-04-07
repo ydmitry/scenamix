@@ -1,1 +1,0 @@
-(function(){require(["jquery","underscore","backbone","routers/scenes_router"],function(e,t,n,r){return e(function(){var e;return e=new r})})}).call(this);

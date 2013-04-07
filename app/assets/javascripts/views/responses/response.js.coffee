@@ -1,9 +1,12 @@
-define ['jquery', 'underscore', 'backbone'], ($, _, Backbone) ->
+define ['jquery', 'underscore', 'backbone', 'models/current_user'], ($, _, Backbone, currentUser) ->
   Response = Backbone.View.extend
-    initialize: ->
+    initialize: (options) ->
+      @options = options
       @template = _.template $.trim $("#response-item-template").html()
 
     render: ->
-      @setElement @template @model.toJSON()
+      @setElement @template
+        response: @model.toJSON()
+        current_user: currentUser.toJSON()
       @
 

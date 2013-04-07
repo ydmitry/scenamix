@@ -33,7 +33,7 @@ Scenamix::Application.routes.draw do
 
   devise_scope :user do
     get "sign_in", :to => "devise/sessions#new"
-    get "current_user", :to => "users/sessions#current_user"
+    delete "sign_out", :to => "devise/sessions#destroy"
   end
 
   # Sample resource route with options:
