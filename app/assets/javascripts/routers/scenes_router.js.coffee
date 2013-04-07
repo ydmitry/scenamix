@@ -4,11 +4,10 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
     routes:
       # When there is no url, the home method is called
       "": "home"
-
+      "sign_in": "signIn"
+      "users/sign_up": "signUp"
       "scenes": "scenes"
-
       "scenes/:scene": "sceneShow"
-
       "scenes/:scene/responses/:response": "sceneShow"
 
     initialize: (options) ->
@@ -34,6 +33,12 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
     sceneShow: (scene) ->
       sceneView = new ScenesShowView
         sceneId: scene
+
+    signIn: ->
+      $('input[type="email"]:first').focus()
+
+    signUp: ->
+      $('input[type="email"]:first').focus()
 
     onScenarioChanged: (e, url)->
       @navigate url

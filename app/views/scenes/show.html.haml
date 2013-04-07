@@ -11,7 +11,7 @@
       #description= post_format(@scene.description)
       .scene-created-at= datetime_format(@scene.created_at)
       .scene-user-name= @scene.user_name
-    - if current_user.try(:admin?) || current_user.try(:id) == @scene.user_id
+    - if current_user.try(:id) && (current_user.try(:admin?) || current_user.try(:id) == @scene.user_id)
       = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
       = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger', :form_class => 'button_to scene-delete'
 
@@ -30,7 +30,7 @@
               .response-created-at= datetime_format(response.created_at)
               .response-user-name= response.user_name
 
-              - if current_user.try(:admin?) || current_user.try(:id) == response.user_id
+              - if current_user.try(:id) && (current_user.try(:admin?) || current_user.try(:id) == response.user_id)
                 = link_to 'Edit', edit_scene_response_path(@scene, response), :class => 'btn btn-mini response-edit'
                 = button_to 'Delete', scene_response_path(@scene, response), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
               - if response.alternative.present?

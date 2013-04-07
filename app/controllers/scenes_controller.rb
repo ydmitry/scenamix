@@ -36,6 +36,10 @@ class ScenesController < ApplicationController
   def update
     @scene = Scene.find(params[:id])
 
+    if !current_user.try(:id)
+      raise "Scene can be edited only by user."
+    end
+
     if !current_user.try(:admin?) && current_user.try(:id) != @scene.user_id
       raise "Scene can be edited only by owner or admin."
     end
@@ -49,6 +53,10 @@ class ScenesController < ApplicationController
 
   def destroy
     @scene = Scene.find(params[:id])
+
+    if !current_user.try(:id)
+      raise "Scene can be deleted only by user."
+    end
 
     if !current_user.try(:admin?) && current_user.try(:id) != @scene.user_id
       raise "Response can be deleted only by owner or admin."

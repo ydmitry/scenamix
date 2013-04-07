@@ -93,6 +93,15 @@
   float: right;
 }
 
+.scene h5 a {
+  text-decoration: underline;
+  color: #000;
+}
+
+.scene h5 a:hover, .scene h5 a:active {
+  color: #005580;
+}
+
 #scene_description {
   height: 200px;
 }

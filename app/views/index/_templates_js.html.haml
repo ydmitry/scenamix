@@ -28,7 +28,7 @@
   <div class="response-created-at"><%= response.created_at %></div>
   <div class="response-user-name"><%= response.user_name %></div>
 
-  <% if (current_user.admin || current_user.id == response.user_id) { %>
+  <% if (current_user.id && (current_user.admin || current_user.id == response.user_id)) { %>
   <a href='/scenes/<%= response.scene_id %>/responses/<%= response.id %>/edit' class="btn btn-mini response-edit">Edit</a>
   <form method="post" class="button_to response-delete" action="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/40"><div><input type="hidden" value="delete" name="_method"><input type="submit" value="Delete" data-confirm="Are you sure?" class="btn btn-mini btn-danger"></div></form>
   <% } %>

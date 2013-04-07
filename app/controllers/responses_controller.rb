@@ -44,6 +44,10 @@ class ResponsesController < ApplicationController
   def update
     @response = Response.find(params[:id])
 
+    if !current_user.try(:id)
+      raise "Response can be edited only by user."
+    end
+
     if !current_user.try(:admin?) && current_user.try(:id) != @response.user_id
       raise "Response can be edited only by owner or admin."
     end
@@ -57,6 +61,10 @@ class ResponsesController < ApplicationController
 
   def destroy
     response = Response.find(params[:id])
+
+    if !current_user.try(:id)
+      raise "Response can be deleted only by user."
+    end
 
     if !current_user.try(:admin?) && current_user.try(:id) != @response.user_id
       raise "Response can be deleted only by owner or admin."

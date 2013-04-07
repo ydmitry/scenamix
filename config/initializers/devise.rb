@@ -234,6 +234,6 @@ Devise.setup do |config|
   #Next, you need to declare the provider in your config/initializers/devise.rb and require it (if it wasn't required automatically by bundler yet):
 
   require "omniauth-facebook"
-  config.omniauth :facebook, "135482396634569", "APP_SECRET"
+  config.omniauth :facebook, "135482396634569", "087cb84f799120e6a0bfa118852d91b3"
 
 end
