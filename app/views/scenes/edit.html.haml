@@ -2,14 +2,19 @@
 
 %h1 Edit Existing Scene
 
-= form_for @scene do |f|
+= form_for @scene, :class => 'form-horizontal' do |f|
 
-  = f.label :title
-  = f.text_field :title
-  = @scene.errors[:title].join(', ')
+  .control-group
+    = f.label :title
+    .controls
+      = f.text_field :title
+      = @scene.errors[:title].join(', ')
 
-  = f.label :description
-  = f.text_area :description
-  = @scene.errors[:description].join(', ')
+  .control-group
+    = f.label :description
+    .controls
+      = f.text_area :description
+      = @scene.errors[:description].join(', ')
 
-  = f.submit 'Update scene Info'
+  .form-actions
+    = f.submit 'Update scene Info'

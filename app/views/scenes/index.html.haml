@@ -4,7 +4,7 @@
 
 - @scenes.each do |scene|
   .scene.well
-    %h5= h scene.title
+    %h5= link_to h(scene.title), scene
     %div= post_format(scene.description)
     .scene-created-at
       Created: 
