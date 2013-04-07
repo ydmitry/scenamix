@@ -19,10 +19,12 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       @template = _.template $.trim $("#responses-template").html()
       @options = options
       @recalculateScenarioBranchesInit()
+
       @
 
     render: ->
-
+      $response = @$('.response:first')
+      @responseAlternative($response) if $response.length > 0
       @
 
     renderResponse: (response) ->
@@ -117,6 +119,9 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       if !!@responseAlternativeView
         @responseAlternativeView.$el.empty()
+
+      $response = @$('.response:first')
+      @responseAlternative($response) if $response.length > 0
 
       false
 

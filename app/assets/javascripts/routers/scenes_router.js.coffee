@@ -24,6 +24,11 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
 
       $(window).on 'scenario:changed', _.bind @onScenarioChanged, @
 
+      if !pushState
+        mainRouter.navigate window.location.pathname.replace(/^\//, ''),
+          trigger: true
+          replace: false
+
     home: ->
       false
 
@@ -33,6 +38,7 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
     sceneShow: (scene) ->
       sceneView = new ScenesShowView
         sceneId: scene
+      sceneView.render()
 
     signIn: ->
       $('input[type="email"]:first').focus()
