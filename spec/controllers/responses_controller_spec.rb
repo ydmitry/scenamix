@@ -9,7 +9,8 @@ describe ResponsesController do
 
     describe 'PUT upvote' do
       it 'increments the response upvotes' do
-        reply = Response.create response: 'Me Gusta.'
+        scene = Scene.create! title: 'Title', description: 'Some scene'
+        reply = Response.create! scene_id: scene.id, response: 'Me Gusta.'
 
         put :upvote, scene_id: 1, id: reply.id
 
@@ -17,7 +18,8 @@ describe ResponsesController do
       end
 
       it 'returns votes in JSON' do
-        reply = Response.create response: 'Me Gusta.'
+        scene = Scene.create! title: 'Title', description: 'Some scene'
+        reply = Response.create! scene_id: scene.id, response: 'Me Gusta.'
 
         put :upvote, scene_id: 1, id: reply.id
 
@@ -27,7 +29,8 @@ describe ResponsesController do
 
     describe 'PUT downvote' do
       it 'increments the response downvotes' do
-        reply = Response.create response: 'Me Gusta.'
+        scene = Scene.create! title: 'Title', description: 'Some scene'
+        reply = Response.create! scene_id: scene.id, response: 'Me Gusta.'
 
         put :downvote, scene_id: 1, id: reply.id
 
@@ -35,7 +38,8 @@ describe ResponsesController do
       end
 
       it 'returns votes in JSON' do
-        reply = Response.create response: 'Me Gusta.'
+        scene = Scene.create! title: 'Title', description: 'Some scene'
+        reply = Response.create! scene_id: scene.id, response: 'Me Gusta.'
 
         put :downvote, scene_id: 1, id: reply.id
 

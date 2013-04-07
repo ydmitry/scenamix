@@ -1,5 +1,8 @@
 Feature: User edits a response
 
+  Background:
+    Given I am logged in as an admin
+
   Scenario: Successful edit
     Given a scene exists with:
       | title       | Wake up, Neo... |

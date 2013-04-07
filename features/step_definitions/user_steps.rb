@@ -99,7 +99,7 @@ Given /^I am logged in as an admin$/ do
     user.admin = true
   end
 
-  visit sign_in_path
+  visit new_user_session_path
 
   fill_in 'Email', with: 'andrii.ponomarov@gmail.com'
   fill_in 'Password', with: '111111'
