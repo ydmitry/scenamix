@@ -85,10 +85,6 @@ class Response < ActiveRecord::Base
     scenarios_response_ids[idx]
   end
 
-  def update_scene_last_response
-    self.scene.update_attribute(:last_response_at, self.created_at)
-  end
-
   def self.best_child_by_parent_id(scene_id, parent_id)
     Response.best_children_by_parent_id(scene_id, parent_id).first
   end
@@ -98,6 +94,10 @@ class Response < ActiveRecord::Base
   end
 
   private
+
+  def update_scene_last_response
+    self.scene.update_attribute(:last_response_at, self.created_at)
+  end
 
   def ancestors
     [self.parent.try(:ancestors), self.parent].compact.flatten
