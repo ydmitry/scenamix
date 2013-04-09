@@ -179,11 +179,6 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       $window = $ window
       $el = @$ '#scenario-branches-wrap'
 
-      if $window.width() < 760
-        $el.hide()
-      else
-        $el.show()
-
       $wrap = @$ '#scenario-branches'
       $footer = $ '#footer'
       pos = @getScenarioBranchesPosition()

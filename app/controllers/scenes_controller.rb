@@ -8,14 +8,9 @@ class ScenesController < ApplicationController
   end
 
   def create
-    params_scene = params[:scene]
-
-    @scene = Scene.new do |scene|
-      scene.title = params_scene[:title]
-      scene.description = params_scene[:description]
-      scene.user_id = current_user.try(:id)
-      scene.ip_address = request.remote_ip
-    end
+    @scene = Scene.new(params[:scene])
+    @scene.user = current_user
+    @scene.ip_address = request.remote_ip
 
     if @scene.save
       redirect_to @scene, notice: "#{@scene.title} was successfully created."

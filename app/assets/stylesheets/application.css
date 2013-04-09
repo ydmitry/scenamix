@@ -180,3 +180,14 @@
 #scenario-branches:empty {
   display: none;
 }
+
+@media screen and (max-width: 47.5em) {
+  #scenario-branches-wrap {
+    display: none;
+  }
+
+  .response-active:before {
+    display: none;
+  }
+}
+
