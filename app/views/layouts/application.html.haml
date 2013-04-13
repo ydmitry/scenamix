@@ -20,8 +20,9 @@
 
   %body
     %header#header
-      .container
+      #header-container.container
         #header-logo
+          = link_to image_tag('logo.png', :alt => 'Scenamix'), '/'
         #header-quote
           %p “Logic will get you from A to Z. Imagination will get you everywhere.”
           %p (Albert Einstein)
@@ -46,11 +47,11 @@
     .container#layout-content-container
 
       - if notice
-        %div.alert.alert-success
+        .alert.alert-success.site-message
           = notice
 
       - if alert
-        %div.alert
+        .alert.site-message
           = alert
 
 
@@ -92,7 +93,7 @@
 
     = render :partial => "index/templates_js"
 
-    = hidden_field_tag 'user_is_admin', current_user.try(:admin) || 0, :id => 'current-user-admin'
+    = hidden_field_tag 'user_is_admin', current_user.try(:admin) ? 1 : 0, :id => 'current-user-admin'
     = hidden_field_tag 'user_id', current_user.try(:id), :id => 'current-user-id'
     /
       Javascripts

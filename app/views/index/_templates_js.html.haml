@@ -21,24 +21,29 @@
 
 %script#response-item-template{:type => 'text/html'}
   <div class="response response-scenario" data-alt-url="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative">
+  <div class="border-top"></div>
+  <% if (current_user.id && (current_user.admin || current_user.id == response.user_id)) { %>
+  <div class="response-user-menu">
+  <a href='/scenes/<%= response.scene_id %>/responses/<%= response.id %>/edit' class="btn btn-mini response-edit">Edit</a>
+  <form method="post" class="button_to response-delete" action="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/40"><div><input type="hidden" value="delete" name="_method"><input type="submit" value="Delete" data-confirm="Are you sure?" class="btn btn-mini btn-danger"></div></form>
+  </div>
+  <% } %>
+  
   <%= response.response %>
-  <div class="response-new-container"></div>
+  
   <div class="row-fluid additional-info">
   <div class="span4">
   <div class="scene-created-at"><%= response.created_at %></div>
   <div class="scene-user-name">Author: <span><%= response.user_name %></span></div>
   </div>
   <div class="span4 scenario-sequel-wrap">
+  
   <a data-scene_id="<%= response.scene_id %>" data-parent_id="<%= response.id %>" class="response-new-button" href="/scenes/<%= response.scene_id %>/responses/new?parent_id="><span>Write new sequel of scenario</span></a>
   </div>
   <div class="span4 response-votes-wrap">
   <a class="response-weight response-weight-upvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/upvote"></a>
   <span class="response-weight-value"><%= response.votes %></span>
   <a class="response-weight response-weight-downvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/downvote"></a>
-  <% if (current_user.id && (current_user.admin || current_user.id == response.user_id)) { %>
-  <a href='/scenes/<%= response.scene_id %>/responses/<%= response.id %>/edit' class="btn btn-mini response-edit">Edit</a>
-  <form method="post" class="button_to response-delete" action="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/40"><div><input type="hidden" value="delete" name="_method"><input type="submit" value="Delete" data-confirm="Are you sure?" class="btn btn-mini btn-danger"></div></form>
-  <% } %>
   <% if (!!response.alternative_size) { %>
   <div class="response-alternative-link-wrap"><a class="response-alternative-link" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative"><%= response.alternative_size %> alternative scenario(s)</a></div>
   </div>
@@ -46,9 +51,15 @@
   </div>
   </div>
 
+
+  <div class="response-new-container"></div>
+  <div class="border-bottom"></div>
+  </div>
+
 %script#responses-create-form-template{:type => 'text/html'}
   <form method="post" action="/scenes/<%= scene_id %>/responses" accept-charset="UTF-8" class="response-post-form">
   <input type="hidden" value="<%= parent_id %>" name="parent_id">
+  <img class="shadow-img" alt="" src="/assets/shadow-bottom.png" />
   <div class="control-group">
   <label for="response-textarea-<%= scene_id %>-<%= parent_id %>" class="control-label">Sequel of scenario</label>
   <div class="controls">

@@ -135,10 +135,13 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
         parent_id: 0 || $el.data 'parent_id'
         scene_id: $el.data 'scene_id'
 
-      $el.parents('.response,.scene').find('.response-new-container').append $form
-      $el.parent().empty()
+      $newResponseContainer = $el.parents('.response,.scene').find '.response-new-container'
 
-      $form.find('textarea').focus()
+      if $newResponseContainer.is ':empty'
+        $newResponseContainer.append $form
+        $form.find('textarea').focus()
+      else
+        $newResponseContainer.empty()
 
       false
     ,

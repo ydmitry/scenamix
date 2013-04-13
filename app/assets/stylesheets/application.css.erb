@@ -135,7 +135,7 @@ body {
   box-shadow: 0 0 10px #1c1c1c;
 }
 
-#header .container {
+#header #header-container {
   background: url(<%= asset_path 'header-bg.jpg' %>) no-repeat center top;
   height: inherit;
   position: relative;
@@ -143,12 +143,12 @@ body {
 }
 
 #header-quote {
-    font-size: 1.2em;
-    font-style: italic;
-    left: 330px;
-    position: absolute;
-    text-align: right;
-    top: 100px;
+  font-size: 1.2em;
+  font-style: italic;
+  left: 330px;
+  position: absolute;
+  text-align: right;
+  top: 100px;
 }
 
 #header-logo {
@@ -157,7 +157,6 @@ body {
   position: absolute;
   top: 30px;
   left: 20px;
-  background: url(<%= asset_path 'logo.png' %>) no-repeat;
 }
 
 #header-sign-wrap {
@@ -207,12 +206,12 @@ body {
 
 .social-vkontakte-icon:link, .social-vkontakte-icon:visited,
 #header-sign-vkontakte:link, #header-sign-vkontakte:visited {
-  background-position: -130px 0;
+  background-position: -131px 0;
 }
 
 .social-vkontakte-icon:hover, .social-vkontakte-icon:active,
 #header-sign-vkontakte:hover, #header-sign-vkontakte:active {
-  background-position: -130px -38px;
+  background-position: -131px -38px;
 }
 
 /* deactivate */
@@ -352,6 +351,10 @@ body {
   background-image: -moz-linear-gradient(top , rgba(0, 0, 0 ,0) 1%, #aab2b8 15%, #aab2b8 85%, rgba(0, 0, 0 ,0) 100%);
   background-image: -webkit-linear-gradient(top , rgba(0, 0, 0 ,0) 1%, #aab2b8 15%, #aab2b8 85%, rgba(0, 0, 0 ,0) 100%);
   
+}
+
+.site-message {
+  width: 50%;
 }
 
 .about-text {
@@ -643,6 +646,10 @@ background-position: -21px -130px;
   margin: 0;
 }
 
+.scenario-alternative-new-wrap {
+  padding: 0 0 20px 0;
+}
+
 
 #index-small-description {
   color: #686868;
@@ -723,15 +730,33 @@ background-position: -21px -130px;
 }
 
 #index-try-button {
+  padding: 150px;
+  display: inline-block;
+}
+
+#index-try-button span {
   display: inline-block;
   height: 151px;
   width: 115px;
   background: url(<%= asset_path 'try-it.png' %>) no-repeat;
-  margin: 150px 0;
 }
 
-#index-try-button:hover {
+#index-try-button:hover span {
   background-position: 0 -168px;
+}
+
+#index-try-button:active span {
+  background-position: 0 -168px;
+  opacity: 0.7;
+}
+
+.response-user-menu {
+  float: right;
+  margin-top: 1px;
+}
+
+.scene-user-menu {
+  margin-top: 15px;
 }
 
 #footer {
@@ -815,4 +840,288 @@ background-position: -21px -130px;
   text-align: center;
   position: absolute;
   bottom: 25px;
+}
+
+@media (max-width: 1240px) {
+  #header {
+    background-color: #2d2d2d;
+  }
+
+  #footer {
+    background-color: #191919; 
+  }
+
+  #header-quote {
+    top: 23px;
+  }
+
+  #index-second-step span {
+    left: 0;
+  }
+
+  #index-third-step span {
+    left: 340px;
+  }
+}
+
+@media (max-width: 980px) {
+  #index-first-step span {
+    left: 380px;
+    position: absolute;
+    top: 137px;
+    width: 45%;
+  }
+}
+
+@media (max-width: 800px) {
+  #header-logo{
+    width: 16%;
+  }
+
+  #header-logo img {
+    width: 100%;
+  }
+
+  #header {
+    background-color: #353535;
+    height: 165px;
+    margin-bottom: 66px;
+  }
+
+  #header-quote {
+    display: none;
+  }
+
+  #header-sign-wrap {
+    bottom: 80px;
+    right: 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  
+}
+
+@media (max-width: 640px) {
+  #index-small-description {
+    margin: 10px 0 55px;
+  }
+
+  #index-page-bg-first-step {
+    top: 418px;
+    height: 250px;
+  }
+
+  #index-first-step img {
+    padding: 0;
+    width: 250px;
+  }
+
+  #index-first-step span {
+    left: 270px;
+    position: absolute;
+    top: 102px;
+    width: 54.5%;
+  }
+
+  #index-second-step img {
+    height: 250px;
+  }
+
+  #index-second-step span {
+    position: absolute;
+    top: 55px;
+    left: 0;
+  }
+
+  #index-third-step img {
+    width: 250px;
+  }
+
+  #index-third-step span {
+    left: 250px;
+    top: 82px;
+  }
+
+  #index-page-bg-third-step {
+    height: 301px;
+    top: 944px;
+  }
+
+  #index-try-button {
+    padding: 50px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  #header {
+    margin-bottom: 0;
+  }
+
+  #header-sign-wrap {
+    right: 1%;
+  }
+
+  #header-logo {
+    left: 60px;
+    position: absolute;
+    top: 40px;
+  }
+
+  #index-small-description {
+    margin: 10px 0 55px;
+  }
+
+  #index-page-bg-first-step {
+    height: 234px;
+    top: 329px;
+  }
+
+  #index-first-step img {
+    padding: 0;
+    width: 175px;
+  }
+
+  #index-first-step span {
+    left: 201px;
+    position: absolute;
+    top: 63px;
+    width: 46.5%;
+  }
+
+  #index-second-step img {
+    height: 175px;
+  }
+
+  #index-second-step span {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 60%;
+  }
+
+  #index-third-step {
+    margin-top: 50px;
+  }
+
+  #index-third-step img {
+    width: 175px;
+  }
+
+  #index-third-step span {
+    left: 190px;
+    top: 2px;
+  }
+
+  #index-page-bg-third-step {
+    height: 251px;
+    top: 773px;
+  }
+
+  #index-try-button {
+    padding: 50px;
+  }
+}
+
+
+@media (max-width: 360px) {
+  #header-sign-wrap {
+    bottom: 65px;
+    right: 1%;
+    top: 25px;
+    width: 152px;
+    text-align: right;
+  }
+
+  #index-small-description {
+    font-size: 1.2em;
+    margin: 10px 0 55px;
+  }
+
+  .index-step {
+    font-size: 1.4em;
+  }
+
+  #index-first-step {
+    padding: 21px 0;
+  }
+
+  #index-first-step span {
+    left: 151px;
+    position: absolute;
+    top: 22px;
+    width: 50.5%;
+  }
+
+  #index-first-step img {
+    width: 145px;
+  }
+
+  #index-page-bg-first-step {
+    height: 154px;
+    top: 329px;
+  }
+
+  #index-second-step img{
+    height: 145px;
+  }
+
+  #index-second-step span {
+    left: 0;
+    position: absolute;
+    top: 4px;
+    width: 60%;
+  }
+
+  #index-third-step img {
+    width: 145px;
+    padding-bottom: 53px;
+  }
+
+  #index-third-step span {
+    left: 150px;
+    top: -1px;
+  }
+
+  #index-page-bg-third-step {
+    height: 231px;
+    top: 672px;
+  }
+
+  #footer-subscribe {
+    display: none;
+  }
+
+  #footer .separator {
+    display: none;
+  }
+
+  #footer {
+    height: 77px;
+  }
+}
+
+@media (max-width: 360px) {
+  #header-logo {
+    left: 20px;
+    position: absolute;
+    top: 10px;
+  }
+  #header-logo {
+      width: 16%;
+  }
+
+  #index-small-description {
+    font-size: 1em;
+  }
+
+  .index-step {
+    font-size: 1em;
+  }
+
+  #index-third-step span {
+    width: 45%;
+  }
 }
