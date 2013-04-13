@@ -42,6 +42,10 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       @responseAlternative $response if !$response.hasClass 'response-active'
 
     onResponseAlternative: (e) ->
+      
+      if @isSmallScreen()
+        return true
+
       $el = $ e.currentTarget
       $response = $el.parents '.response'
       @responseAlternative $response
@@ -49,6 +53,9 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       false
 
     responseAlternative: ($response) ->
+      if @isSmallScreen()
+        return true
+
       @removeResponseHightlight()
 
       $response.addClass 'response-active'
@@ -209,3 +216,6 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
     getScenarioBranchesPosition: ->
       $('#header').height()
+
+    isSmallScreen: ->
+      $(window).width() < 760

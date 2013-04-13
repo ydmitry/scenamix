@@ -166,6 +166,14 @@ body {
   bottom: 100px;
 }
 
+.body-small-screen #scenario-branches-wrap,
+.body-small-screen .vertical-separator,
+.body-small-screen #right-overlay {
+  display: none;
+}
+
+
+
 .social-icon, .header-sign-social {
   display: inline-block;
   width: 34px;
@@ -438,6 +446,7 @@ body {
   position: relative;
 }
 
+.response-alternative-new-button:link, .response-alternative-new-button:visited,
 .response-new-button:link, .response-new-button:visited {
   text-decoration: none;
   color: #A3A3A3;
@@ -447,16 +456,19 @@ body {
   color: #565656;
 }
 
+.response-alternative-new-button:hover,
 .response-active .response-new-button:hover, .response-active .response-new-button:active,
 .response-new-button:hover, .response-new-button:active {
   color: #0099d9;
   text-decoration: none;
 }
 
+.response-alternative-new-button:hover span, .response-alternative-new-button:hover span,
 .response-new-button:hover span, .response-new-button:active span {
   text-decoration: underline;
 }
 
+.response-alternative-new-button:after, .response-alternative-new-button:before, 
 .response-new-button:after, .response-new-button:before {
   background: url("<%= asset_path 'icons-sprite.png'%>") no-repeat scroll -5px -116px transparent;
   content: "";
@@ -466,6 +478,7 @@ body {
   width: 7px;
 }
 
+.response-alternative-new-button:hover:after, .response-alternative-new-button:hover:before,
 .response-active .response-new-button:after, .response-active .response-new-button:before,
 .response:hover .response-new-button:after, .response:hover .response-new-button:before, 
 .scene:hover .response-new-button:after, .scene:hover .response-new-button:before {
@@ -480,6 +493,11 @@ body {
   width: 100%;
 }
 
+.response-alternative-new-button {
+  display: inline-block;
+}
+
+.response-alternative-new-button span,
 .response-new-button span {
   padding: 0 3px;
 }
@@ -492,8 +510,7 @@ body {
   text-align: right;    
 }
 
-.border-top, 
-.border-bottom {
+.border-top, .border-bottom {
   height: 1px;
   left: 0px;
   position: absolute;
@@ -691,6 +708,11 @@ background-position: -21px -130px;
 
 .scenario-alternative-new-wrap {
   padding: 0 0 20px 0;
+  text-align: center;
+}
+
+.scenario-alternative-new-wrap form {
+  text-align: left; 
 }
 
 
