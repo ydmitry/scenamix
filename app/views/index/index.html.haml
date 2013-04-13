@@ -1,9 +1,21 @@
-%h1
-  Scenamix.com
+%p#index-small-description
+  Scenamix will help you to find out the best solution to a problem <span>using collaborative imagination.</span>
 
-%p
-  Scenamix will help people to develop and use their imagination.
-%p
-  Currently this website is under construction.
+%p#index-first-step.index-step
+  = image_tag 'imagine.png', :alt => ''
+  %span
+    You write whatever solution you need to imagine.
 
-%p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'
+%p#index-second-step.index-step.clearfix
+  = image_tag 'share.png', :alt => ''
+  %span
+    People read what they need to imagine and write scenarios that have appeared in their imagination.
+  
+
+%p#index-third-step.index-step
+  = image_tag 'act.png', :alt => ''
+  %span
+    As a result you will have a sum of scenarios - some actions and their consequences, so you can choose the best one.
+
+#index-try-container
+  %a{:href => '/scenes', :id => 'index-try-button'}

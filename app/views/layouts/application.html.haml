@@ -64,6 +64,10 @@
         #copyright
           \© Scenamix 2013
 
+    - if current_page?('/')
+      #index-page-bg-first-step.index-page-bg
+      #index-page-bg-third-step.index-page-bg
+
     = render :partial => "index/templates_js"
 
     = hidden_field_tag 'user_is_admin', current_user.try(:admin) || 0, :id => 'current-user-admin'
