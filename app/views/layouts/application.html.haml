@@ -33,8 +33,8 @@
               = link_to 'Sign out', '#', :id => 'current-user-sign-out'
         - else
           #header-sign-wrap
-            %a#header-sign-twitter.header-sign-social{:href => '', :title => "Under construction"}
-            %a#header-sign-google.header-sign-social{:href => '', :title => "Under construction"}
+            %a#header-sign-twitter.header-sign-social{:href => '', :title => "Temporary unavaible"}
+            %a#header-sign-google.header-sign-social{:href => '', :title => "Temporary unavaible"}
             = link_to '', user_omniauth_authorize_path(:provider => 'facebook'), :id => 'header-sign-facebook', :class => 'header-sign-social', :title => 'Sign in with facebook'
             #header-sign
               = link_to 'Sign in', new_user_session_path
