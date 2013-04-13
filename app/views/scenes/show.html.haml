@@ -7,13 +7,14 @@
       %h1= h @scene.title
 
       #description= post_format(@scene.description)
-      .response-new-container
+      
       .additional-info.row-fluid
         .span4
           .scene-created-at= datetime_format(@scene.created_at)
           .scene-user-name= @scene.user_name
         .scenario-sequel-wrap.span4
           = link_to content_tag(:span, 'Write sequel to scenario'), new_scene_response_path(@scene), :class => 'response-new-button', 'data-parent_id' => 0, 'data-scene_id' => @scene.id
+      .response-new-container
       .border-bottom
     - if current_user.try(:id) && (current_user.try(:admin?) || current_user.try(:id) == @scene.user_id)
       .scene-user-menu

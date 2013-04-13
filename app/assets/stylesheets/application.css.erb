@@ -133,6 +133,7 @@ body {
   height: 237px;
   background: #282828;
   box-shadow: 0 0 10px #1c1c1c;
+  -webkit-box-shadow: 0 0 10px #1c1c1c;
 }
 
 #header #header-container {
@@ -237,6 +238,8 @@ body {
   vertical-align: middle;
   display: inline-block;
   border-radius: 5px;
+  -webkit-border-radius: 5px;
+
   -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
   -moz-box-shadow:    0px 0px 3px rgba(0, 0, 0, 0.4);
   box-shadow:         0px 0px 3px rgba(0, 0, 0, 0.4);
@@ -253,30 +256,44 @@ body {
   color: #FFF;
   text-shadow: 0px -1px 0px #333;
   padding: 10px 20px;
-  background-image: -moz-linear-gradient(top , #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%);
-  background-image: -webkit-linear-gradient(top , #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%);
+
+  background-color: #029dd4;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#21c1f3), to(#0386bc)); /* Chrome, Safari 4+ */
+  background-image: -webkit-linear-gradient(top, #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(top, #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top, #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom, #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+
   display: block;
   float: left;
 }
 
 #header-sign a:hover, #header-sign a:active {
-  background-image: -moz-linear-gradient(top , #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%);
-  background-image: -webkit-linear-gradient(top , #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%);
+  background-color: #028dc4;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#11b1e3), to(#0376ac)); /* Chrome, Safari 4+ */
+  background-image: -webkit-linear-gradient(top, #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(top, #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top, #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom, #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+
   text-decoration: none;
 }
 
 #header-sign a:first-child {
   border-radius: 5px 0px 0px 5px;
+  -webkit-border-radius: 5px 0px 0px 5px;
   border-right: 1px solid #036d9d;
 }
 
 #header-sign a:last-child {
   border-radius: 0px 5px 5px 0px;
+  -webkit-border-radius: 0px 5px 5px 0px;
   border-left: 1px solid #06d1f2;
 }
 
 .user-signed-in #header-sign a:first-child, .user-signed-in #header-sign a:last-child {
   border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-right: none;
 }
 
@@ -294,14 +311,21 @@ body {
 
 #header-menu .border1 {
   height: 1px;
-  background-image: -moz-linear-gradient(left , rgba(28, 28, 28, 0) 0%, #1C1C1C 10%);
-  background-image: -webkit-linear-gradient(left , rgba(28, 28, 28, 0) 0%, #1C1C1C 10%);
+
+  background-image: -webkit-linear-gradient(left , rgba(28, 28, 28, 0) 0%, #1C1C1C 10%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(left , rgba(28, 28, 28, 0) 0%, #1C1C1C 10%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(left , rgba(28, 28, 28, 0) 0%, #1C1C1C 10%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to right , rgba(28, 28, 28, 0) 0%, #1C1C1C 10%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+
 }
 
 #header-menu .border2 {
   height: 1px;
-  background-image: -moz-linear-gradient(left , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.5) 10%);
-  background-image: -webkit-linear-gradient(left , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.5) 10%);
+
+  background-image: -webkit-linear-gradient(left , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.5) 10%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(left , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.5) 10%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(left , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.5) 10%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to right , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.5) 10%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
 #header-menu a {
@@ -316,6 +340,7 @@ body {
 #header-menu a.active:link, #header-menu a.active:visited {
   color: #05b9ef;
   box-shadow: 6px 0px 10px -7px #111, -6px 0px 10px -7px #111;
+  -webkit-box-shadow: 6px 0px 10px -7px #111, -6px 0px 10px -7px #111;
 }
 
 #header-menu a:hover, #header-menu a:hover {
@@ -324,8 +349,12 @@ body {
 }
 
 #header-menu a.active {
-  background-image: -moz-linear-gradient(top , #515151 0%, #4a4a4a 50%, #373737 50%, #3a3a3a 100%);
-  background-image: -webkit-linear-gradient(top , #515151 0%, #4a4a4a 50%, #373737 50%, #3a3a3a 100%);
+  background-color: #515151;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#515151), to(#3a3a3a)); /* Chrome, Safari 4+ */
+  background-image: -webkit-linear-gradient(top , #515151 0%, #4a4a4a 50%, #373737 50%, #3a3a3a 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(top , #515151 0%, #4a4a4a 50%, #373737 50%, #3a3a3a 100%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top , #515151 0%, #4a4a4a 50%, #373737 50%, #3a3a3a 100%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom, #515151 0%, #4a4a4a 50%, #373737 50%, #3a3a3a 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
 body {
@@ -355,9 +384,11 @@ body {
   top: 0px;
   bottom: 0px;
   left: 50%;
-  background-image: -moz-linear-gradient(top , rgba(0, 0, 0 ,0) 1%, #aab2b8 15%, #aab2b8 85%, rgba(0, 0, 0 ,0) 100%);
-  background-image: -webkit-linear-gradient(top , rgba(0, 0, 0 ,0) 1%, #aab2b8 15%, #aab2b8 85%, rgba(0, 0, 0 ,0) 100%);
-  
+
+  background-image: -webkit-linear-gradient(top , rgba(0, 0, 0 ,0) 1%, #aab2b8 15%, #aab2b8 85%, rgba(0, 0, 0 ,0) 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(top , rgba(0, 0, 0 ,0) 1%, #aab2b8 15%, #aab2b8 85%, rgba(0, 0, 0 ,0) 100%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top , rgba(0, 0, 0 ,0) 1%, #aab2b8 15%, #aab2b8 85%, rgba(0, 0, 0 ,0) 100%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom , rgba(0, 0, 0 ,0) 1%, #aab2b8 15%, #aab2b8 85%, rgba(0, 0, 0 ,0) 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
 .site-message {
@@ -467,8 +498,11 @@ body {
   left: 0px;
   position: absolute;
   width: 100%;
-  background-image: -moz-linear-gradient(left , #eaedef 0%, #eaedef 80%, rgba(234, 237, 239, 0) 100%);
-  background-image: -webkit-linear-gradient(left , #eaedef 0%, #eaedef 80%, rgba(234, 237, 239, 0) 100%);
+
+  background-image: -webkit-linear-gradient(left , #eaedef 0%, #eaedef 80%, rgba(234, 237, 239, 0) 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(left , #eaedef 0%, #eaedef 80%, rgba(234, 237, 239, 0) 100%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(left , #eaedef 0%, #eaedef 80%, rgba(234, 237, 239, 0) 100%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to right , #eaedef 0%, #eaedef 80%, rgba(234, 237, 239, 0) 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
 .border-top {
@@ -480,8 +514,10 @@ body {
 }
 
 .response-alternative .border-top, .response-alternative .border-bottom {
-  background-image: -moz-linear-gradient(left , #e1e4e7 0%, #e1e4e7 80%, rgba(225, 228, 231, 0) 100%);
-  background-image: -webkit-linear-gradient(left , #e1e4e7 0%, #e1e4e7 80%, rgba(225, 228, 231, 0) 100%);
+  background-image: -webkit-linear-gradient(left , #e1e4e7 0%, #e1e4e7 80%, rgba(225, 228, 231, 0) 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(left , #e1e4e7 0%, #e1e4e7 80%, rgba(225, 228, 231, 0) 100%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(left , #e1e4e7 0%, #e1e4e7 80%, rgba(225, 228, 231, 0) 100%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to right , #e1e4e7 0%, #e1e4e7 80%, rgba(225, 228, 231, 0) 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
 .response {
@@ -799,14 +835,19 @@ background-position: -21px -130px;
   color: #FFF;
   text-shadow: 0px -1px 0px #333;
   padding: 6px 20px;
-  background-image: -moz-linear-gradient(top , #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%);
-  background-image: -webkit-linear-gradient(top , #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%);
+
+  background-image: -webkit-linear-gradient(top , #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(top , #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top , #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom , #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+
   display: inline-block;
   -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
   -moz-box-shadow:    0px 0px 3px rgba(0, 0, 0, 0.4);
   box-shadow:         0px 0px 3px rgba(0, 0, 0, 0.4);
   border: none;
   border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 #subscribe-email-input {
@@ -815,6 +856,7 @@ background-position: -21px -130px;
   -moz-box-shadow: inset 2px 2px 1px rgba(0,0,0,.3);
   box-shadow: inset 2px 2px 1px rgba(0,0,0,.3);
   border-radius: 5px;
+  -webkit-border-radius: 5px;
   background-color: #DFDFDF;
   border: none;
   padding: 5px 6px;
@@ -826,21 +868,29 @@ background-position: -21px -130px;
 }
 
 #subscribe-form-submit:hover, #subscribe-form-submit:active {
-  background-image: -moz-linear-gradient(top , #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%);
-  background-image: -webkit-linear-gradient(top , #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%);
+  background-image: -webkit-linear-gradient(top , #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(top , #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top , #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom , #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+
   text-decoration: none;
 }
 
 #footer .border1 {
   height: 1px;
-  background-image: -moz-linear-gradient(left , rgba(28, 28, 28, 0) 0%, #0b0b0b 10%, #0b0b0b 90%, rgba(28, 28, 28, 0) 100%);
-  background-image: -webkit-linear-gradient(left , rgba(28, 28, 28, 0) 0%, #0b0b0b 10%, #0b0b0b 90%, rgba(28, 28, 28, 0) 100%);
+  background-image: -webkit-linear-gradient(left , rgba(28, 28, 28, 0) 0%, #0b0b0b 10%, #0b0b0b 90%, rgba(28, 28, 28, 0) 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(left , rgba(28, 28, 28, 0) 0%, #0b0b0b 10%, #0b0b0b 90%, rgba(28, 28, 28, 0) 100%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(left , rgba(28, 28, 28, 0) 0%, #0b0b0b 10%, #0b0b0b 90%, rgba(28, 28, 28, 0) 100%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to right , rgba(28, 28, 28, 0) 0%, #0b0b0b 10%, #0b0b0b 90%, rgba(28, 28, 28, 0) 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
 #footer .border2 {
   height: 1px;
-  background-image: -moz-linear-gradient(left , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.3) 10%, rgba(120, 120, 120, 0.5) 90%, rgba(120, 120, 120, 0) 100%);
-  background-image: -webkit-linear-gradient(left , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.3) 10%, rgba(120, 120, 120, 0.5) 90%, rgba(120, 120, 120, 0) 100%);
+
+  background-image: -webkit-linear-gradient(left , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.3) 10%, rgba(120, 120, 120, 0.5) 90%, rgba(120, 120, 120, 0) 100%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(left , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.3) 10%, rgba(120, 120, 120, 0.5) 90%, rgba(120, 120, 120, 0) 100%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(left , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.3) 10%, rgba(120, 120, 120, 0.5) 90%, rgba(120, 120, 120, 0) 100%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to right , rgba(120, 120, 120, 0) 0%, rgba(120, 120, 120, 0.3) 10%, rgba(120, 120, 120, 0.5) 90%, rgba(120, 120, 120, 0) 100%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
 }
 
 #footer .separator {
