@@ -8,7 +8,7 @@ Feature: User deletes a response
 			| title 			| Mortal Kombat |
 			| description | Finish him    |
 		And I am on the scene page
-		And I follow "New sequel of scenario"
+		And I follow "Write sequel to scenario"
 		When I post a response "Raiden is the best"
 		And I press "Delete" response
 		Then I should not see "Raiden is the best"

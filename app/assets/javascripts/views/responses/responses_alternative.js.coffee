@@ -9,22 +9,23 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
       'click .response-alternative-new-button': 'newButton'
 
     initialize: (options) ->
-      @collection.bind "reset", @render, @
+      @model.bind "change", @render, @
       @template = _.template $.trim $("#responses-alternative-template").html()
       @options = options
       @
 
     render: ->
       @$el.empty()
-      
-      @$responses = $ '<div />'
-      
-      @collection.each @renderResponse, this
 
-      $rendered = $ @template()
-      
+      @$responses = $ '<div />'
+
+      @model.responses.each @renderResponse, this
+
+      $rendered = $ @template
+        response: @model.toJSON()
+
       $rendered.find("#responses-alternative").append @$responses
-      
+
       @$el.append $rendered
 
       @$el.show()
@@ -38,12 +39,12 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
     onFormSubmit: (e) ->
       $el = $(e.target)
 
-      @collection.create
+      @model.responses.create
         response:
           response: $el.find('textarea').val()
       ,
         success: _.bind ->
-          @collection.fetch()
+          @model.responses.fetch()
         , @
 
       false

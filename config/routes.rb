@@ -29,8 +29,6 @@ Scenamix::Application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_for :users, :controllers => { :sessions => "users/sessions" }
-  
-
 
   # Sample resource route with options:
   #   resources :products do
@@ -69,6 +67,8 @@ Scenamix::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
   root :to => 'index#index'
+
+  match 'about' => 'index#about'
 
   match 'dashboard' => 'scenes#index', :as => 'user_root'
 

@@ -10,33 +10,38 @@
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
     = stylesheet_link_tag "application", :media => "all"
-    %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
-    %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
-    %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
-    %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
-    %link(href="images/favicon.ico" rel="shortcut icon")
+    
+    /%link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
+    /%link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
+    /%link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
+    /%link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
+    /%link(href="images/favicon.ico" rel="shortcut icon")
 
 
   %body
-    .navbar.navbar-inverse.navbar-static-top
-      .navbar-inner
-        .container
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-
-            %a.brand(href="/") Scenamix
-
-            .container.nav-collapse
-              %ul.nav
-                %li= link_to "Scenes", scenes_path
-              %ul.nav.pull-right
-                - if user_signed_in?
-                  %li= link_to 'Sign out', '#', :id => 'current-user-sign-out'
-                - else
-                  %li= link_to 'Sign in', new_user_session_path
-                  %li= link_to 'Sign up', new_user_registration_path
+    %header#header
+      .container
+        #header-logo
+        #header-quote
+          %p “Logic will get you from A to Z. Imagination will get you everywhere.”
+          %p (Albert Einstein)
+        #header-sign-wrap
+          %a#header-sign-twitter.header-sign-social{:href => '', :title => "Under construction"}
+          %a#header-sign-google.header-sign-social{:href => '', :title => "Under construction"}
+          = link_to '', user_omniauth_authorize_path(:provider => 'facebook'), :id => 'header-sign-facebook', :class => 'header-sign-social', :title => 'Sign in with facebook'
+          - if user_signed_in?
+            #header-sign.user-signed-in
+              = link_to 'Sign out', '#', :id => 'current-user-sign-out'
+          - else
+            #header-sign
+              = link_to 'Sign in', new_user_session_path
+              = link_to 'Join', new_user_registration_path
+        #header-menu
+          .border1
+          .border2
+          %a{:href => '/', :class => (current_page?('/') ? 'active' : nil)} Home
+          %a{:href => '/scenes', :class => (current_page?('/scenes') ||  controller.controller_name == 'scenes' ||  controller.controller_name == 'responses' ||  controller.controller_name == 'alternative_responses' ? 'active' : nil)} Scenes
+          %a{:href => '/about', :class => (current_page?('/about') ? 'active' : nil)} About
 
     .container#layout-content-container
 
@@ -52,7 +57,12 @@
       = yield
 
     %footer#footer
-      %p &copy; Scenamix 2013
+      .container
+        .separator
+          .border1
+          .border2
+        #copyright
+          \© Scenamix 2013
 
     = render :partial => "index/templates_js"
 

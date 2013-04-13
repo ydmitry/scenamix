@@ -3,17 +3,22 @@
 %p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'
 
 - @scenes.each do |scene|
-  .scene.well
+  .scene
+    .border-top
     %h5= link_to h(scene.title), scene
-    %div= post_format(scene.description)
-    .scene-created-at
-      Created: 
-      = datetime_format(scene.created_at)
-    - if scene.last_response_at.present?
-      .scene-created-at
-        Last response:
-        = datetime_format(scene.last_response_at)
-    .scene-user-name= scene.user_name
-    %p= link_to "View scene", scene
+    #description= post_format(scene.description)
+    .additional-info.row-fluid
+      .span4
+        .scene-created-at= datetime_format(scene.created_at)
+        .scene-user-name= scene.user_name
+      .span4
+        .scenario-sequel-wrap.span4
+          = link_to content_tag(:span, 'View scene'), scene, :class => 'response-alternative-switch'
+      .span4
+        - if scene.last_response_at.present?
+          .scene-created-at
+            Last response:
+            = datetime_format(scene.last_response_at)
+    .border-bottom
 
 %p= link_to "Add new scene", new_scene_path, :class => 'btn btn-primary'

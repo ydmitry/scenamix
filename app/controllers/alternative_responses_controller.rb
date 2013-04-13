@@ -1,23 +1,20 @@
 class AlternativeResponsesController < ApplicationController
   def show
-    @scene = Scene.find(params[:scene_id])
     @response = Response.find(params[:id])
 
     respond_to do |format|
       format.html
-      format.json { render :json => @response.alternative, :root => false }
+      format.json { render :json => @response, :root => false, :serializer => AlternativeResponsesSerializer }
     end
   end
 
   def create
+    scene = Scene.find(params[:scene_id])
     response = Response.find(params[:id])
-    params_response = params[:response]
-    alternative_response = response.scene.responses.new do |alternative|
-      alternative.parent_id = response.parent_id
-      alternative.response = params_response[:response]
-      alternative.user_id = current_user.try(:id)
-      alternative.ip_address = request.remote_ip
-    end
+    alternative_response = scene.responses.new(params[:response])
+    alternative_response.user = current_user
+    alternative_response.ip_address = request.remote_ip
+    alternative_response.parent = response.parent
 
     respond_to do |format|
       if alternative_response.save

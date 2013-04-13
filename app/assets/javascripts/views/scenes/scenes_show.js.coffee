@@ -1,4 +1,4 @@
-define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternative', 'collections/responses', 'views/responses/response'], ($, _, Backbone, ResponsesAlternativeView, ResponseCollection, ReponseView) ->
+define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternative', 'views/responses/response', 'models/response', 'collections/responses'], ($, _, Backbone, ResponsesAlternativeView, ReponseView, ResponseModel, ResponseCollection) ->
   ScenesShow = Backbone.View.extend
 
     el: '#layout-content-container'
@@ -11,7 +11,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       'click .response-alternative-link': 'onResponseAlternative'
       'click .response-weight': 'onResponseWeight'
       'click .response-new-button': 'onResponseNewButton'
-      'mouseenter .response': 'onResponseHover'
+      'mouseenter .response-scenario': 'onResponseHover'
 
     initialize: (options) ->
       $(window).on 'scenario:change', _.bind @onScenarioChange, @
@@ -19,7 +19,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       @template = _.template $.trim $("#responses-template").html()
       @options = options
       @recalculateScenarioBranchesInit()
-
+      $('body').append '<div id="right-overlay"></div>'
       @
 
     render: ->
@@ -53,7 +53,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       $response.addClass 'response-active'
 
-      @responseAlternativeCollection = null
+      @activeResponseModel = null
 
       if !@responseAlternativeView
         @responseAlternativeView = null
@@ -61,15 +61,16 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
         @responseAlternativeView.undelegateEvents()
 
       
-      @responseAlternativeCollection = new ResponseCollection
+      @activeResponseModel = new ResponseModel
         url: $response.data 'alt-url'
         success: ->
           $(window).trigger 'scenario-branches:updated'
 
       @responseAlternativeView = new ResponsesAlternativeView
-        collection: @responseAlternativeCollection
+        model: @activeResponseModel
 
-      @responseAlternativeCollection.fetch()
+      @activeResponseModel.fetch
+        parse: true
 
     removeResponseHightlight: ->
       @$el.find('#scenario-current-responses').find('.response').removeClass 'response-active'
@@ -115,7 +116,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       @$responsesWrap.append $rendered
 
-      @responseAlternativeCollection = null
+      @activeResponseModel = null
 
       if !!@responseAlternativeView
         @responseAlternativeView.$el.empty()
@@ -134,7 +135,8 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
         parent_id: 0 || $el.data 'parent_id'
         scene_id: $el.data 'scene_id'
 
-      $el.parent().empty().append $form
+      $el.parents('.response,.scene').find('.response-new-container').append $form
+      $el.parent().empty()
 
       $form.find('textarea').focus()
 
@@ -169,7 +171,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
       $el.css
         position: 'absolute'
-        top: pos
+        top: 0
 
       setInterval _.bind(@recalculateScenarioBranches, @), 100
 
@@ -189,11 +191,9 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       if scrollTop < pos
         $el.css
           position: 'absolute'
-          top: pos
       else
         $el.css
           position: 'fixed'
-          top: 0
       
       if footerPosition - scrollTop < height
         height = footerPosition - scrollTop
@@ -205,8 +205,4 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
         height: height
 
     getScenarioBranchesPosition: ->
-      $el = @$('#scenario-current')
-      if $el.length > 0
-        $el.position().top
-      else
-        0
+      $('#header').height()

@@ -1,42 +1,48 @@
 %script#response-alternative-item-template{:type => 'text/html'}
-  <div class="response-alternative">
+  <div class="response response-alternative">
+  <div class='border-top'></div>
   <%= response %>
-  <div class='response-votes-wrap'>
-  <a class="icon-plus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/upvote"></a>
+
+  <div class="row-fluid additional-info">
+  <div class="span6 clearfix">
+  <div class="response-user-name">Author: <span><%= user_name %></span></div>
+  <div class="response-created-at"><%= created_at %></div>
+  <a class="response-alternative-switch" href="/scenes/<%= scene_id %>/responses/<%= id %>"><span>Open scenario</span></a>
+  </div>
+  <div class="span6 response-votes-wrap">
+  <a class="response-weight response-weight-upvote" href="/scenes/<%= scene_id %>/responses/<%= id %>/upvote"></a>
   <span class="response-weight-value"><%= votes %></span>
-  <a class="icon-minus-sign response-weight" href="/scenes/<%= scene_id %>/responses/<%= id %>/downvote"></a>
+  <a class="response-weight response-weight-downvote" href="/scenes/<%= scene_id %>/responses/<%= id %>/downvote"></a>
+  </div>
   </div>
 
-  <div class="response-created-at"><%= created_at %></div>
-  <div class="response-user-name"><%= user_name %></div>
-
-  <div><a href='/scenes/<%= scene_id %>/responses/<%= id %>' class='response-alternative-switch'>Switch scenario</a></div>
+  <div class='border-bottom'></div>
   </div>
 
 %script#response-item-template{:type => 'text/html'}
-  <div>
-  <div class="scenario-sequel-wrap"><a data-parent_id="<%= response.parent_id %>" data-scene_id="<%= response.scene_id %>" class="response-new-button" href="/scenes/<%= response.scene_id %>/responses/new?parent_id=<%= response.parent_id %>">New sequel of scenario</a></div>
-  <div class="response" data-alt-url="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative">
+  <div class="response response-scenario" data-alt-url="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative">
   <%= response.response %>
-
-  <div class='response-votes-wrap'>
-  <a class="icon-plus-sign response-weight" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/upvote"></a>
-  <span class="response-weight-value"><%= response.votes %></span>
-  <a class="icon-minus-sign response-weight" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/downvote"></a>
+  <div class="response-new-container"></div>
+  <div class="row-fluid additional-info">
+  <div class="span4">
+  <div class="scene-created-at"><%= response.created_at %></div>
+  <div class="scene-user-name">Author: <span><%= response.user_name %></span></div>
   </div>
-
-  <div class="response-created-at"><%= response.created_at %></div>
-  <div class="response-user-name"><%= response.user_name %></div>
-
+  <div class="span4 scenario-sequel-wrap">
+  <a data-scene_id="<%= response.scene_id %>" data-parent_id="<%= response.id %>" class="response-new-button" href="/scenes/<%= response.scene_id %>/responses/new?parent_id="><span>Write new sequel of scenario</span></a>
+  </div>
+  <div class="span4 response-votes-wrap">
+  <a class="response-weight response-weight-upvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/upvote"></a>
+  <span class="response-weight-value"><%= response.votes %></span>
+  <a class="response-weight response-weight-downvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/downvote"></a>
   <% if (current_user.id && (current_user.admin || current_user.id == response.user_id)) { %>
   <a href='/scenes/<%= response.scene_id %>/responses/<%= response.id %>/edit' class="btn btn-mini response-edit">Edit</a>
   <form method="post" class="button_to response-delete" action="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/40"><div><input type="hidden" value="delete" name="_method"><input type="submit" value="Delete" data-confirm="Are you sure?" class="btn btn-mini btn-danger"></div></form>
   <% } %>
   <% if (!!response.alternative_size) { %>
   <div class="response-alternative-link-wrap"><a class="response-alternative-link" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative"><%= response.alternative_size %> alternative scenario(s)</a></div>
-  <% } %>
-
   </div>
+  <% } %>
   </div>
   </div>
 
@@ -69,16 +75,46 @@
 %script#responses-alternative-template{:type => 'text/html'}
   <div id="responses-alternative-wrap">
   <h4>Alternative scenarios</h4>
+  <img src='/assets/shadow-top.png' alt='' class="shadow-img" />
+  
+  <div class="response response-alternative-self">
+  
+  <%= response.response %>
+  <div class="row-fluid additional-info">
+  <div class="span4">
+  <div class="scene-created-at"><%= response.created_at %></div>
+  <div class="scene-user-name">Author: <span><%= response.user_name %></span></div>
+  </div>
+
+  <div class="span4 offset4 response-votes-wrap">
+  <a class="response-weight response-weight-upvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/upvote"></a>
+  <span class="response-weight-value"><%= response.votes %></span>
+  <a class="response-weight response-weight-downvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/downvote"></a>
+  </div>
+  </div>
+
+  </div>
+
+  <img src='/assets/shadow-bottom.png' alt='' class="shadow-img" />
+
   <div id="responses-alternative"></div>
+
+
   <div class="scenario-alternative-new-wrap"><a class="btn btn-info response-alternative-new-button" href="#">New alternative response</a></div>
+
   </div>
 
 
 %script#responses-template{:type => 'text/html'}
   <div>
+  <div class="scenario-nav-wrap">
+  <a class="scenario-prev" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/prev"><i></i>Previous scenario</a>
+  <a class="scenario-next" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/next">Next scenario<i></i></a>
+  </div>
   <div id="scenario-current-responses">
   </div>
-  <div class="scenario-sequel-wrap"><a data-scene_id="<%= scene_id %>" data-parent_id="<%= response_id %>" class="response-new-button" href="/scenes/<%= scene_id %>/responses/new?parent_id=<%= response_id %>">New sequel of scenario</a></div>
-  <a class="btn btn-info scenario-prev" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/prev">Previous scenario</a>
-  <a class="btn btn-info scenario-next" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/next">Next scenario</a>
+  <div class="scenario-nav-wrap">
+  <a class="scenario-prev" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/prev"><i></i>Previous scenario</a>
+  <a class="scenario-next" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/next">Next scenario<i></i></a>
+  </div>
   </div>
