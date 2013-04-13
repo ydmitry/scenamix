@@ -162,41 +162,57 @@ body {
 
 #header-sign-wrap {
   position: absolute;
-    right: 0px;
-    bottom: 100px;
+  right: 0px;
+  bottom: 100px;
 }
 
-.header-sign-social {
+.social-icon, .header-sign-social {
   display: inline-block;
-    width: 34px;
-    height: 34px;
+  width: 34px;
+  height: 34px;
   vertical-align: middle;
   background: url(<%= asset_path 'icons-sprite.png' %>) no-repeat;
   margin: 0 4px;
 }
 
+.social-facebook-icon:link, .social-facebook-icon:visited,
 #header-sign-facebook:link, #header-sign-facebook:visited {
-    background-position: 0 0;
+  background-position: 0 0;
 }
 
+.social-facebook-icon:hover, .social-facebook-icon:active,
 #header-sign-facebook:hover, #header-sign-facebook:active {
-    background-position: 0 -38px;
+  background-position: 0 -38px;
 }
 
+.social-twitter-icon:link, .social-twitter-icon:visited,
 #header-sign-twitter:link, #header-sign-twitter:visited {
-    background-position: -46px 0;
+  background-position: -46px 0;
 }
 
+.social-twitter-icon:hover, .social-twitter-icon:active,
 #header-sign-twitter:hover, #header-sign-twitter:active {
-    background-position: -46px -38px;
+  background-position: -46px -38px;
 }
 
+.social-google-icon:link, .social-google-icon:visited,
 #header-sign-google:link, #header-sign-google:visited {
-    background-position: -91px 0;
+  background-position: -91px 0;
 }
 
+.social-google-icon:hover, .social-google-icon:active,
 #header-sign-google:hover, #header-sign-google:active {
-    background-position: -91px -38px;
+  background-position: -91px -38px;
+}
+
+.social-vkontakte-icon:link, .social-vkontakte-icon:visited,
+#header-sign-vkontakte:link, #header-sign-vkontakte:visited {
+  background-position: -130px 0;
+}
+
+.social-vkontakte-icon:hover, .social-vkontakte-icon:active,
+#header-sign-vkontakte:hover, #header-sign-vkontakte:active {
+  background-position: -130px -38px;
 }
 
 /* deactivate */
@@ -207,11 +223,11 @@ body {
 }
 
 #header-sign-twitter:hover, #header-sign-twitter:active {
-    background-position: -46px 0;
+  background-position: -46px 0;
 }
 
 #header-sign-google:hover, #header-sign-google:active {
-    background-position: -91px 0;
+  background-position: -91px 0;
 }
 
 /* --- */
@@ -221,8 +237,8 @@ body {
   margin-left: 10px;
   vertical-align: middle;
   display: inline-block;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
   -moz-box-shadow:    0px 0px 3px rgba(0, 0, 0, 0.4);
   box-shadow:         0px 0px 3px rgba(0, 0, 0, 0.4);
 }
@@ -251,13 +267,13 @@ body {
 }
 
 #header-sign a:first-child {
-    border-radius: 5px 0px 0px 5px;
-    border-right: 1px solid #036d9d;
+  border-radius: 5px 0px 0px 5px;
+  border-right: 1px solid #036d9d;
 }
 
 #header-sign a:last-child {
-    border-radius: 0px 5px 5px 0px;
-    border-left: 1px solid #06d1f2;
+  border-radius: 0px 5px 5px 0px;
+  border-left: 1px solid #06d1f2;
 }
 
 #header-menu {
@@ -307,24 +323,24 @@ body {
 }
 
 body {
-    position: relative;
+  position: relative;
 }
 
 #right-overlay {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    right: 0;
-    left: 50%;
-    background: rgba(0, 0, 0, 0.04);
-    z-index: -1;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0;
+  left: 50%;
+  background: rgba(0, 0, 0, 0.04);
+  z-index: -1;
 }
 
 #layout-content-container {
-    min-height: 500px;
-    position: relative;
-    padding: 30px 0;
-    font-size: 0.9em;
+  min-height: 500px;
+  position: relative;
+  padding: 30px 0;
+  font-size: 0.9em;
 }
 
 #layout-content-container .vertical-separator {
@@ -401,18 +417,18 @@ body {
 }
 
 .response-new-button:after, .response-new-button:before {
-    background: url("<%= asset_path 'icons-sprite.png'%>") no-repeat scroll -5px -116px transparent;
-    content: "";
-    display: inline-block;
-    height: 9px;
-    vertical-align: middle;
-    width: 7px;
+  background: url("<%= asset_path 'icons-sprite.png'%>") no-repeat scroll -5px -116px transparent;
+  content: "";
+  display: inline-block;
+  height: 9px;
+  vertical-align: middle;
+  width: 7px;
 }
 
 .response-active .response-new-button:after, .response-active .response-new-button:before,
 .response:hover .response-new-button:after, .response:hover .response-new-button:before, 
 .scene:hover .response-new-button:after, .scene:hover .response-new-button:before {
-    background-position: -5px -130px;
+  background-position: -5px -130px;
 }
 
 .response-new-button {
@@ -605,11 +621,11 @@ body {
 
 .response-alternative-switch:after {
   background: url("<%= asset_path 'icons-sprite.png' %>") no-repeat scroll -21px -116px transparent;
-    content: "";
-    display: inline-block;
-    height: 7px;
-    vertical-align: middle;
-    width: 9px;
+  content: "";
+  display: inline-block;
+  height: 7px;
+  vertical-align: middle;
+  width: 9px;
   margin-left: 3px;
 }
 
@@ -728,6 +744,51 @@ background-position: -21px -130px;
   height: inherit;
   position: relative;
   color: #6c6966;
+}
+
+#footer-subscribe {
+  width: 418px;
+  margin: 23px auto 0 auto;
+}
+
+#footer-subscribe p {
+  margin-bottom: 15px;
+}
+
+#subscribe-form-submit {
+  color: #FFF;
+  text-shadow: 0px -1px 0px #333;
+  padding: 6px 20px;
+  background-image: -moz-linear-gradient(top , #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%);
+  background-image: -webkit-linear-gradient(top , #21c1f3 0%, #22acdd 50%, #029dd4 50%, #0386bc 100%);
+  display: inline-block;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow:    0px 0px 3px rgba(0, 0, 0, 0.4);
+  box-shadow:         0px 0px 3px rgba(0, 0, 0, 0.4);
+  border: none;
+  border-radius: 5px;
+}
+
+#subscribe-email-input {
+  margin: 0;
+  -webkit-box-shadow: inset 2px 2px 1px rgba(0,0,0,.3);
+  -moz-box-shadow: inset 2px 2px 1px rgba(0,0,0,.3);
+  box-shadow: inset 2px 2px 1px rgba(0,0,0,.3);
+  border-radius: 5px;
+  background-color: #DFDFDF;
+  border: none;
+  padding: 5px 6px;
+  width: 290px;
+}
+
+#subscribe-email-input:focus {
+  background-color: #FFFFFF;
+}
+
+#subscribe-form-submit:hover, #subscribe-form-submit:active {
+  background-image: -moz-linear-gradient(top , #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%);
+  background-image: -webkit-linear-gradient(top , #11b1e3 0%, #129ccd 50%, #028dc4 50%, #0376ac 100%);
+  text-decoration: none;
 }
 
 #footer .border1 {

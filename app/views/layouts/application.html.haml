@@ -54,15 +54,37 @@
           = alert
 
 
+
+
       = yield
+
+
+
 
     %footer#footer
       .container
+
+        #footer-subscribe
+          %p
+            The site is being improved. You can subscribe on our newsletter.
+          %form{:action => 'http://scenamix.createsend.com/t/t/s/khtir/', :method => 'post', :id => 'subscribe-form'}
+            %div
+              %input{:type => 'text', :name => 'cm-khtir-khtir', :id => 'subscribe-email-input', :placeholder => 'Input you E-mail here...'}
+              %input{:type => 'submit', :value => 'Subscribe', :id => 'subscribe-form-submit'}
+          %p
+            or join us in
+            %a{:href => 'http://www.facebook.com/scenamix', :class => 'social-icon social-facebook-icon'}
+            %a{:href => 'http://twitter.com/scenamix', :class => 'social-icon social-twitter-icon'}
+            %a{:href => 'http://plus.google.com/105511786563201302949', :class => 'social-icon social-google-icon'}
+            %a{:href => 'http://vk.com/scenamix', :class => 'social-icon social-vkontakte-icon'}
+            to watch an updates
         .separator
           .border1
           .border2
+
         #copyright
           \© Scenamix 2013
+
 
     - if current_page?('/')
       #index-page-bg-first-step.index-page-bg
