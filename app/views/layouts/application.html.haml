@@ -26,17 +26,20 @@
         #header-quote
           %p “Logic will get you from A to Z. Imagination will get you everywhere.”
           %p (Albert Einstein)
-        #header-sign-wrap
-          %a#header-sign-twitter.header-sign-social{:href => '', :title => "Under construction"}
-          %a#header-sign-google.header-sign-social{:href => '', :title => "Under construction"}
-          = link_to '', user_omniauth_authorize_path(:provider => 'facebook'), :id => 'header-sign-facebook', :class => 'header-sign-social', :title => 'Sign in with facebook'
-          - if user_signed_in?
-            #header-sign.user-signed-in
+
+        - if user_signed_in?
+          #header-sign-wrap.user-signed-in
+            #header-sign
               = link_to 'Sign out', '#', :id => 'current-user-sign-out'
-          - else
+        - else
+          #header-sign-wrap
+            %a#header-sign-twitter.header-sign-social{:href => '', :title => "Under construction"}
+            %a#header-sign-google.header-sign-social{:href => '', :title => "Under construction"}
+            = link_to '', user_omniauth_authorize_path(:provider => 'facebook'), :id => 'header-sign-facebook', :class => 'header-sign-social', :title => 'Sign in with facebook'
             #header-sign
               = link_to 'Sign in', new_user_session_path
               = link_to 'Join', new_user_registration_path
+
         #header-menu
           .border1
           .border2
@@ -78,7 +81,7 @@
             %a{:href => 'http://twitter.com/scenamix', :class => 'social-icon social-twitter-icon'}
             %a{:href => 'http://plus.google.com/105511786563201302949', :class => 'social-icon social-google-icon'}
             %a{:href => 'http://vk.com/scenamix', :class => 'social-icon social-vkontakte-icon'}
-            to watch an updates
+            to watch our updates
         .separator
           .border1
           .border2
