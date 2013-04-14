@@ -24,10 +24,10 @@
     #scenario-responses-wrap
       - if @scenario.present?
         .scenario-nav-wrap
-          %a{ :class => 'scenario-prev', :href => prev_scene_response_path(@scene) }
+          %a{ :class => 'scenario-prev', :href => prev_scene_response_path(@scene, @scenario.last) }
             %i
             Previous scenario
-          %a{ :class => 'scenario-next', :href => next_scene_response_path(@scene) }
+          %a{ :class => 'scenario-next', :href => next_scene_response_path(@scene, @scenario.last) }
             Next scenario
             %i
 
@@ -62,10 +62,10 @@
             
 
         .scenario-nav-wrap
-          %a{ :class => 'scenario-prev', :href => prev_scene_response_path(@scene) }
+          %a{ :class => 'scenario-prev', :href => prev_scene_response_path(@scene, @scenario.last) }
             %i
             Previous scenario
-          %a{ :class => 'scenario-next', :href => next_scene_response_path(@scene) }
+          %a{ :class => 'scenario-next', :href => next_scene_response_path(@scene, @scenario.last) }
             Next scenario
             %i
 
