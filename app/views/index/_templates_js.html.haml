@@ -48,9 +48,12 @@
   <span class="response-weight-value"><%= response.votes %></span>
   <a class="response-weight response-weight-downvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/downvote"></a>
   <% if (!!response.alternative_size) { %>
-  <div class="response-alternative-link-wrap"><a class="response-alternative-link" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative"><%= response.alternative_size %> alternative scenario(s)</a></div>
+  <div class="response-alternative-link-wrap">
+  <a class="response-alternative-link" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative"><%= response.alternative_size %> alternative scenario(s)</a>
+  </div>
   <% } %>
-  
+  </div>
+
   </div>
 
   <div class="response-new-container"></div>
