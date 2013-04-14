@@ -13,7 +13,7 @@ class ScenesController < ApplicationController
     @scene.ip_address = request.remote_ip
 
     if @scene.save
-      redirect_to @scene, notice: "#{@scene.title} was successfully created."
+      redirect_to @scene, notice: "#{@scene.title} was successfully created. Wait until other users share their imagination or invite friends by sending them the link to a scene."
     else
       render :new
     end

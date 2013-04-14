@@ -11,10 +11,10 @@
   .control-group
     = f.label :description, :class => 'control-label'
     .controls
-      = f.text_area :description, :class => 'input-xxlarge', :placeholder => "What you need to imagine?"
+      = f.text_area :description, :class => 'input-xxlarge', :placeholder => "What you need to imagine? Input initial condition and goal which you want to receive."
       = @scene.errors[:description].join(", ")
 
   .form-actions
     = submit_tag 'Create scene', :class => 'btn btn-primary'
 
-.back-to-scene-list-wrap= link_to 'Back to scene list', scenes_path
+.back-to-scene-list-wrap= link_to 'Back to scenes list', scenes_path

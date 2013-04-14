@@ -40,6 +40,8 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
       false
 
     sceneShow: (scene) ->
+      if scene == 'new'
+        return false
       sceneView = new ScenesShowView
         sceneId: scene
       sceneView.render()
