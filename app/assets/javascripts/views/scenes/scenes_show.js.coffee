@@ -20,7 +20,12 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       @options = options
       @recalculateScenarioBranchesInit()
       $('body').append '<div id="right-overlay"></div>'
+      if @checkEmptyResponses
+        @openResponseForm @$('.scene')
       @
+
+    checkEmptyResponses: ->
+      @$('#scenario-responses-wrap').find('.response:first').length > 0
 
     render: ->
       $response = @$('.response:first')
@@ -136,22 +141,25 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
     onResponseNewButton: (e) ->
       $el = $ e.currentTarget
 
+      @openResponseForm $el.parents('.response,.scene')
+
+      false
+    ,
+
+    openResponseForm: ($el) ->
       templateCreateForm = _.template $.trim $('#responses-create-form-template').html()
 
       $form = $ templateCreateForm
         parent_id: 0 || $el.data 'parent_id'
         scene_id: $el.data 'scene_id'
 
-      $newResponseContainer = $el.parents('.response,.scene').find '.response-new-container'
+      $newResponseContainer = $el.find '.response-new-container'
 
       if $newResponseContainer.is ':empty'
         $newResponseContainer.append $form
         $form.find('textarea').focus()
       else
         $newResponseContainer.empty()
-
-      false
-    ,
 
     onResponsePost: (e) ->
       $form = $ e.target
@@ -218,4 +226,4 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       $('#header').height()
 
     isSmallScreen: ->
-      $(window).width() < 760
+      $('body').hasClass 'body-small-screen'
