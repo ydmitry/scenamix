@@ -150,8 +150,8 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       templateCreateForm = _.template $.trim $('#responses-create-form-template').html()
 
       $form = $ templateCreateForm
-        parent_id: 0 || $el.data 'parent_id'
-        scene_id: $el.data 'scene_id'
+        parent_id: 0 || $el.find('.response-new-button').data 'parent_id'
+        scene_id: $el.find('.response-new-button').data 'scene_id'
 
       $newResponseContainer = $el.find '.response-new-container'
 
