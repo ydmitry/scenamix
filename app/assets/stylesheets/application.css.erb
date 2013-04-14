@@ -55,6 +55,54 @@
 #scene_description {
   height: 200px;
 }
+
+.btn-custom {
+  box-shadow: 0 2px 3px #444, inset 0 0 10px #FFF;
+  -webkit-box-shadow: 0 2px 3px #444;
+  color: #4f9db8;
+  text-shadow: 0px -1px 0px #333;
+
+
+  background-color: #d5d5d5;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#d5d5d5), to(#fff)); /* Chrome, Safari 4+ */
+  background-image: -webkit-linear-gradient(top, #d5d5d5 0%, #fff 85%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(top, #d5d5d5 0%, #fff 85%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top, #d5d5d5 0%, #fff 85%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom, #d5d5d5 0%, #fff 85%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+
+  border: 1px solid #bfbfbf;
+  border-radius: 5px;
+  padding: 4px 15px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.btn-custom:hover, .btn-custom:active {
+  text-decoration: none;
+  background-color: #B5B5B5;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#B5B5B5), to(#fff)); /* Chrome, Safari 4+ */
+  background-image: -webkit-linear-gradient(top, #B5B5B5 0%, #fff 85%); /* Chrome 10-25, iOS 5+, Safari 5.1+ */
+  background-image:    -moz-linear-gradient(top, #B5B5B5 0%, #fff 85%); /* Firefox 3.6-15 */
+  background-image:      -o-linear-gradient(top, #B5B5B5 0%, #fff 85%); /* Opera 11.10-12.00 */
+  background-image:         linear-gradient(to bottom, #B5B5B5 0%, #fff 85%); /* Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
+}
+
+.btn-custom-plus:before {
+  content: "+";
+  font-size: 1.5em;
+  padding-right: 7px;
+}
+
+#scenes-new-head .btn-custom {
+  padding: 4px 5px 4px;
+  margin: 0 5px;
+}
+
+#scenes-new-head {
+  line-height: 19px;
+}
+
+
 /*
 #scenario-branches {
   overflow: hidden;
@@ -692,7 +740,7 @@ body {
   margin-left: 3px;
 }
 
-
+.response-alternative-switch:hover:after,
 .response-alternative:hover .response-alternative-switch:after {
 background-position: -21px -130px;
 }

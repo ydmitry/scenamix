@@ -20,12 +20,12 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       @options = options
       @recalculateScenarioBranchesInit()
       $('body').append '<div id="right-overlay"></div>'
-      if @checkEmptyResponses
+      if @checkEmptyResponses()
         @openResponseForm @$('.scene')
       @
 
     checkEmptyResponses: ->
-      @$('#scenario-responses-wrap').find('.response:first').length > 0
+      @$('#scenario-responses-wrap').find('.response:first').length == 0
 
     render: ->
       $response = @$('.response:first')

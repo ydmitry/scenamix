@@ -39,8 +39,8 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
     scenes: ->
       false
 
-    sceneShow: (scene) ->
-      if scene == 'new'
+    sceneShow: (scene, response) ->
+      if scene == 'new' || response == 'new'
         return false
       sceneView = new ScenesShowView
         sceneId: scene

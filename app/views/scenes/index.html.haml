@@ -1,6 +1,6 @@
 %p#scenes-new-head
   You can
-  = link_to "Create new scene", new_scene_path, :class => 'btn'
+  = link_to "Create new scene", new_scene_path, :class => 'btn-custom btn-custom-plus'
   or take part in existing scenes listed below:
 
 - @scenes.each do |scene|
@@ -22,4 +22,4 @@
             = datetime_format(scene.last_response_at)
     .border-bottom
 
-%p= link_to "Create new scene", new_scene_path, :class => 'btn btn-primary'
+%p= link_to "Add new scene", new_scene_path, :class => 'btn-custom btn-custom-plus'
