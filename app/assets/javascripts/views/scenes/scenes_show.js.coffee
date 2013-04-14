@@ -165,7 +165,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       $form = $ e.target
       url = $form.attr 'action'
 
-      responseCollection = new ResponseCollection
+      responseCollection = new ResponseCollection [],
         url: url
 
       responseCollection.create
@@ -174,7 +174,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
           parent_id: $form.find('[name="parent_id"]').val()
       ,
         success: _.bind (response) ->
-          responseCollection = new ResponseCollection
+          responseCollection = new ResponseCollection [],
             url: '/scenes/' + response.get('scene_id') + '/responses/' + response.get('id')
           responseCollection.fetch
             success: _.bind @onScenarioChangeLoad, @
