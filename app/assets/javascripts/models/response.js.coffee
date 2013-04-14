@@ -8,6 +8,7 @@ define ['underscore', 'backbone', 'collections/responses_alternative'], (_, Back
         if @responses
           @responses.reset r.responses
         else
-          @responses = new ResponsesCollection r.responses
+          @responses = new ResponsesCollection r.responses, 
+            url: @url
           delete r.responses
       r

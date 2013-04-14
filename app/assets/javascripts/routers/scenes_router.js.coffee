@@ -4,7 +4,7 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
     routes:
       # When there is no url, the home method is called
       "": "home"
-      "sign_in": "signIn"
+      "users/sign_in": "signIn"
       "users/sign_up": "signUp"
       "scenes": "scenes"
       "scenes/:scene": "sceneShow"

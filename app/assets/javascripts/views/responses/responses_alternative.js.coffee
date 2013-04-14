@@ -42,9 +42,10 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
       @model.responses.create
         response:
           response: $el.find('textarea').val()
+
       ,
         success: _.bind ->
-          @model.responses.fetch()
+          @model.fetch()
         , @
 
       false

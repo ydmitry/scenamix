@@ -5,8 +5,8 @@
   .control-group
     = f.label :response
     .controls
-      = f.text_area :response, :size => "60x4"
+      = f.text_area :response, :size => "60x4", :class => 'input-xxlarge'
       = @response.errors[:response].join(', ')
 
   .form-actions
-    = f.submit 'Post response to scene', :class => 'btn btn-primary'
+    = f.submit 'Post response to scene', :class => 'btn-custom'
