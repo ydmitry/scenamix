@@ -99,7 +99,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
 
     onScenarioChange: (e, url) ->
 
-      responseCollection = new ResponseCollection
+      responseCollection = new ResponseCollection [],
         url: url 
       
       responseCollection.fetch

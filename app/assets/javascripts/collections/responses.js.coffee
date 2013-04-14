@@ -3,6 +3,6 @@ define ['backbone', 'models/response'], (Backbone, ResponseModel) ->
     model: ResponseModel
 
     initialize: (models, options) ->
-      if !!options.url      
+      if !!options && !!options.url      
         @url = options.url
 

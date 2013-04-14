@@ -2,5 +2,5 @@ define ['backbone', 'models/response_alternative'], (Backbone, ResponseAlternati
   ResponseAlternativeCollection = Backbone.Collection.extend
     model: ResponseAlternativeModel
     initialize: (models, options) ->
-      if !!options.url      
+      if !!options && !!options.url      
         @url = options.url
