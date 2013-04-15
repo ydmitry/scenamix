@@ -11,7 +11,7 @@
   .control-group
     = f.label :description, :class => 'control-label'
     .controls
-      = f.text_area :description, :class => 'input-xxlarge', :placeholder => "What you need to imagine? Input initial condition and goal which you want to receive. It's not recommended to ask questions. What characters in this scene should do?"
+      = f.text_area :description, :class => 'input-xxlarge', :placeholder => "What is to be imagined? Input initial conditions and goal which you want to achieve. It is not recommended to ask questions. What should characters in this scene do?"
       = @scene.errors[:description].join(", ")
 
   .form-actions
