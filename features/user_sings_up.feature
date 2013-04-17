@@ -7,6 +7,6 @@ Feature: User signs up
 
   Scenario: Submit empty form
     Given I am on the sign up page
-    When I press "Sign up"
+    When I press "Join"
     Then I should see "Email can't be blank"
     And I should see "Password can't be blank"

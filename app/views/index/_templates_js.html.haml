@@ -1,135 +1,116 @@
 %script#response-alternative-item-template{:type => 'text/html'}
-  <div class="response response-alternative">
-  <div class='border-top'></div>
-  <%= response %>
+  .response.response-alternative
+    .border-top
+    {{= response }}
 
-  <div class="row-fluid additional-info">
-  <div class="span6 clearfix">
-  <div class="response-user-name">Author: <span><%= user_name %></span></div>
-  <div class="response-created-at"><%= created_at %></div>
-  <a class="response-alternative-switch" href="/scenes/<%= scene_id %>/responses/<%= id %>"><span>Open scenario</span></a>
-  </div>
-  <div class="span6 response-votes-wrap">
-  <a class="response-weight response-weight-upvote" href="/scenes/<%= scene_id %>/responses/<%= id %>/upvote"></a>
-  <span class="response-weight-value"><%= votes %></span>
-  <a class="response-weight response-weight-downvote" href="/scenes/<%= scene_id %>/responses/<%= id %>/downvote"></a>
-  </div>
-  </div>
+    .row-fluid.additional-info
+      .span6.clearfix
+        .response-user-name
+          Author: <span>{{= user_name }}</span>
+        .response-created-at {{= created_at }}
+        %a{ :class => 'response-alternative-switch', :href => '/scenes/{{= scene_id }}/responses/{{= id }}' }
+          %span Open scenario
+        
+      .span6.response-votes-wrap
+        %a{ :class => 'response-weight response-weight-upvote', :href => '/scenes/{{= scene_id }}/responses/{{= id }}/upvote' }
+        %span{ :class => 'response-weight-value' } {{= votes }}
+        %a{ :class => 'response-weight response-weight-downvote', :href => '/scenes/{{= scene_id }}/responses/{{= id }}/downvote' }
 
-  <div class='border-bottom'></div>
-  </div>
+    .border-bottom
+
 
 %script#response-item-template{:type => 'text/html'}
-  <div class="response response-scenario" data-alt-url="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative">
-  <div class="border-top"></div>
-  
-  <% if (current_user.id && (current_user.admin || current_user.id == response.user_id)) { %>
-  <div class="response-user-menu">
-  <a href='/scenes/<%= response.scene_id %>/responses/<%= response.id %>/edit' class="btn btn-mini response-edit">Edit</a>
-  <form method="post" class="button_to response-delete" action="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/40"><div><input type="hidden" value="delete" name="_method"><input type="submit" value="Delete" data-confirm="Are you sure?" class="btn btn-mini btn-danger"></div></form>
-  </div>
-  <% } %>
-  
-  <%= response.response %>
-  
-  <div class="row-fluid additional-info">
-  
-  <div class="span4">
-  <div class="scene-created-at"><%= response.created_at %></div>
-  <div class="scene-user-name">Author: <span><%= response.user_name %></span></div>
-  </div>
+  .response.response-scenario{'data-alt-url' => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/alternative'}
+    .border-top
+    
+    {{ if (current_user.id && (current_user.admin || current_user.id == response.user_id)) { }}
+    .response-user-menu
+      = link_to 'Edit', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/edit', :class => 'btn btn-mini response-edit'
+      = button_to 'Delete', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}', :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
+    
+    {{ } }}
+    
+    {{= response.response }}
+    
+    .row-fluid.additional-info
+      .span4
+        .scene-created-at {{= response.created_at }}
+        .scene-user-name Author: <span>{{= response.user_name }}</span>
 
-  <div class="span4 scenario-sequel-wrap">
-  <a data-scene_id="<%= response.scene_id %>" data-parent_id="<%= response.id %>" class="response-new-button" href="/scenes/<%= response.scene_id %>/responses/new?parent_id=<%= response.id %>"><span>Write new sequel of scenario</span></a>
-  </div>
-  
-  <div class="span4 response-votes-wrap">
-  <a class="response-weight response-weight-upvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/upvote"></a>
-  <span class="response-weight-value"><%= response.votes %></span>
-  <a class="response-weight response-weight-downvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/downvote"></a>
-  <% if (!!response.alternative_size) { %>
-  <div class="response-alternative-link-wrap">
-  <a class="response-alternative-link" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/alternative"><%= response.alternative_size %> alternative scenario(s)</a>
-  </div>
-  <% } %>
-  </div>
 
-  </div>
+      .span4.scenario-sequel-wrap
+        = link_to content_tag(:span, 'Write sequel to scenario'), '/scenes/{{= response.scene_id }}/responses/new?parent_id={{= response.id }}', :class => 'response-new-button', 'data-parent_id' => '{{= response.id }}', 'data-scene_id' => '{{= response.scene_id }}'
 
-  <div class="response-new-container"></div>
-  <div class="border-bottom"></div>
-  </div>
+      .span4.response-votes-wrap
+        = link_to '', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/upvote', :class => 'response-weight response-weight-upvote'
+        %span.response-weight-value {{= response.votes }}
+        = link_to '', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/downvote', :class => 'response-weight response-weight-downvote'
+        {{ if (!!response.alternative_size) { }}
+        .response-alternative-link-wrap= link_to '{{= response.alternative_size }} alternative scenario(s)' , '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/alternative', :class => 'response-alternative-link'
+        {{ } }}
+
+    .response-new-container
+    .border-bottom
+
 
 %script#responses-create-form-template{:type => 'text/html'}
-  <form method="post" action="/scenes/<%= scene_id %>/responses" accept-charset="UTF-8" class="response-post-form">
-  <input type="hidden" value="<%= parent_id %>" name="parent_id">
-  <img class="shadow-img" alt="" src="/assets/shadow-bottom.png" />
-  <div class="control-group">
-  <label for="response-textarea-<%= scene_id %>-<%= parent_id %>" class="control-label">Sequel of scenario</label>
-  <div class="controls">
-  <textarea placeholder="Read the scenario above and write an action, additional context, event or outcome that appears in your imagination. It is not recommended to create discussions or try to answer direct questions. What do you imagine?" name="response" class="input-xxlarge" id="response-textarea-<%= scene_id %>-<%= parent_id %>" rows="3"></textarea>
-  </div>
-  </div>
-  <div>
-  <input type="submit" value="Post" name="commit" class="btn-custom">
-  </div>
-  </form>
+  %form{ :method => "post", :action => "/scenes/{{= scene_id }}/responses", "accept-charset" => "UTF-8", :class => "response-post-form" }
+    %input{ :type => "hidden", :value => "{{= parent_id }}", :name => "parent_id" }
+    %img{ :class => "shadow-img", :alt => "", :src => "/assets/shadow-bottom.png" }
+    .control-group
+      %label{ :for => "response-textarea-{{= scene_id }}-{{= parent_id }}", :class => "control-label"} Sequel of scenario
+      .controls
+        %textarea{ :placeholder => "Read the scenario above and write an action, additional context, event or outcome that appears in your imagination. It is not recommended to create discussions or try to answer direct questions. What do you imagine?", :name => "response", :class => "input-xxlarge", :id => "response-textarea-{{= scene_id }}-{{= parent_id }}", :rows => 3}
+    %div
+      %input{ :type => "submit", :value => "Post", :name => "commit", :class => "btn-custom" }
+
 
 %script#responses-alternative-create-form-template{:type => 'text/html'}
-  <form action='' method='post' accept-charset="UTF-8">
-  <div class="control-group">
-  <label for="alternative_response" class="control-label">Response</label>
-  <div class="controls">
-  <textarea placeholder="Do you have another image in your mind?" name="response[response]" id="alternative_response" class="input-xxlarge"></textarea>
-  </div>
-  </div>
-  <input type="submit" value="Post alternative response" name="commit" class="btn-custom">
-  </form>
+  %form{ :action => '', :method => 'post', "accept-charset" => "UTF-8"} 
+    .control-group
+      %label{ :for => "alternative_response", :class => "control-label" } Response
+      .controls
+        %textarea{ :placeholder => "Do you have another image in your mind?", :name => "response[response]", :id => "alternative_response", :class => "input-xxlarge" }
+
+    %input{ :type => "submit", :value => "Post alternative response", :name => "commit", :class => "btn-custom" }
 
 
 %script#responses-alternative-template{:type => 'text/html'}
-  <div id="responses-alternative-wrap">
-  <h4>Alternative scenarios</h4>
-  <img src='/assets/shadow-top.png' alt='' class="shadow-img" />
-  
-  <div class="response response-alternative-self">
-  
-  <%= response.response %>
-  <div class="row-fluid additional-info">
-  <div class="span4">
-  <div class="scene-created-at"><%= response.created_at %></div>
-  <div class="scene-user-name">Author: <span><%= response.user_name %></span></div>
-  </div>
+  #responses-alternative-wrap
+    %h4 Alternative scenarios
+    %img{ :src => '/assets/shadow-top.png', :alt => '', :class => "shadow-img" }
+    
+    .response.response-alternative-self
+    
+      {{= response.response }}
+      .row-fluid.additional-info
+        .span4
+          .response-created-at {{= response.created_at }}
+          .response-user-name Author: <span>{{= response.user_name }}</span>
 
-  <div class="span4 offset4 response-votes-wrap">
-  <a class="response-weight response-weight-upvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/upvote"></a>
-  <span class="response-weight-value"><%= response.votes %></span>
-  <a class="response-weight response-weight-downvote" href="/scenes/<%= response.scene_id %>/responses/<%= response.id %>/downvote"></a>
-  </div>
-  </div>
-
-  </div>
-
-  <img src='/assets/shadow-bottom.png' alt='' class="shadow-img" />
-
-  <div id="responses-alternative"></div>
+        .span4.offset4.response-votes-wrap
+          = link_to '', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/upvote', :class => 'response-weight response-weight-upvote'
+          %span.response-weight-value {{= response.votes }}
+          = link_to '', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/downvote', :class => 'response-weight response-weight-downvote'
 
 
-  <div class="scenario-alternative-new-wrap"><a class="response-alternative-new-button" href="#"><span>New alternative response</span></a></div>
+    %img{ :src => '/assets/shadow-bottom.png', :alt => '', :class => "shadow-img" }
 
-  </div>
+    #responses-alternative
+
+    .scenario-alternative-new-wrap
+      %a{ :class => "response-alternative-new-button", :href => "#" } <span>New alternative response</span>
 
 
 %script#responses-template{:type => 'text/html'}
-  <div>
-  <div class="scenario-nav-wrap">
-  <a class="scenario-prev" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/prev"><i></i>Previous scenario</a>
-  <a class="scenario-next" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/next">Next scenario<i></i></a>
-  </div>
-  <div id="scenario-current-responses">
-  </div>
-  <div class="scenario-nav-wrap">
-  <a class="scenario-prev" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/prev"><i></i>Previous scenario</a>
-  <a class="scenario-next" href="/scenes/<%= scene_id %>/responses/<%= response_id %>/next">Next scenario<i></i></a>
-  </div>
-  </div>
+  %div
+    .scenario-nav-wrap
+      %a{ :class => "scenario-prev", :href => "/scenes/{{= scene_id }}/responses/{{= response_id }}/prev"} <i></i>Previous scenario
+      %a{ :class => "scenario-next", :href => "/scenes/{{= scene_id }}/responses/{{= response_id }}/next"} Next scenario<i></i>
+    
+    #scenario-current-responses
+
+    .scenario-nav-wrap
+      %a{ :class => "scenario-prev", :href => "/scenes/{{= scene_id }}/responses/{{= response_id }}/prev"} <i></i>Previous scenario
+      %a{ :class => "scenario-next", :href => "/scenes/{{= scene_id }}/responses/{{= response_id }}/next"} Next scenario<i></i>
+

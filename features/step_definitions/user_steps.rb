@@ -88,7 +88,7 @@ When /^I sign up$/ do
   fill_in 'Email', with: 'andrii.ponomarov@gmail.com'
   fill_in 'user_password', with: '111111'
 
-  click_button 'Sign up'
+  click_button 'Join'
 end
 
 Given /^I am logged in as an admin$/ do

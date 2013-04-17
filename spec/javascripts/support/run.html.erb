@@ -44,6 +44,12 @@
   <%= requirejs_include_tag %>
   <script>
     require(<%= @config.spec_files.map { |s| s.sub(/\.js$/,'') }.to_json %>, function(){execJasmine()});
+    require(['underscore'], function(_) {
+      _.templateSettings = {
+        interpolate: /\{\{\=(.+?)\}\}/g,
+        evaluate: /\{\{(.+?)\}\}/g
+      }
+    }); 
   </script>
   <%= Haml::Engine.new(File.new("./app/views/index/_templates_js.html.haml").read).render %>
 </head>
