@@ -25,6 +25,10 @@ class Response < ActiveRecord::Base
     self.alternative.size
   end
 
+  def responses_size
+    self.responses.size
+  end
+
   def best_scenario
     ancestors + [self] + best_descendants
   end
