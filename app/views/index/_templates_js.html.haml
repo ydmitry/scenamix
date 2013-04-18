@@ -5,8 +5,7 @@
 
     .row-fluid.additional-info
       .span6.clearfix
-        .response-user-name
-          Author: <span>{{= user_name }}</span>
+        .response-user-name <span>{{= user_name }}</span>
         .response-created-at {{= created_at }}
         %a{ :class => 'response-alternative-switch', :href => '/scenes/{{= scene_id }}/responses/{{= id }}' }
           %span Open scenario
@@ -34,8 +33,8 @@
     
     .row-fluid.additional-info
       .span4
-        .scene-created-at {{= response.created_at }}
-        .scene-user-name Author: <span>{{= response.user_name }}</span>
+        .response-created-at {{= response.created_at }}
+        .response-user-name <span>{{= response.user_name }}</span>
 
 
       .span4.scenario-sequel-wrap
@@ -86,7 +85,7 @@
       .row-fluid.additional-info
         .span4
           .response-created-at {{= response.created_at }}
-          .response-user-name Author: <span>{{= response.user_name }}</span>
+          .response-user-name <span>{{= response.user_name }}</span>
 
         .span4.offset4.response-votes-wrap
           = link_to '', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/upvote', :class => 'response-weight response-weight-upvote'

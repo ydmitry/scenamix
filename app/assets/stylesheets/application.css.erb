@@ -483,8 +483,12 @@ body {
   line-height: 20px;
 }
 
-.scene-user-name span, .response-user-name span {
-  font-weight: bold;
+.scene-user-name span:empty, .response-user-name span:empty {
+  display: none;
+}
+
+.scene-user-name span:before, .response-user-name span:before {
+  content: "Author: ";
 }
 
 .scene .additional-info, .response .additional-info {
