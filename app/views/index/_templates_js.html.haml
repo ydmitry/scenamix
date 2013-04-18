@@ -67,9 +67,9 @@
 %script#responses-alternative-create-form-template{:type => 'text/html'}
   %form{ :action => '', :method => 'post', "accept-charset" => "UTF-8"} 
     .control-group
-      %label{ :for => "alternative_response", :class => "control-label" } Response
+      %label{ :for => "alternative_response", :class => "control-label" } Alternative response
       .controls
-        %textarea{ :placeholder => "Do you have another image in your mind?", :name => "response[response]", :id => "alternative_response", :class => "input-xxlarge" }
+        %textarea{ :placeholder => "Do you have another image in your mind? Type alternative to above responses", :name => "response[response]", :id => "alternative_response", :class => "input-xxlarge" }
 
     %input{ :type => "submit", :value => "Post alternative response", :name => "commit", :class => "btn-custom" }
 

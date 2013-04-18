@@ -11,7 +11,7 @@
     .additional-info.row-fluid
       .span4
         .scene-created-at= datetime_format(scene.created_at)
-        .scene-user-name= scene.user_name
+        .scene-user-name= content_tag(:span, scene.user_name)
       .span4
         .scenario-sequel-wrap.span4
           = link_to content_tag(:span, 'View scene'), scene, :class => 'response-alternative-switch'
