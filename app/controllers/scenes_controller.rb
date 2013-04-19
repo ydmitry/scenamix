@@ -1,6 +1,6 @@
 class ScenesController < ApplicationController
   def index
-    @scenes = Scene.ordered
+    @scenes = Scene.find_visible_scenes
   end
 
   def new
