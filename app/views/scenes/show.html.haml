@@ -10,8 +10,8 @@
       
       .additional-info.row-fluid
         .span4
-          .scene-created-at= datetime_format(@scene.created_at)
           .scene-user-name= content_tag(:span, @scene.user_name)
+          .scene-created-at= datetime_format(@scene.created_at)
         .scenario-sequel-wrap.span4
           = link_to content_tag(:span, 'Write sequel to scenario'), new_scene_response_path(@scene), :class => 'response-new-button', 'data-parent_id' => 0, 'data-scene_id' => @scene.id
       .response-new-container
@@ -45,8 +45,8 @@
               
               .additional-info.row-fluid
                 .span4
-                  .response-created-at= datetime_format(response.created_at)
                   .response-user-name= content_tag(:span, response.user_name)
+                  .response-created-at= datetime_format(response.created_at)
 
                 .scenario-sequel-wrap.span4
                   = link_to content_tag(:span, 'Write sequel to scenario'), new_scene_response_path(@scene) + '?parent_id=' + response.id.to_s, :class => 'response-new-button', 'data-parent_id' => response.id, 'data-scene_id' => response.scene_id

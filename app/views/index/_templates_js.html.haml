@@ -36,9 +36,8 @@
     
     .row-fluid.additional-info
       .span4
-        .response-created-at {{= response.created_at }}
         .response-user-name <span>{{= response.user_name }}</span>
-
+        .response-created-at {{= response.created_at }}
 
       .span4.scenario-sequel-wrap
         = link_to content_tag(:span, 'Write sequel to scenario'), '/scenes/{{= response.scene_id }}/responses/new?parent_id={{= response.id }}', :class => 'response-new-button', 'data-parent_id' => '{{= response.id }}', 'data-scene_id' => '{{= response.scene_id }}'
