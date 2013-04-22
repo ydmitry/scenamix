@@ -19,7 +19,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/response_alternativ
 
       @$responses = $ '<div />'
 
-      @model.responses.each @renderResponse, this
+      @model.responses.each @renderResponse, @
 
       $rendered = $ @template
         response: @model.toJSON()

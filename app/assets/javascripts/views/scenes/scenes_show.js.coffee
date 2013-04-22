@@ -73,10 +73,8 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
         @responseAlternativeView.undelegateEvents()
 
       
-      @activeResponseModel = new ResponseModel
+      @activeResponseModel = new ResponseModel {},
         url: $response.data 'alt-url'
-        success: ->
-          $(window).trigger 'scenario-branches:updated'
 
       @responseAlternativeView = new ResponsesAlternativeView
         model: @activeResponseModel

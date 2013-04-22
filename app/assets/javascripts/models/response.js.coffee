@@ -1,9 +1,14 @@
 define ['underscore', 'backbone', 'collections/responses_alternative'], (_, Backbone, ResponsesCollection) ->
   ResponseModel = Backbone.Model.extend
-    initialize: (options) ->
-      if !!options.url      
+    initialize: (attributes, options) ->
+      if !!options && !!options.url      
         @url = options.url
+      if !!attributes
+        @parseAttributes attributes
     parse: (r) ->
+      r = @parseAttributes r
+      r
+    parseAttributes: (r) ->
       if _.has r, 'responses'
         if @responses
           @responses.reset r.responses

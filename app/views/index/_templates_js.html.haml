@@ -31,7 +31,7 @@
       %form{ :method => "post", :class => "button_to scene-delete", :action => "/scenes/{{= response.scene_id }}/responses/{{= response.id }}" }
         %div
           %input{ :type => "hidden", :value => "delete", :name => "_method" }
-          %input{ :type => "submit", :value => "Delete", 'data-confirm' => "Are you sure?", :class => "btn btn-danger" }
+          %input{ :type => "submit", :value => "Delete", 'data-confirm' => "Are you sure?", :class => "btn btn-mini btn-danger" }
     {{ } }}
 
     {{= response.response }}
