@@ -9,7 +9,7 @@
         .response-created-at {{= created_at }}
         %a{ :class => 'response-alternative-switch', :href => '/scenes/{{= scene_id }}/responses/{{= id }}' }
           %span Open scenario
-        
+
       .span6.response-votes-wrap
         %a{ :class => 'response-weight response-weight-upvote', :href => '/scenes/{{= scene_id }}/responses/{{= id }}/upvote' }
         %span{ :class => 'response-weight-value' } {{= votes }}
@@ -24,14 +24,16 @@
 %script#response-item-template{:type => 'text/html'}
   .response.response-scenario{'data-alt-url' => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/alternative'}
     .border-top
-    
+
     {{ if (current_user.id && (current_user.admin || current_user.id == response.user_id)) { }}
     .response-user-menu
-      = link_to 'Edit', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/edit', :class => 'btn btn-mini response-edit'
-      = button_to 'Delete', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}', :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger', :form_class => 'button_to response-delete'
-    
+      %a{ :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/edit', :class => 'btn btn-mini response-edit' } Edit
+      %form{ :method => "post", :class => "button_to scene-delete", :action => "/scenes/{{= response.scene_id }}/responses/{{= response.id }}" }
+        %div
+          %input{ :type => "hidden", :value => "delete", :name => "_method" }
+          %input{ :type => "submit", :value => "Delete", 'data-confirm' => "Are you sure?", :class => "btn btn-danger" }
     {{ } }}
-    
+
     {{= response.response }}
     
     .row-fluid.additional-info
@@ -40,14 +42,17 @@
         .response-created-at {{= response.created_at }}
 
       .span4.scenario-sequel-wrap
-        = link_to content_tag(:span, 'Write sequel to scenario'), '/scenes/{{= response.scene_id }}/responses/new?parent_id={{= response.id }}', :class => 'response-new-button', 'data-parent_id' => '{{= response.id }}', 'data-scene_id' => '{{= response.scene_id }}'
+        %a{ :class => 'response-new-button', :href => '/scenes/{{= response.scene_id }}/responses/new?parent_id={{= response.id }}', :data => { :parent_id => '{{= response.id }}', :scene_id => '{{= response.scene_id }}' } }
+          %span Write sequel to scenario
 
       .span4.response-votes-wrap
-        = link_to '', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/upvote', :class => 'response-weight response-weight-upvote'
+        %a{ :class => 'response-weight response-weight-upvote', :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/upvote' }
         %span.response-weight-value {{= response.votes }}
-        = link_to '', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/downvote', :class => 'response-weight response-weight-downvote'
+        %a{ :class => 'response-weight response-weight-downvote', :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/downvote' }
         {{ if (!!response.alternative_size) { }}
-        .response-alternative-link-wrap= link_to '{{= response.alternative_size }} alternative scenario(s)' , '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/alternative', :class => 'response-alternative-link'
+        .response-alternative-link-wrap
+          %a{ :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/alternative', :class => 'response-alternative-link' } 
+            {{= response.alternative_size }} alternative scenario(s)
         {{ } }}
 
     .response-new-container
@@ -80,9 +85,9 @@
   #responses-alternative-wrap
     %h4 Alternative scenarios
     %img{ :src => '/assets/shadow-top.png', :alt => '', :class => "shadow-img" }
-    
+
     .response.response-alternative-self
-    
+
       {{= response.response }}
       .row-fluid.additional-info
         .span4
@@ -90,9 +95,9 @@
           .response-user-name <span>{{= response.user_name }}</span>
 
         .span4.offset4.response-votes-wrap
-          = link_to '', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/upvote', :class => 'response-weight response-weight-upvote'
+          %a{ :class => 'response-weight response-weight-upvote', :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/upvote' }
           %span.response-weight-value {{= response.votes }}
-          = link_to '', '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/downvote', :class => 'response-weight response-weight-downvote'
+          %a{ :class => 'response-weight response-weight-downvote', :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/downvote' }
 
 
     %img{ :src => '/assets/shadow-bottom.png', :alt => '', :class => "shadow-img" }
@@ -108,7 +113,7 @@
     .scenario-nav-wrap
       %a{ :class => "scenario-prev", :href => "/scenes/{{= scene_id }}/responses/{{= response_id }}/prev"} <i></i>Previous scenario
       %a{ :class => "scenario-next", :href => "/scenes/{{= scene_id }}/responses/{{= response_id }}/next"} Next scenario<i></i>
-    
+
     #scenario-current-responses
 
     .scenario-nav-wrap
