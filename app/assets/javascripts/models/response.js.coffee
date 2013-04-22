@@ -3,7 +3,7 @@ define ['underscore', 'backbone', 'collections/responses_alternative'], (_, Back
     initialize: (attributes, options) ->
       if !!options && !!options.url      
         @url = options.url
-      if !!attributes
+      if !_.isEmpty attributes
         @parseAttributes attributes
     parse: (r) ->
       r = @parseAttributes r
