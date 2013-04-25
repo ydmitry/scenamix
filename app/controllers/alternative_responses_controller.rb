@@ -14,7 +14,7 @@ class AlternativeResponsesController < ApplicationController
     alternative_response = scene.responses.new(params[:response])
     alternative_response.user = current_user
     alternative_response.ip_address = request.remote_ip
-    alternative_response.parent_id = response.parent_id
+    alternative_response.parent_id = response.id
 
     respond_to do |format|
       if alternative_response.save

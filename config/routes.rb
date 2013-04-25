@@ -25,6 +25,9 @@ Scenamix::Application.routes.draw do
         get 'prev' => 'scenarios#prev'
       end
     end
+    member do
+      get 'sequels' => 'scenes#sequels'
+    end
   end
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

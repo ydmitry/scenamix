@@ -49,10 +49,10 @@
         %a{ :class => 'response-weight response-weight-upvote', :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/upvote' }
         %span.response-weight-value {{= response.votes }}
         %a{ :class => 'response-weight response-weight-downvote', :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/downvote' }
-        {{ if (!!response.alternative_size) { }}
+        {{ if (!!response.responses_size) { }}
         .response-alternative-link-wrap
           %a{ :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/alternative', :class => 'response-alternative-link' } 
-            {{= response.alternative_size }} alternative scenario(s)
+            {{= response.responses_size }} sequel(s)
         {{ } }}
 
     .response-new-container
@@ -83,7 +83,7 @@
 
 %script#responses-alternative-template{:type => 'text/html'}
   #responses-alternative-wrap
-    %h4 Alternative scenarios
+    %h4 Sequels to scenarios
     %img{ :src => '/assets/shadow-top.png', :alt => '', :class => "shadow-img" }
 
     .response.response-alternative-self
@@ -98,14 +98,19 @@
           %a{ :class => 'response-weight response-weight-upvote', :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/upvote' }
           %span.response-weight-value {{= response.votes }}
           %a{ :class => 'response-weight response-weight-downvote', :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/downvote' }
+          {{ if (!!response.responses_size) { }}
+          .response-alternative-link-wrap
+            %a{ :href => '/scenes/{{= response.scene_id }}/responses/{{= response.id }}/alternative', :class => 'response-alternative-link' } 
+              {{= response.responses_size }} sequel(s)
+          {{ } }}
+
+      .response-new-container
 
 
     %img{ :src => '/assets/shadow-bottom.png', :alt => '', :class => "shadow-img" }
 
     #responses-alternative
 
-    .scenario-alternative-new-wrap
-      %a{ :class => "response-alternative-new-button", :href => "#" } <span>New alternative response</span>
 
 
 %script#responses-template{:type => 'text/html'}

@@ -3,7 +3,7 @@
 .row-fluid
   #scenario-current.span6
 
-    .scene.scene-show
+    .scene.scene-show{'data-alt-url' => sequels_scene_path(@scene)}
       .border-top
       %h1= h @scene.title
 
@@ -15,6 +15,9 @@
           .scene-created-at= datetime_format(@scene.created_at)
         .scenario-sequel-wrap.span4
           = link_to content_tag(:span, 'Write sequel to scenario'), new_scene_response_path(@scene), :class => 'response-new-button', 'data-parent_id' => 0, 'data-scene_id' => @scene.id
+        .span4
+          - if @scene.sequels.present?
+            .response-alternative-link-wrap= link_to @scene.sequels_size.to_s + ' sequel(s)' , alternative_scene_response_path(@scene, response), :class => 'response-alternative-link'
       .response-new-container
       .border-bottom
     - if current_user.try(:id) && (current_user.try(:admin?) || current_user.try(:id) == @scene.user_id)
@@ -55,8 +58,8 @@
                   = link_to '', upvote_scene_response_path(@scene, response), :class => 'response-weight response-weight-upvote'
                   %span.response-weight-value= response.votes
                   = link_to '', downvote_scene_response_path(@scene, response), :class => 'response-weight response-weight-downvote'
-                  - if response.alternative.present?
-                    .response-alternative-link-wrap= link_to response.alternative_size.to_s + ' alternative scenario(s)' , alternative_scene_response_path(@scene, response), :class => 'response-alternative-link'
+                  - if response.responses.present?
+                    .response-alternative-link-wrap= link_to response.responses_size.to_s + ' sequel(s)' , alternative_scene_response_path(@scene, response), :class => 'response-alternative-link'
 
               .response-new-container
               .border-bottom

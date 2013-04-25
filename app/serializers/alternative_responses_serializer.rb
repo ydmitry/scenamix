@@ -3,7 +3,7 @@ class AlternativeResponsesSerializer < ActiveModel::Serializer
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
 
-  attributes :id, :scene_id, :parent_id, :response, :votes, :alternative_size, :user_id, :user_name, :created_at
+  attributes :id, :scene_id, :parent_id, :response, :votes, :alternative_size, :responses_size, :user_id, :user_name, :created_at
   has_many :responses
 
   def response
@@ -15,6 +15,6 @@ class AlternativeResponsesSerializer < ActiveModel::Serializer
   end
 
   def responses
-    object.alternative
+    object.responses
   end
 end

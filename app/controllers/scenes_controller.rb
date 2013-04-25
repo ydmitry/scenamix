@@ -3,6 +3,14 @@ class ScenesController < ApplicationController
     @scenes = Scene.find_visible_scenes
   end
 
+  def sequels
+    @scene = Scene.find(params[:id])
+
+    respond_to do |format|
+      format.json { render :json => @scene, :root => false, :serializer => SceneSequelsSerializer }
+    end
+  end
+
   def new
     @scene = Scene.new
   end

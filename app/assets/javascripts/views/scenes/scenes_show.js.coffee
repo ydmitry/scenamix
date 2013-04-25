@@ -12,6 +12,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       'click .response-weight': 'onResponseWeight'
       'click .response-new-button': 'onResponseNewButton'
       'mouseenter .response-scenario': 'onResponseHover'
+      'mouseenter .scene': 'onSceneHover'
 
     initialize: (options) ->
       $(window).on 'scenario:change', _.bind @onScenarioChange, @
@@ -28,7 +29,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
       @$('#scenario-responses-wrap').find('.response:first').length == 0
 
     render: ->
-      $response = @$('.response:first')
+      $response = @$('.scene')
       @responseAlternative($response) if $response.length > 0
       @
 
@@ -42,6 +43,11 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
     onResponseDelete: (e) -> confirm($(e.target).find('.btn').data('confirm'))
 
     onResponseHover: (e) -> 
+      $response = $ e.currentTarget
+      
+      @responseAlternative $response if !$response.hasClass 'response-active'
+
+    onSceneHover: (e) ->
       $response = $ e.currentTarget
       
       @responseAlternative $response if !$response.hasClass 'response-active'
@@ -83,7 +89,7 @@ define ['jquery', 'underscore', 'backbone', 'views/responses/responses_alternati
         parse: true
 
     removeResponseHightlight: ->
-      @$el.find('#scenario-current-responses').find('.response').removeClass 'response-active'
+      @$el.find('.response-active').removeClass 'response-active'
 
     onResponseWeight: (e) ->
       $el = $ e.currentTarget

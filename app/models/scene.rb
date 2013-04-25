@@ -26,6 +26,14 @@ class Scene < ActiveRecord::Base
     best_first_responses.map(&:scenarios_response_ids).flatten
   end
 
+  def sequels
+    self.responses.where(:parent_id => 0)
+  end
+
+  def sequels_size
+    self.sequels.size
+  end
+
   def self.find_visible_scenes
     visible.ordered
   end
