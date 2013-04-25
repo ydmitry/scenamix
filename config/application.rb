@@ -68,5 +68,8 @@ module Scenamix
       g.template_engine :haml
     end
 
+    if Rails.env == "production"
+      config.middleware.use("Rack::GoogleAnalytics", :web_property_id => "UA-40430054-1")
+    end
   end
 end
