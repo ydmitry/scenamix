@@ -27,8 +27,7 @@ Scenamix::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  devise_for :users, :controllers => { :sessions => "users/sessions" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :sessions => "users/sessions" }
 
   # Sample resource route with options:
   #   resources :products do
@@ -68,9 +67,9 @@ Scenamix::Application.routes.draw do
   # root :to => 'welcome#index'
   root :to => 'index#index'
 
-  match 'about' => 'index#about'
+  match 'about' => 'index#about', :via => :get
 
-  match 'dashboard' => 'scenes#index', :as => 'user_root'
+  match 'dashboard' => 'scenes#index', :as => 'user_root', :via => :get
 
   # See how all your routes lay out with "rake routes"
 

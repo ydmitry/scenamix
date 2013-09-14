@@ -8,7 +8,7 @@ class ScenesController < ApplicationController
   end
 
   def create
-    @scene = Scene.new(params[:scene])
+    @scene = Scene.new(scene_fields)
     @scene.user = current_user
     @scene.ip_address = request.remote_ip
 
@@ -39,7 +39,7 @@ class ScenesController < ApplicationController
       raise "Scene can be edited only by owner or admin."
     end
 
-    if @scene.update_attributes(params[:scene])
+    if @scene.update_attributes(scene_fields)
       redirect_to @scene, notice: "#{@scene.title} was successfully updated."
     else
       render :edit
@@ -60,4 +60,11 @@ class ScenesController < ApplicationController
     @scene.destroy
     redirect_to scenes_path, notice: "Scene '#{@scene.title}' deleted."
   end
+
+  protected
+
+  def scene_fields
+    params.require(:scene).permit(:title, :description, :hidden)
+  end
+
 end

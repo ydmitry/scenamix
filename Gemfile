@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '~> 4.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -16,7 +16,7 @@ group :assets do
   gem 'therubyracer'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails', '~> 2'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'coffee-rails', :github => 'rails/coffee-rails'
   gem 'uglifier'
 end
 
@@ -33,7 +33,7 @@ end
 group :test do
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
-  gem 'database_cleaner'
+  gem 'database_cleaner', github: 'bmabey/database_cleaner'
   gem 'simplecov'
   gem 'factory_girl_rails', '~> 4.0'
 end
@@ -46,12 +46,15 @@ end
 gem 'underscore-rails'
 gem 'jquery-rails'
 gem 'backbone-on-rails'
-gem 'requirejs-rails'
+gem 'requirejs-rails', :github => 'jwhitley/requirejs-rails'
 
-gem 'haml-rails', '= 0.3.4'
+gem 'haml-rails', :github => 'indirect/haml-rails'
 
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'twitter'
+gem 'fb_graph'
 
 gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'

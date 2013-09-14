@@ -1,7 +1,5 @@
 class Scene < ActiveRecord::Base
 
-  attr_accessible :title, :description, :user_id, :ip_address, :last_response_at, :hidden
-
   has_many :responses, :dependent => :destroy
   belongs_to :user
 

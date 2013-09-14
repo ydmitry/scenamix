@@ -6,9 +6,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
   has_many :responses
   has_many :scenes
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid
-  # attr_accessible :title, :body
 
   def name
     'User' + self.id.to_s

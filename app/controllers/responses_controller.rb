@@ -7,7 +7,7 @@ class ResponsesController < ApplicationController
   def create
     scene = Scene.find(params[:scene_id])
 
-    @response = scene.responses.new(params[:response])
+    @response = scene.responses.new(response_fields)
     @response.user = current_user
     @response.ip_address = request.remote_ip
 
@@ -47,7 +47,7 @@ class ResponsesController < ApplicationController
       raise "Response can be edited only by owner or admin."
     end
 
-    if @response.update_attributes(params[:response])
+    if @response.update_attributes(response_fields)
       redirect_to [@response.scene, @response], notice: "#Response was successfully updated."
     else
       render :edit
@@ -89,4 +89,11 @@ class ResponsesController < ApplicationController
       format.json { render json: { votes: response.votes } }
     end
   end
+
+  protected
+
+  def response_fields
+    params.require(:response).permit(:scene_id, :response, :parent_id)
+  end
+
 end

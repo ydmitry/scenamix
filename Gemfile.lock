@@ -1,49 +1,90 @@
 GIT
+  remote: git://github.com/bmabey/database_cleaner.git
+  revision: df55cf7b746e792dba1d11eea0d6e31e3abc7e8c
+  specs:
+    database_cleaner (1.1.1)
+
+GIT
+  remote: git://github.com/indirect/haml-rails.git
+  revision: 6b7a5dead27957aff853b6c82b81fc13543c1aeb
+  specs:
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
+
+GIT
+  remote: git://github.com/jwhitley/requirejs-rails.git
+  revision: f2330104aeca4d193fd5680a22ae7eee85d814b5
+  specs:
+    requirejs-rails (0.9.1)
+      railties (>= 3.1.1, < 4.1)
+
+GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: 4216c34538827ef205c039195409be9e14497985
+  specs:
+    devise (3.1.0)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+
+GIT
   remote: git://github.com/rails-api/active_model_serializers.git
   revision: 3e9b366a4531e6795b73b41e732f9db849874903
   specs:
     active_model_serializers (0.5.2)
       activemodel (>= 3.0)
 
+GIT
+  remote: git://github.com/rails/coffee-rails.git
+  revision: c812f4da1f5adc226ef834b57c2498467761cb2c
+  specs:
+    coffee-rails (4.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (3.2.9)
-      actionpack (= 3.2.9)
-      mail (~> 2.4.4)
-    actionpack (3.2.9)
-      activemodel (= 3.2.9)
-      activesupport (= 3.2.9)
-      builder (~> 3.0.0)
+    actionmailer (4.0.0)
+      actionpack (= 4.0.0)
+      mail (~> 2.5.3)
+    actionpack (4.0.0)
+      activesupport (= 4.0.0)
+      builder (~> 3.1.0)
       erubis (~> 2.7.0)
-      journey (~> 1.0.4)
-      rack (~> 1.4.0)
-      rack-cache (~> 1.2)
-      rack-test (~> 0.6.1)
-      sprockets (~> 2.2.1)
-    activemodel (3.2.9)
-      activesupport (= 3.2.9)
-      builder (~> 3.0.0)
-    activerecord (3.2.9)
-      activemodel (= 3.2.9)
-      activesupport (= 3.2.9)
-      arel (~> 3.0.2)
-      tzinfo (~> 0.3.29)
-    activeresource (3.2.9)
-      activemodel (= 3.2.9)
-      activesupport (= 3.2.9)
-    activesupport (3.2.9)
-      i18n (~> 0.6)
-      multi_json (~> 1.0)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    activemodel (4.0.0)
+      activesupport (= 4.0.0)
+      builder (~> 3.1.0)
+    activerecord (4.0.0)
+      activemodel (= 4.0.0)
+      activerecord-deprecated_finders (~> 1.0.2)
+      activesupport (= 4.0.0)
+      arel (~> 4.0.0)
+    activerecord-deprecated_finders (1.0.3)
+    activesupport (4.0.0)
+      i18n (~> 0.6, >= 0.6.4)
+      minitest (~> 4.2)
+      multi_json (~> 1.3)
+      thread_safe (~> 0.1)
+      tzinfo (~> 0.3.37)
     addressable (2.3.2)
-    arel (3.0.2)
+    arel (4.0.0)
+    atomic (1.1.14)
+    attr_required (0.0.5)
     backbone-on-rails (0.9.9.0)
       eco
       ejs
       jquery-rails
       rails (>= 3.1)
-    bcrypt-ruby (3.0.1)
-    builder (3.0.4)
+    bcrypt-ruby (3.1.2)
+    builder (3.1.4)
     capybara (2.0.2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -53,9 +94,6 @@ GEM
       xpath (~> 1.0.0)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
-    coffee-rails (3.2.2)
-      coffee-script (>= 2.2.0)
-      railties (~> 3.2.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -72,12 +110,6 @@ GEM
       nokogiri (>= 1.5.0)
     cucumber-rails-training-wheels (1.0.0)
       cucumber-rails (>= 1.1.1)
-    database_cleaner (0.9.1)
-    devise (2.2.3)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (~> 3.1)
-      warden (~> 1.2.1)
     diff-lcs (1.1.3)
     eco (1.0.0)
       coffee-script
@@ -95,30 +127,31 @@ GEM
       railties (>= 3.0.0)
     faraday (0.8.7)
       multipart-post (~> 1.1)
+    fb_graph (2.7.8)
+      httpclient (>= 2.2.0.2)
+      multi_json (>= 1.3)
+      rack-oauth2 (>= 0.14.4)
+      tzinfo
     ffi (1.2.0)
     gherkin (2.11.5)
       json (>= 1.4.6)
-    haml (3.1.7)
-    haml-rails (0.3.4)
-      actionpack (~> 3.0)
-      activesupport (~> 3.0)
-      haml (~> 3.0)
-      railties (~> 3.0)
+    haml (4.0.3)
+      tilt
     hashie (1.2.0)
-    hike (1.2.1)
+    hike (1.2.3)
     httpauth (0.2.0)
-    i18n (0.6.4)
+    httpclient (2.3.4.1)
+    i18n (0.6.5)
     jasmine (1.2.1)
       jasmine-core (>= 1.2.0)
       rack (~> 1.0)
       rspec (>= 1.3.1)
       selenium-webdriver (>= 0.1.3)
     jasmine-core (1.3.1)
-    journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.7.7)
+    json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
     launchy (2.1.2)
@@ -132,14 +165,15 @@ GEM
     libwebsocket (0.1.7.1)
       addressable
       websocket
-    mail (2.4.4)
-      i18n (>= 0.4.0)
+    mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.19)
-    multi_json (1.7.2)
+    mime-types (1.25)
+    minitest (4.7.5)
+    multi_json (1.8.0)
     multipart-post (1.2.0)
     nokogiri (1.5.6)
+    oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -151,40 +185,42 @@ GEM
       rack
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    omniauth-twitter (1.0.0)
+      multi_json (~> 1.3)
+      omniauth-oauth (~> 1.0)
     orm_adapter (0.4.0)
     pg (0.14.1)
     polyglot (0.3.3)
-    rack (1.4.5)
-    rack-cache (1.2)
-      rack (>= 0.4)
-    rack-ssl (1.3.3)
-      rack
+    rack (1.5.2)
+    rack-oauth2 (1.0.5)
+      activesupport (>= 2.3)
+      attr_required (>= 0.0.5)
+      httpclient (>= 2.2.0.2)
+      multi_json (>= 1.3.6)
+      rack (>= 1.1)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.9)
-      actionmailer (= 3.2.9)
-      actionpack (= 3.2.9)
-      activerecord (= 3.2.9)
-      activeresource (= 3.2.9)
-      activesupport (= 3.2.9)
-      bundler (~> 1.0)
-      railties (= 3.2.9)
-    railties (3.2.9)
-      actionpack (= 3.2.9)
-      activesupport (= 3.2.9)
-      rack-ssl (~> 1.3.2)
+    rails (4.0.0)
+      actionmailer (= 4.0.0)
+      actionpack (= 4.0.0)
+      activerecord (= 4.0.0)
+      activesupport (= 4.0.0)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.0.0)
+      sprockets-rails (~> 2.0.0)
+    railties (4.0.0)
+      actionpack (= 4.0.0)
+      activesupport (= 4.0.0)
       rake (>= 0.8.7)
-      rdoc (~> 3.4)
-      thor (>= 0.14.6, < 2.0)
-    rake (10.0.4)
-    rdoc (3.12.2)
-      json (~> 1.4)
+      thor (>= 0.18.1, < 2.0)
+    rake (10.1.0)
     ref (1.0.2)
-    requirejs-rails (0.9.1)
-      railties (>= 3.1.1, < 3.3)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
@@ -206,33 +242,44 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+    simple_oauth (0.2.0)
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
-    sprockets (2.2.2)
+    sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sprockets-rails (2.0.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      sprockets (~> 2.8)
     sqlite3 (1.3.6)
     therubyracer (0.11.0)
       ref
     thor (0.18.1)
-    tilt (1.3.6)
-    treetop (1.4.12)
+    thread_safe (0.1.3)
+      atomic
+    tilt (1.4.1)
+    treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    twitter (4.8.1)
+      faraday (~> 0.8, < 0.10)
+      multi_json (~> 1.0)
+      simple_oauth (~> 0.2)
     twitter-bootstrap-rails (2.1.9)
       actionpack (>= 3.1)
       execjs
       railties (>= 3.1)
-    tzinfo (0.3.35)
+    tzinfo (0.3.37)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     underscore-rails (1.4.3)
-    warden (1.2.1)
+    warden (1.2.3)
       rack (>= 1.0)
     websocket (1.0.6)
     xpath (1.0.0)
@@ -245,13 +292,14 @@ DEPENDENCIES
   active_model_serializers!
   backbone-on-rails
   capybara
-  coffee-rails (~> 3.2.1)
+  coffee-rails!
   cucumber-rails
   cucumber-rails-training-wheels
-  database_cleaner
-  devise
+  database_cleaner!
+  devise!
   factory_girl_rails (~> 4.0)
-  haml-rails (= 0.3.4)
+  fb_graph
+  haml-rails!
   jasmine (~> 1.2.1)
   jquery-rails
   launchy
@@ -259,13 +307,15 @@ DEPENDENCIES
   libv8 (~> 3.11.8)
   omniauth
   omniauth-facebook
+  omniauth-twitter
   pg
-  rails (= 3.2.9)
-  requirejs-rails
+  rails (~> 4.0.0)
+  requirejs-rails!
   rspec-rails (~> 2.0)
   simplecov
   sqlite3
   therubyracer
+  twitter
   twitter-bootstrap-rails (~> 2)
   uglifier
   underscore-rails

@@ -1,7 +1,5 @@
 class Response < ActiveRecord::Base
 
-  attr_accessible :scene_id, :response, :parent_id, :user_id, :ip_address
-
   belongs_to :scene
   belongs_to :user
   belongs_to :parent, class_name: 'Response'

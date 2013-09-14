@@ -11,7 +11,7 @@ class AlternativeResponsesController < ApplicationController
   def create
     scene = Scene.find(params[:scene_id])
     response = Response.find(params[:id])
-    alternative_response = scene.responses.new(params[:response])
+    alternative_response = scene.responses.new(response_fields)
     alternative_response.user = current_user
     alternative_response.ip_address = request.remote_ip
     alternative_response.parent_id = response.parent_id
@@ -23,5 +23,9 @@ class AlternativeResponsesController < ApplicationController
         format.json { render json: { ok: 0 } }
       end
     end
+  end
+
+  def response_fields
+    params.require(:response).permit(:scene_id, :response, :parent_id)
   end
 end
