@@ -78,7 +78,7 @@ GEM
     arel (4.0.0)
     atomic (1.1.14)
     attr_required (0.0.5)
-    backbone-on-rails (0.9.9.0)
+    backbone-on-rails (1.0.0.1)
       eco
       ejs
       jquery-rails
@@ -290,7 +290,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers!
-  backbone-on-rails
+  backbone-on-rails (~> 1.0.0.1)
   capybara
   coffee-rails!
   cucumber-rails

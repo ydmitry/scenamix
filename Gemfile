@@ -45,7 +45,7 @@ end
 
 gem 'underscore-rails'
 gem 'jquery-rails'
-gem 'backbone-on-rails'
+gem 'backbone-on-rails', "~> 1.0.0.1"
 gem 'requirejs-rails', :github => 'jwhitley/requirejs-rails'
 
 gem 'haml-rails', :github => 'indirect/haml-rails'

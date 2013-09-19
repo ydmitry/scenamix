@@ -57,6 +57,7 @@ module Scenamix
     # 4. If you are deploying Rails 3.1 on Heroku, you may want to set:
     config.assets.initialize_on_precompile = false
 
+    config.secret_key_base = 'fr34bdfbregh54554hfdhh5545hdeknyvxt'
 
     config.generators do |g|
       g.template_engine :haml

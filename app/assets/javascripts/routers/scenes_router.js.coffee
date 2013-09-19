@@ -29,10 +29,6 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
           trigger: true
           replace: false
 
-      @checkSmallScreen()
-
-      $(window).on 'resize', @checkSmallScreen
-
     home: ->
       false
 
@@ -45,19 +41,3 @@ define ['jquery', 'underscore', 'backbone', 'views/scenes/scenes_show'], ($, _, 
       sceneView = new ScenesShowView
         sceneId: scene
       sceneView.render()
-
-    signIn: ->
-      $('input[type="email"]:first').focus()
-
-    signUp: ->
-      $('input[type="email"]:first').focus()
-
-    onScenarioChanged: (e, url)->
-      @navigate url
-
-    checkSmallScreen: ->
-      if $(window).width() < 760
-        $('body').addClass 'body-small-screen'
-      else
-        $('body').removeClass 'body-small-screen'
-

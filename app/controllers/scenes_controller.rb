@@ -1,6 +1,6 @@
 class ScenesController < ApplicationController
   def index
-    @scenes = Scene.find_visible_scenes
+    @scenes = current_user.scenes
   end
 
   def new
@@ -21,7 +21,6 @@ class ScenesController < ApplicationController
 
   def show
     @scene = Scene.find(params[:id])
-    @scenario = @scene.best_scenario
   end
 
   def edit
@@ -64,7 +63,7 @@ class ScenesController < ApplicationController
   protected
 
   def scene_fields
-    params.require(:scene).permit(:title, :description, :hidden)
+    params.require(:scene).permit(:title, :description)
   end
 
 end

@@ -15,13 +15,6 @@
       = f.text_area :description, :class => 'input-xxlarge', :placeholder => "What is to be imagined? Input initial conditions and goal which you want to achieve. It is not recommended to ask questions. What should characters in this scene do?"
       = @scene.errors[:description].join(", ")
 
-  -if current_user.try(:admin?)
-    .control-group
-      .controls
-        .checkbox
-          = f.check_box :hidden
-          = f.label :hidden
-
   .form-actions
     = submit_tag 'Create scene', :class => 'btn-custom btn-custom-plus'
 

@@ -11,3 +11,9 @@ Scene.create(title: 'Hiring to a job', description: 'Example of employment. What
 Scene.create(title: 'Best first date for girls', description: "Girls, what's the Best first date you have ever imagined?")
 Scene.create(title: 'Best first date for men', description: "Guys, what's the Best first date you have ever imagined?'")
 Scene.create(title: 'Space invasion', description: 'What do you think about how to best conquer space?')
+
+Role.create(name: 'Actor', description: 'Action to solve a problem')
+Role.create(name: 'Critic', description: 'Negative consequense of an action')
+Role.create(name: 'Optimist', description: 'Positive consequense of an action')
+
+user = User.create! :email => 'admin@test.com', :password => '123456', :password_confirmation => '123456', :admin => true

@@ -9,55 +9,80 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419030048) do
+ActiveRecord::Schema.define(version: 20130918134124) do
 
-  create_table "responses", :force => true do |t|
+  create_table "responses", force: true do |t|
     t.integer  "scene_id"
     t.text     "response"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.integer  "parent_id",                :default => 0
-    t.integer  "upvotes",                  :default => 0
-    t.integer  "downvotes",                :default => 0
-    t.integer  "user_id",                  :default => 0
-    t.string   "ip_address", :limit => 15, :default => ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "parent_id",             default: 0
+    t.integer  "user_id",               default: 0
+    t.string   "ip_address", limit: 15, default: ""
+    t.integer  "role_id"
+    t.integer  "task_id"
   end
 
-  add_index "responses", ["parent_id"], :name => "index_responses_on_parent_id"
-  add_index "responses", ["scene_id"], :name => "index_responses_on_scene_id"
+  add_index "responses", ["parent_id"], name: "index_responses_on_parent_id"
+  add_index "responses", ["scene_id"], name: "index_responses_on_scene_id"
 
-  create_table "scenes", :force => true do |t|
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "scenes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "title"
     t.text     "description"
-    t.integer  "user_id",                        :default => 0
-    t.string   "ip_address",       :limit => 15, :default => ""
+    t.integer  "user_id",                     default: 0
+    t.string   "ip_address",       limit: 15, default: ""
     t.datetime "last_response_at"
-    t.boolean  "hidden",                         :default => false
+    t.boolean  "hidden",                      default: false
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",    :null => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+  create_table "scenes_users", id: false, force: true do |t|
+    t.integer "scene_id"
+    t.integer "user_id"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.integer  "scene_id"
+    t.integer  "response_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tasks_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",          default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.boolean  "admin",                  :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "admin",                  default: false
     t.string   "provider"
     t.string   "uid"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
