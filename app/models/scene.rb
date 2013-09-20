@@ -10,8 +10,9 @@ class Scene < ActiveRecord::Base
 
   scope :ordered, -> { order("created_at DESC") }
   scope :visible, -> { where(:hidden => false) }
+  scope :user, -> (id) { where(:user_id => id) }
 
-  def self.find_visible_scenes
-    visible.ordered
+  def self.find_user_scenes(id)
+    visible.ordered.user(id)
   end
 end

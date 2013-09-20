@@ -45,8 +45,8 @@
           .border1
           .border2
           %a{:href => '/', :class => (current_page?('/') ? 'active' : nil)} Home
-          %a{:href => '/scenes', :class => (current_page?('/scenes') ||  controller.controller_name == 'scenes' ||  controller.controller_name == 'responses' ||  controller.controller_name == 'alternative_responses' ? 'active' : nil)} Scenes
-          %a{:href => '/about', :class => (current_page?('/about') ? 'active' : nil)} About
+          - if user_signed_in?
+            %a{:href => '/scenes', :class => (current_page?('/scenes') ||  controller.controller_name == 'scenes' ||  controller.controller_name == 'responses' ||  controller.controller_name == 'alternative_responses' ? 'active' : nil)} My scenes
 
     .container#layout-content-container
 

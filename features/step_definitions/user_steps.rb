@@ -105,3 +105,17 @@ Given /^I am logged in as an admin$/ do
   fill_in 'Password', with: '111111'
   click_button 'Sign in'
 end
+
+Given /^I am logged in as an user$/ do
+  User.create! do |user|
+    user.email = 'user@gmail.com'
+    user.password = '111111'
+    user.password_confirmation = '111111'
+  end
+
+  visit new_user_session_path
+
+  fill_in 'Email', with: 'user@gmail.com'
+  fill_in 'Password', with: '111111'
+  click_button 'Sign in'
+end
