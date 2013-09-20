@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20130918134124) do
   create_table "responses", force: true do |t|
     t.integer  "scene_id"
     t.text     "response"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "parent_id",             default: 0
     t.integer  "user_id",               default: 0
     t.string   "ip_address", limit: 15, default: ""
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20130918134124) do
   end
 
   create_table "scenes", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.string   "title"
     t.text     "description"
     t.integer  "user_id",                     default: 0
@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 20130918134124) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false
     t.string   "provider"
     t.string   "uid"

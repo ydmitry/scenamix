@@ -17,8 +17,9 @@
   .scene-user-menu
     = link_to 'Edit', edit_scene_path(@scene), :class => 'btn'
     = button_to 'Delete', scene_path(@scene), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger', :form_class => 'button_to scene-delete'
+.take-part-wrap
+  = link_to 'Take part', '#', :id => 'btn-take-part', :class => 'btn btn-primary'
 
-= button_to 'Take part', '#', :id => 'btn-take-part', :class => 'btn btn-primary'
 .back-to-scene-list-wrap= link_to 'Back to scenes list', scenes_path
 /.add-new-scene-wrap= link_to "Add new scene", new_scene_path, :class => 'btn-custom btn-custom-plus'
 .vertical-separator
