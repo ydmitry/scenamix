@@ -16,12 +16,5 @@
       = f.text_area :description, :class => 'input-xxlarge'
       = @scene.errors[:description].join(', ')
 
-  -if current_user.try(:admin?)
-    .control-group
-      .controls
-        .checkbox
-          = f.check_box :hidden
-          = f.label :hidden
-
   .form-actions
     = f.submit 'Update scene Info', :class => 'btn btn-primary'

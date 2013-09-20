@@ -1,6 +1,6 @@
 class ScenesController < ApplicationController
   def index
-    @scenes = Scene.find_visible_scenes
+    @scenes = Scene.find_user_scenes(current_user.id)
   end
 
   def new
@@ -11,6 +11,10 @@ class ScenesController < ApplicationController
     @scene = Scene.new(scene_fields)
     @scene.user = current_user
     @scene.ip_address = request.remote_ip
+
+    if !current_user.try(:id)
+      raise "Scene can be created only by user."
+    end
 
     if @scene.save
       redirect_to @scene, notice: "#{@scene.title} was successfully created. Wait until other users share their imagination or invite friends by sending them the link to a scene."
@@ -64,7 +68,7 @@ class ScenesController < ApplicationController
   protected
 
   def scene_fields
-    params.require(:scene).permit(:title, :description, :hidden)
+    params.require(:scene).permit(:title, :description)
   end
 
 end
